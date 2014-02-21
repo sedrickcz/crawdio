@@ -1,0 +1,81 @@
+<% content_for :body_content_title do %>
+  <%= @tier.title %>
+<% end %>
+
+<% content_for :body do %>
+  <section>
+    <h1>Title</h1>
+    <p>
+      <%=raw @tier.title %>
+    </p>
+  </section>
+  <section>
+    <h1>Price</h1>
+    <p>
+      <%=raw @tier.price %>
+    </p>
+  </section>
+  <section>
+    <h1>Limit</h1>
+    <p>
+      <%=raw @tier.limit %>
+    </p>
+  </section>
+  <section>
+    <h1>Physical</h1>
+    <p>
+      <%=raw @tier.physical %>
+    </p>
+  </section>
+  <section>
+    <h1>Short Description</h1>
+    <p>
+      <%=raw @tier.short_description %>
+    </p>
+  </section>
+  <section>
+    <h1>Long Description</h1>
+    <p>
+      <%=raw @tier.long_description %>
+    </p>
+  </section>
+  <section>
+    <h1>Active</h1>
+    <p>
+      <%=raw @tier.active %>
+    </p>
+  </section>
+  <section>
+    <h1>Image 1</h1>
+    <p>
+      <%= image_fu @tier.image_1, nil %>
+    </p>
+  </section>
+  <section>
+    <h1>Image 2</h1>
+    <p>
+      <%= image_fu @tier.image_2, nil %>
+    </p>
+  </section>
+  <section>
+    <h1>Image 3</h1>
+    <p>
+      <%= image_fu @tier.image_3, nil %>
+    </p>
+  </section>
+<% end %>
+
+<% content_for :side_body do %>
+  <aside>
+    <h2><%= t('.other') %></h2>
+    <ul id="tiers">
+      <% @tiers.each do |tier| %>
+        <li>
+          <%= link_to tier.title, refinery.tiers_tier_path(tier) %>
+        </li>
+      <% end %>
+    </ul>
+  </aside>
+<% end %>
+
+<%= render '/refinery/content_page' %>

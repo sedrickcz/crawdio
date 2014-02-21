@@ -1,0 +1,42 @@
+es:
+  refinery:
+    plugins:
+      projects:
+        title: Projects
+#        article: masculino/femenino
+    projects:
+      admin:
+        projects:
+          actions:
+            create_new: Crear nuevo project
+            reorder: Reordenar projects
+            reorder_done: Reordenación de projects completada
+          records:
+            title: Projects
+            sorry_no_results: Lo siento, no hay resultados
+            no_items_yet: No hay projects todavía. Pulsa en "Crear nuevo Project" para crear tu primer project.
+          project:
+            view_live_html: Ver este project como abierto al público <br/><em>(abre en ventana nueva)</em>
+            edit: Editar este project
+            delete: Borrar este project para siempre
+      projects:
+        show:
+          other: Otros projects
+  activerecord:
+    attributes:
+      'refinery/projects/project':
+        title: Title
+        short_description: Short Description
+        long_description: Long Description
+        goal: Goal
+        main_image: Main Image
+        image_1: Image 1
+        image_2: Image 2
+        image_3: Image 3
+        image_4: Image 4
+        image_5: Image 5
+        active: Active
+        video: Video
+        faq: Faq
+        terms: Terms
+        updates: Updates

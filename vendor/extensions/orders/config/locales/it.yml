@@ -1,0 +1,39 @@
+it:
+  refinery:
+    plugins:
+      orders:
+        title: Orders
+    orders:
+      admin:
+        orders:
+          actions:
+            create_new: Aggiungi Nuovo Order
+            reorder: Riordina Orders
+            reorder_done: Termina il Riordino di Orders
+          records:
+            title: Orders
+            sorry_no_results: "Spiacenti! Nessun risultato trovato"
+            no_items_yet: Non ci sono ancora Orders. Clicca "Aggiungi Nuovo Order" per aggiungere il tuo primo order.
+          order:
+            view_live_html: Guarda live questo order <br/><em>(apre una nuova finestra)</em>
+            edit: Modifica questo order
+            delete: Rimuovi per sempre questo order
+      orders:
+        show:
+          other: Altri Orders
+  activerecord:
+    attributes:
+      'refinery/orders/order':
+        user_id: User
+        tier_id: Tier
+        price: Price
+        paid: Paid
+        paid_at: Paid At
+        pay_type: Pay Type
+        payment_id: Payment
+        email: Email
+        tier_name: Tier Name
+        name: Name
+        street: Street
+        city: City
+        country: Country

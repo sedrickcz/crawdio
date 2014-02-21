@@ -1,0 +1,36 @@
+cs:
+  refinery:
+    plugins:
+      tiers:
+        title: Tiers
+    tiers:
+      admin:
+        tiers:
+          actions:
+            create_new: Přidat Tier
+            reorder: Řadit Tiers
+            reorder_done: Konec řazení Tiers
+          records:
+            title: Tiers
+            sorry_no_results: Litujeme, ale nebyly nalezny žádné výsledky.
+            no_items_yet: Zatím nebyly vytvořeny žádné Tiers. Zvolte "Přidat Tier" pro přidání prvního tier.
+          tier:
+            view_live_html: Zobrazit náhled tier<br/><em>(otevře se v novém okně)</em>
+            edit: Upravit tier
+            delete: Smazat tier
+      tiers:
+        show:
+          other: Další Tiers
+  activerecord:
+    attributes:
+      'refinery/tiers/tier':
+        title: Title
+        price: Price
+        limit: Limit
+        physical: Physical
+        short_description: Short Description
+        long_description: Long Description
+        active: Active
+        image_1: Image 1
+        image_2: Image 2
+        image_3: Image 3

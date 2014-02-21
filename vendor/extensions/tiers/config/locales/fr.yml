@@ -1,0 +1,36 @@
+fr:
+  refinery:
+    plugins:
+      tiers:
+        title: Tiers
+    tiers:
+      admin:
+        tiers:
+          actions:
+            create_new: Créer un(e) nouve(au/l/lle) Tier
+            reorder: Réordonner les Tiers
+            reorder_done: Fin de réordonnancement des Tiers
+          records:
+            title: Tiers
+            sorry_no_results: "Désolé ! Aucun résultat."
+            no_items_yet: 'Il n''y a actuellement aucun(e) Tier. Cliquer sur "Créer un(e) nouve(au/l/lle) Tier" pour créer votre premi(er/ère) tier.'
+          tier:
+            view_live_html: Voir ce(t/tte) tier <br/><em>(Ouvre une nouvelle fenêtre)</em>
+            edit: Modifier ce(t/tte) tier
+            delete: Supprimer définitivement ce(t/tte) tier
+      tiers:
+        show:
+          other: Autres Tiers
+  activerecord:
+    attributes:
+      'refinery/tiers/tier':
+        title: Title
+        price: Price
+        limit: Limit
+        physical: Physical
+        short_description: Short Description
+        long_description: Long Description
+        active: Active
+        image_1: Image 1
+        image_2: Image 2
+        image_3: Image 3

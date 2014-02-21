@@ -1,0 +1,36 @@
+tr:
+  refinery:
+    plugins:
+      tiers:
+        title: Tiers
+    tiers:
+      admin:
+        tiers:
+          actions:
+            create_new: Yeni Ekle Tier
+            reorder: Tekrar sirala Tiers
+            reorder_done: Tekrar siralama tamamlandiTiers
+          records:
+            title: Tiers
+            sorry_no_results: Uzgunum! Herhangi bir sonuc bulunamadi.
+            no_items_yet: Herhangi bir Tiers yok henuz.  Tikla "Yeni Ekle Tier" eklemek senin ilk tier.
+          tier:
+            view_live_html: Bunu canlu tier goruntule <br/><em>(yeni bir pencerede acar)</em>
+            edit: Bunu Duzenle tier
+            delete: Bunu Sil tier sonsuza dek
+      tiers:
+        show:
+          other: Diger Tiers
+  activerecord:
+    attributes:
+      'refinery/tiers/tier':
+        title: Title
+        price: Price
+        limit: Limit
+        physical: Physical
+        short_description: Short Description
+        long_description: Long Description
+        active: Active
+        image_1: Image 1
+        image_2: Image 2
+        image_3: Image 3

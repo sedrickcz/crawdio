@@ -1,0 +1,39 @@
+nb:
+  refinery:
+    plugins:
+      orders:
+        title: Orders
+    orders:
+      admin:
+        orders:
+          actions:
+            create_new: Lag en ny Order
+            reorder: Endre rekkefølgen på Orders
+            reorder_done: Ferdig å endre rekkefølgen Orders
+          records:
+            title: Orders
+            sorry_no_results: Beklager! Vi fant ikke noen resultater.
+            no_items_yet: Det er ingen Orders enda. Klikk på "Lag en ny Order" for å legge til din første order.
+          order:
+            view_live_html: Vis hvordan denne order ser ut offentlig <br/><em>(åpner i et nytt vindu)</em>
+            edit: Rediger denne order
+            delete: Fjern denne order permanent
+      orders:
+        show:
+          other: Andre Orders
+  activerecord:
+    attributes:
+      'refinery/orders/order':
+        user_id: User
+        tier_id: Tier
+        price: Price
+        paid: Paid
+        paid_at: Paid At
+        pay_type: Pay Type
+        payment_id: Payment
+        email: Email
+        tier_name: Tier Name
+        name: Name
+        street: Street
+        city: City
+        country: Country

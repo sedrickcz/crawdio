@@ -1,0 +1,39 @@
+cs:
+  refinery:
+    plugins:
+      orders:
+        title: Orders
+    orders:
+      admin:
+        orders:
+          actions:
+            create_new: Přidat Order
+            reorder: Řadit Orders
+            reorder_done: Konec řazení Orders
+          records:
+            title: Orders
+            sorry_no_results: Litujeme, ale nebyly nalezny žádné výsledky.
+            no_items_yet: Zatím nebyly vytvořeny žádné Orders. Zvolte "Přidat Order" pro přidání prvního order.
+          order:
+            view_live_html: Zobrazit náhled order<br/><em>(otevře se v novém okně)</em>
+            edit: Upravit order
+            delete: Smazat order
+      orders:
+        show:
+          other: Další Orders
+  activerecord:
+    attributes:
+      'refinery/orders/order':
+        user_id: User
+        tier_id: Tier
+        price: Price
+        paid: Paid
+        paid_at: Paid At
+        pay_type: Pay Type
+        payment_id: Payment
+        email: Email
+        tier_name: Tier Name
+        name: Name
+        street: Street
+        city: City
+        country: Country

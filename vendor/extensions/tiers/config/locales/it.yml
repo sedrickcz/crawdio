@@ -1,0 +1,36 @@
+it:
+  refinery:
+    plugins:
+      tiers:
+        title: Tiers
+    tiers:
+      admin:
+        tiers:
+          actions:
+            create_new: Aggiungi Nuovo Tier
+            reorder: Riordina Tiers
+            reorder_done: Termina il Riordino di Tiers
+          records:
+            title: Tiers
+            sorry_no_results: "Spiacenti! Nessun risultato trovato"
+            no_items_yet: Non ci sono ancora Tiers. Clicca "Aggiungi Nuovo Tier" per aggiungere il tuo primo tier.
+          tier:
+            view_live_html: Guarda live questo tier <br/><em>(apre una nuova finestra)</em>
+            edit: Modifica questo tier
+            delete: Rimuovi per sempre questo tier
+      tiers:
+        show:
+          other: Altri Tiers
+  activerecord:
+    attributes:
+      'refinery/tiers/tier':
+        title: Title
+        price: Price
+        limit: Limit
+        physical: Physical
+        short_description: Short Description
+        long_description: Long Description
+        active: Active
+        image_1: Image 1
+        image_2: Image 2
+        image_3: Image 3

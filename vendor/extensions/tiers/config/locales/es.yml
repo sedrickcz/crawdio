@@ -1,0 +1,37 @@
+es:
+  refinery:
+    plugins:
+      tiers:
+        title: Tiers
+#        article: masculino/femenino
+    tiers:
+      admin:
+        tiers:
+          actions:
+            create_new: Crear nuevo tier
+            reorder: Reordenar tiers
+            reorder_done: Reordenación de tiers completada
+          records:
+            title: Tiers
+            sorry_no_results: Lo siento, no hay resultados
+            no_items_yet: No hay tiers todavía. Pulsa en "Crear nuevo Tier" para crear tu primer tier.
+          tier:
+            view_live_html: Ver este tier como abierto al público <br/><em>(abre en ventana nueva)</em>
+            edit: Editar este tier
+            delete: Borrar este tier para siempre
+      tiers:
+        show:
+          other: Otros tiers
+  activerecord:
+    attributes:
+      'refinery/tiers/tier':
+        title: Title
+        price: Price
+        limit: Limit
+        physical: Physical
+        short_description: Short Description
+        long_description: Long Description
+        active: Active
+        image_1: Image 1
+        image_2: Image 2
+        image_3: Image 3

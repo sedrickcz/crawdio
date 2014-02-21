@@ -1,0 +1,36 @@
+nb:
+  refinery:
+    plugins:
+      tiers:
+        title: Tiers
+    tiers:
+      admin:
+        tiers:
+          actions:
+            create_new: Lag en ny Tier
+            reorder: Endre rekkefølgen på Tiers
+            reorder_done: Ferdig å endre rekkefølgen Tiers
+          records:
+            title: Tiers
+            sorry_no_results: Beklager! Vi fant ikke noen resultater.
+            no_items_yet: Det er ingen Tiers enda. Klikk på "Lag en ny Tier" for å legge til din første tier.
+          tier:
+            view_live_html: Vis hvordan denne tier ser ut offentlig <br/><em>(åpner i et nytt vindu)</em>
+            edit: Rediger denne tier
+            delete: Fjern denne tier permanent
+      tiers:
+        show:
+          other: Andre Tiers
+  activerecord:
+    attributes:
+      'refinery/tiers/tier':
+        title: Title
+        price: Price
+        limit: Limit
+        physical: Physical
+        short_description: Short Description
+        long_description: Long Description
+        active: Active
+        image_1: Image 1
+        image_2: Image 2
+        image_3: Image 3

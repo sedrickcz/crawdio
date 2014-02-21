@@ -1,0 +1,11 @@
+<% content_for :body do %>
+  <ul id="tiers">
+    <% @tiers.each do |tier| %>
+      <li>
+        <%= link_to tier.title, refinery.tiers_tier_path(tier) %>
+      </li>
+    <% end %>
+  </ul>
+<% end %>
+
+<%= render '/refinery/content_page' %>
