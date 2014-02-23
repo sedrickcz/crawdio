@@ -5,4 +5,7 @@ Refinery::User.class_eval do
   has_many :user_pledges, dependent: :destroy
   has_many :tiers, through: :user_pledges
   has_many :orders
+
+  validates :name, :street, :city, :country, presence: true
+
 end

@@ -3,3 +3,9 @@
 
 en:
   hello: "Hello world"
+  user:
+    registration: "Sign Up"
+    login: "Sign In"
+    sign_out: "Sign Out"
+    profile: "Profile"
+    edit: "Edit profile"
