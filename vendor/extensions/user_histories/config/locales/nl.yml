@@ -1,0 +1,30 @@
+nl:
+  refinery:
+    plugins:
+      user_histories:
+        title: User Histories
+    user_histories:
+      admin:
+        user_histories:
+          actions:
+            create_new: Nieuwe User History toevoegen
+            reorder: De volgorde van de User Histories wijzigen
+            reorder_done: Klaar met het wijzingen van de van de User History-volgorde
+          records:
+            title: User Histories
+            sorry_no_results: Helaas! Er zijn geen resultaten gevonden.
+            no_items_yet: Er zijn nog geen User Histories. Druk op 'Nieuwe User History toevoegen' om de eerste toe te voegen.
+          user_history:
+            view_live_html: Deze user history op de website bekijken <br/><em>(opent in een nieuw venster)</em>
+            edit: Bewerk deze user history
+            delete: Deze user history definitief verwijderen
+      user_histories:
+        show:
+          other: Andere User Histories
+  activerecord:
+    attributes:
+      'refinery/user_histories/user_history':
+        user_id: User
+        field: Field
+        original_value: Original Value
+        new_value: New Value

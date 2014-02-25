@@ -17,3 +17,6 @@ Refinery::Tiers::Engine.load_seed
 
 # Added by Refinery CMS Orders extension
 Refinery::Orders::Engine.load_seed
+
+# Added by Refinery CMS UserHistories extension
+Refinery::UserHistories::Engine.load_seed

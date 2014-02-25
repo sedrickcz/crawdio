@@ -1,0 +1,30 @@
+it:
+  refinery:
+    plugins:
+      user_histories:
+        title: User Histories
+    user_histories:
+      admin:
+        user_histories:
+          actions:
+            create_new: Aggiungi Nuovo User History
+            reorder: Riordina User Histories
+            reorder_done: Termina il Riordino di User Histories
+          records:
+            title: User Histories
+            sorry_no_results: "Spiacenti! Nessun risultato trovato"
+            no_items_yet: Non ci sono ancora User Histories. Clicca "Aggiungi Nuovo User History" per aggiungere il tuo primo user history.
+          user_history:
+            view_live_html: Guarda live questo user history <br/><em>(apre una nuova finestra)</em>
+            edit: Modifica questo user history
+            delete: Rimuovi per sempre questo user history
+      user_histories:
+        show:
+          other: Altri User Histories
+  activerecord:
+    attributes:
+      'refinery/user_histories/user_history':
+        user_id: User
+        field: Field
+        original_value: Original Value
+        new_value: New Value

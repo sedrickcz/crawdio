@@ -1,0 +1,16 @@
+<li class='clearfix record <%= cycle("on", "on-hover") %>' id="<%= dom_id(user_history) -%>">
+  <span class='title'>
+    <%= l user_history.created_at, format: :long %> - <strong><%= user_history.user.username %></strong> (<%= user_history.user_id %>) recently changed <strong><%= user_history.field %></strong> 
+    <% if user_history.field != "encrypted_password" %>
+      from <strong><%= user_history.original_value %></strong> to <strong><%= user_history.new_value %></strong>
+    <% end -%>
+
+  </span>
+  <span class='actions'>
+    <%= link_to refinery_icon_tag("delete.png"), refinery.user_histories_admin_user_history_path(user_history),
+        :class => "cancel confirm-delete",
+        :title => t('.delete'),
+        :confirm => t('message', :scope => 'refinery.admin.delete', :title => user_history.field),
+        :method => :delete %>
+  </span>
+</li>

@@ -1,0 +1,30 @@
+nb:
+  refinery:
+    plugins:
+      user_histories:
+        title: User Histories
+    user_histories:
+      admin:
+        user_histories:
+          actions:
+            create_new: Lag en ny User History
+            reorder: Endre rekkefølgen på User Histories
+            reorder_done: Ferdig å endre rekkefølgen User Histories
+          records:
+            title: User Histories
+            sorry_no_results: Beklager! Vi fant ikke noen resultater.
+            no_items_yet: Det er ingen User Histories enda. Klikk på "Lag en ny User History" for å legge til din første user history.
+          user_history:
+            view_live_html: Vis hvordan denne user history ser ut offentlig <br/><em>(åpner i et nytt vindu)</em>
+            edit: Rediger denne user history
+            delete: Fjern denne user history permanent
+      user_histories:
+        show:
+          other: Andre User Histories
+  activerecord:
+    attributes:
+      'refinery/user_histories/user_history':
+        user_id: User
+        field: Field
+        original_value: Original Value
+        new_value: New Value

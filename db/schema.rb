@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20140221111135) do
+ActiveRecord::Schema.define(:version => 20140225180429) do
 
   create_table "refinery_images", :force => true do |t|
     t.string   "image_mime_type"
@@ -105,6 +105,11 @@ ActiveRecord::Schema.define(:version => 20140221111135) do
   add_index "refinery_pages", ["parent_id"], :name => "index_refinery_pages_on_parent_id"
   add_index "refinery_pages", ["rgt"], :name => "index_refinery_pages_on_rgt"
 
+  create_table "refinery_pages_roles", :id => false, :force => true do |t|
+    t.integer "page_id"
+    t.integer "role_id"
+  end
+
   create_table "refinery_projects", :force => true do |t|
     t.string   "title"
     t.text     "short_description"
@@ -162,6 +167,16 @@ ActiveRecord::Schema.define(:version => 20140221111135) do
     t.integer  "position"
     t.datetime "created_at",        :null => false
     t.datetime "updated_at",        :null => false
+  end
+
+  create_table "refinery_user_histories", :force => true do |t|
+    t.integer  "user_id"
+    t.string   "field"
+    t.string   "original_value"
+    t.string   "new_value"
+    t.integer  "position"
+    t.datetime "created_at",     :null => false
+    t.datetime "updated_at",     :null => false
   end
 
   create_table "refinery_user_plugins", :force => true do |t|

@@ -1,0 +1,32 @@
+zh-CN:
+  refinery:
+    plugins:
+      user_histories:
+        title: User Histories
+    user_histories:
+      admin:
+        user_histories:
+          actions:
+            create_new: 建立新的 User History
+            reorder: 对 User Histories 重新排序
+            reorder_done: 对 User Histories 的重新排序结束
+          records:
+            title: User Histories
+            sorry_no_results: 对不起，未找到结果。 #Sorry! There are no results found.
+
+            # There are no User Histories yet. Click "Add New User History" to add your first user history.
+            no_items_yet: 目前没有 User Histories . 点击 "Add New User History" 创建一个user history.
+          user_history:
+            view_live_html: 查看 user history 的最新内容.<br/><em>(新窗口中打开)</em>
+            edit: 编辑 user history
+            delete: 永久删除 user history
+      user_histories:
+        show:
+          other: 其他 User Histories
+  activerecord:
+    attributes:
+      'refinery/user_histories/user_history':
+        user_id: User
+        field: Field
+        original_value: Original Value
+        new_value: New Value

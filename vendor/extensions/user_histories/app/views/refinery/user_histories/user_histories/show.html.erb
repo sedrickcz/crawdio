@@ -1,0 +1,45 @@
+<% content_for :body_content_title do %>
+  <%= @user_history.field %>
+<% end %>
+
+<% content_for :body do %>
+  <section>
+    <h1>User</h1>
+    <p>
+      <%=raw @user_history.user_id %>
+    </p>
+  </section>
+  <section>
+    <h1>Field</h1>
+    <p>
+      <%=raw @user_history.field %>
+    </p>
+  </section>
+  <section>
+    <h1>Original Value</h1>
+    <p>
+      <%=raw @user_history.original_value %>
+    </p>
+  </section>
+  <section>
+    <h1>New Value</h1>
+    <p>
+      <%=raw @user_history.new_value %>
+    </p>
+  </section>
+<% end %>
+
+<% content_for :side_body do %>
+  <aside>
+    <h2><%= t('.other') %></h2>
+    <ul id="user_histories">
+      <% @user_histories.each do |user_history| %>
+        <li>
+          <%= link_to user_history.field, refinery.user_histories_user_history_path(user_history) %>
+        </li>
+      <% end %>
+    </ul>
+  </aside>
+<% end %>
+
+<%= render '/refinery/content_page' %>

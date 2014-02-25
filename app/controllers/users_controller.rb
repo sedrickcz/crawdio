@@ -30,9 +30,11 @@ class UsersController < ApplicationController
 
     # If password is blank, allow user to skip password check
     params[:user].except!(:password, :password_confirmation) if params[:user][:password].blank?
-
+    # Create duplicate of current state
+    user_old = @user.dup
     respond_to do |format|
       if @user.update_attributes(params[:user])
+        @user.log_history(user_old)
         format.html { redirect_to @user, notice: 'User was successfully updated.' }
       else
         format.html { render action: "edit" }

@@ -7,6 +7,8 @@ PATH
       refinerycms-core (~> 2.1.1)
     refinerycms-tiers (1.0)
       refinerycms-core (~> 2.1.1)
+    refinerycms-user_histories (1.0)
+      refinerycms-core (~> 2.1.1)
 
 GEM
   remote: https://rubygems.org/
@@ -216,5 +218,6 @@ DEPENDENCIES
   refinerycms-orders!
   refinerycms-projects!
   refinerycms-tiers!
+  refinerycms-user_histories!
   sass-rails (~> 3.2.3)
   uglifier (>= 1.0.3)

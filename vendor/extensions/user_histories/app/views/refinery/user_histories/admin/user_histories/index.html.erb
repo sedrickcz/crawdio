@@ -1,0 +1,5 @@
+<section id='records' style="width: 100%;">
+  <%= render 'records' %>
+</section>
+
+<%= render '/refinery/admin/make_sortable', :tree => false if !searching? and ::Refinery::UserHistories::Admin::UserHistoriesController.sortable? and ::Refinery::UserHistories::UserHistory.many? %>

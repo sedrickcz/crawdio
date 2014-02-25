@@ -1,0 +1,30 @@
+tr:
+  refinery:
+    plugins:
+      user_histories:
+        title: User Histories
+    user_histories:
+      admin:
+        user_histories:
+          actions:
+            create_new: Yeni Ekle User History
+            reorder: Tekrar sirala User Histories
+            reorder_done: Tekrar siralama tamamlandiUser Histories
+          records:
+            title: User Histories
+            sorry_no_results: Uzgunum! Herhangi bir sonuc bulunamadi.
+            no_items_yet: Herhangi bir User Histories yok henuz.  Tikla "Yeni Ekle User History" eklemek senin ilk user history.
+          user_history:
+            view_live_html: Bunu canlu user history goruntule <br/><em>(yeni bir pencerede acar)</em>
+            edit: Bunu Duzenle user history
+            delete: Bunu Sil user history sonsuza dek
+      user_histories:
+        show:
+          other: Diger User Histories
+  activerecord:
+    attributes:
+      'refinery/user_histories/user_history':
+        user_id: User
+        field: Field
+        original_value: Original Value
+        new_value: New Value
