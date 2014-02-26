@@ -3,7 +3,7 @@ module Refinery
     class Tier < Refinery::Core::BaseModel
       self.table_name = 'refinery_tiers'
 
-      attr_accessible :title, :price, :limit, :physical, :short_description, :long_description, :active, :image_1_id, :image_2_id, :image_3_id, :position
+      attr_accessible :title, :price, :limit, :physical, :short_description, :long_description, :active, :image_1_id, :image_2_id, :image_3_id, :project_id, :position
 
       validates :title, :presence => true, :uniqueness => true
 
@@ -15,7 +15,8 @@ module Refinery
 
       has_many :user_pledges, dependent: :destroy
       has_many :users, through: :user_pledges
-      has_many :orders
+      has_many :orders, class_name: '::Refinery::Orders::Order'
+      belongs_to :project, class_name: '::Refinery::Projects::Project'
     end
   end
 end

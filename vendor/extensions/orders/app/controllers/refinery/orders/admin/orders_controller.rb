@@ -7,6 +7,9 @@ module Refinery
                 :title_attribute => 'pay_type',
                 :xhr_paging => true
 
+        def show
+          @order = Order.find(params[:id])
+        end
       end
     end
   end

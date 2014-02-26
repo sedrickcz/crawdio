@@ -1,13 +1,12 @@
 <li class='clearfix record <%= cycle("on", "on-hover") %>' id="<%= dom_id(order) -%>">
   <span class='title'>
-    <%= order.pay_type %>
+    <i><%= l order.created_at, format: :long %></i>  User <strong><%= order.user.username %></strong>(<%= order.user_id %>) ordered tier <strong><%= order.tier.title %></strong> 
 
   </span>
   <span class='actions'>
     
-    <%= link_to refinery_icon_tag("application_go.png"), refinery.orders_order_path(order),
-        :title => t('.view_live_html'),
-        :target => "_blank" %>
+    <%= link_to refinery_icon_tag("application_go.png"), refinery.orders_admin_order_path(order),
+        :title => t('.view_live_html') %>
     
     <%= link_to refinery_icon_tag("application_edit.png"), refinery.edit_orders_admin_order_path(order),
          :title => t('.edit') %>

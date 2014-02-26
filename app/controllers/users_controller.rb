@@ -16,7 +16,7 @@ class UsersController < ApplicationController
   end
 
   def show
-    @user = Refinery::User.where(id: params[:id]).first
+    @user = Refinery::User.find(params[:id])
   end
 
   def edit

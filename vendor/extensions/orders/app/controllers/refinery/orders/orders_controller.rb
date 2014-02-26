@@ -19,6 +19,26 @@ module Refinery
         present(@page)
       end
 
+      def new
+        @order = Order.new
+        @tier = Refinery::Tiers::Tier.find(params[:tier])
+      end
+
+      def create
+        @order = Order.new(params[:order])
+        @order.prepare(current_refinery_user)
+        
+        if @order.save 
+          # Send email
+          # Assign pledge to user
+          current_refinery_user.user_pledges.create tier_id: @order.tier_id
+          redirect_to '/thank-you'
+        else
+          @tier = @order.tier
+          render :new
+        end
+      end
+
     protected
 
       def find_all_orders

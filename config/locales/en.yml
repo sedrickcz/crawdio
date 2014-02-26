@@ -9,3 +9,7 @@ en:
     sign_out: "Sign Out"
     profile: "Profile"
     edit: "Edit profile"
+  order:
+    upgrade: "Upgrade to higher tier. You pay difference between new one and your higher one. Your new price is %{price}"
+    full_price: "Buy this tier for the full price."
+    already_have: "You already have this tier or have higher tier. You can buy this tier for full price."

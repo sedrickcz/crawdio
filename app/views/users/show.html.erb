@@ -3,8 +3,29 @@
 </div>
 
 <div id="user_content">
-  
-
+  <h2>My tier orders history</h2>
+  <table style="width:100%;">
+    <tr>
+      <th></th>
+      <th>Tier</th>
+      <th>Price</th>
+      <th>E-mail</th>
+      <th>Name</th>
+      <th>Address</th>
+      <th>Date</th>
+    </tr>
+    <% @user.orders.order("created_at DESC").each do |order| %>
+    <tr>
+      <td><%= image_tag(order.tier.image_1.url,size: "64x64") if order.tier.image_1 %></td>
+      <td><%= order.tier.title %></td>
+      <td><%= number_to_currency(order.price) %></td>
+      <td><%= order.email %></td>
+      <td><%= order.name %></td>
+      <td><%= "#{order.street}, #{order.city}, #{order.country}" if order.street %></td>
+      <td><%= l order.created_at, format: :long %></td>
+    </tr>
+    <% end -%>
+  </table>
 </div>
 
 <div id="user_footer">

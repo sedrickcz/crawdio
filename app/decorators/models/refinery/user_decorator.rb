@@ -3,8 +3,8 @@ Refinery::User.class_eval do
   attr_accessible :name, :street, :city, :country
 
   has_many :user_pledges, dependent: :destroy
-  has_many :tiers, through: :user_pledges
-  has_many :orders
+  has_many :tiers, through: :user_pledges, class_name: '::Refinery::Tiers::Tier'
+  has_many :orders, class_name: '::Refinery::Orders::Order'
   has_many :user_histories
 
   validates :name, :street, :city, :country, presence: true
@@ -18,6 +18,10 @@ Refinery::User.class_eval do
         ::Refinery::UserHistories::UserHistory.create user_id: id, field: f, original_value: user_old.send(f), new_value: self.send(f)
       end
     end
+  end
+
+  def highest_tier
+    tiers.order(:position).last || nil
   end
 
 end

@@ -1,0 +1,72 @@
+<h1>Order</h1>
+
+
+<h2><%= @tier.title %></h2>  
+
+<div class="tier_left_image">
+  <%= image_tag @tier.image_1.url if @tier.image_1 %>
+</div>
+
+<div>
+  <%= raw @tier.long_description %> 
+</div>
+
+<div class="@tier_right_image">
+  <%= image_tag @tier.image_2.url if @tier.image_2 %>
+</div>
+
+<div>
+  <%= number_to_currency @tier.price %>
+</div>
+
+<hr/>
+<% if current_refinery_user %>
+
+
+  <%= form_for [refinery, :orders, @order] do |f| %>
+    <div class="field">
+      <%= f.label :email %>
+      <%= f.text_field :email, value: current_refinery_user.email || "" %>
+    </div>
+    <!-- Update pledge to higher one -->
+    <% if current_refinery_user.highest_tier and current_refinery_user.highest_tier.position < @tier.position %>
+      <div>
+        <%= f.label :upgrade %><br/> 
+        <%= f.radio_button :upgrade, 1, checked: true %> <%= t('order.upgrade', price: number_to_currency(@tier.price - current_refinery_user.highest_tier.price) ) %><br/> 
+        <%= f.radio_button :upgrade, 0 %> <%= t('order.full_price') %>
+      </div>
+    <% elsif current_refinery_user.highest_tier and current_refinery_user.highest_tier.position >= @tier.position %>
+      <%= t('order.already_have') %>
+    <% end -%>
+
+    <div class="field">
+      <%= f.label :tier_id %>
+      <%= f.select :tier_id, options_for_select(::Refinery::Tiers::Tier.order(:position).collect{|t| ["#{t.title} (#{number_to_currency(t.price)})", t.id]}, @tier.id) %>
+    </div>
+
+    <% if @tier.physical %>
+      <div class="field">
+        <%= f.label :name %>
+        <%= f.text_field :name, value: current_refinery_user.name || "" %>
+      </div>
+
+      <div class="field">
+        <%= f.label :street %>
+        <%= f.text_field :street, value: current_refinery_user.street || "" %>
+      </div>
+
+      <div class="field">
+        <%= f.label :city %>
+        <%= f.text_field :city, value: current_refinery_user.city || "" %>
+      </div>
+
+      <div class="field">
+        <%= f.label :country %>
+        <%= f.text_field :country, value: current_refinery_user.country || "" %>
+      </div>
+    <% end -%>
+    <div class="action">
+      <%= f.submit %>
+    </div>
+  <% end -%>
+<% end -%>

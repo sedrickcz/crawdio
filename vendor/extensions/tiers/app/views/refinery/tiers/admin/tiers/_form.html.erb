@@ -30,6 +30,14 @@
                 :object => "tiers/tier" -%>
   </div>
 
+  
+  <div class='field'>
+    <%= f.label :project_id -%>
+    <%= f.select :project_id, options_for_select(::Refinery::Projects::Project.order(:title).collect{|p| [p.title, p.id]}, @tier.project_id) -%>
+  </div>
+
+
+
   <div class='field'>
     <%= f.label :active -%>
     <%= f.check_box :active, :checked => @tier[:active] -%>

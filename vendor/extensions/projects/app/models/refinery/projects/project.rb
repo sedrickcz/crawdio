@@ -18,6 +18,8 @@ module Refinery
       belongs_to :image_4, :class_name => '::Refinery::Image'
 
       belongs_to :image_5, :class_name => '::Refinery::Image'
+
+      has_many :tiers, class_name: '::Refinery::Tiers::Tier'
     end
   end
 end
