@@ -37,6 +37,8 @@ Craudio::Application.configure do
   # Expands the lines which load the assets
   config.assets.debug = true
 
+  config.log_level = :debug
+
   #Paypal
   config.after_initialize do
     ActiveMerchant::Billing::Base.mode = :test
