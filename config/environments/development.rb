@@ -36,4 +36,16 @@ Craudio::Application.configure do
 
   # Expands the lines which load the assets
   config.assets.debug = true
+
+  #Paypal
+  config.after_initialize do
+    ActiveMerchant::Billing::Base.mode = :test
+    paypal_options = {
+      login: "paypal-facilitator_api1.sedrick.cz",
+      password: "1392200537",
+      signature: "AQU0e5vuZCvSg-XJploSa.sGUDlpAdQ-hWdSbyBqfDyUIZ2oIa.4d9Lm"
+    }
+    ::STANDARD_GATEWAY = ActiveMerchant::Billing::PaypalGateway.new(paypal_options)
+    ::EXPRESS_GATEWAY = ActiveMerchant::Billing::PaypalExpressGateway.new(paypal_options)
+  end
 end

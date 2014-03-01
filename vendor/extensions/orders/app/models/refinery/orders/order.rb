@@ -2,6 +2,7 @@ module Refinery
   module Orders
     class Order < Refinery::Core::BaseModel
       self.table_name = 'refinery_orders'
+      include ActionView::Helpers::NumberHelper
 
       attr_accessible :user_id, :tier_id, :price, :paid, :paid_at, :pay_type, :payment_id, :email, :tier_name, :name, :street, :city, :country, :position, :upgrade
 
@@ -15,6 +16,10 @@ module Refinery
 
       def is_physical?
         tier.physical
+      end
+
+      def price_in_cent
+        (number_to_currency(price, {:unit => "", :separator => ".", :delimiter => "", :format => "%n", :precision => 2}).to_f * 100).round
       end
 
 

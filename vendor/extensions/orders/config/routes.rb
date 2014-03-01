@@ -2,7 +2,9 @@ Refinery::Core::Engine.routes.draw do
 
   # Frontend routes
   namespace :orders do
-    resources :orders, :path => '', :only => [:index, :show, :new, :create]
+    resources :orders, :path => '', :only => [:index, :show, :new, :create] do 
+      get :process_order, on: :collection
+    end
   end
 
   # Admin routes

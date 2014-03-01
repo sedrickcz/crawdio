@@ -27,17 +27,37 @@ module Refinery
       def create
         @order = Order.new(params[:order])
         @order.prepare(current_refinery_user)
-        
-        if @order.save 
+
+        if @order.valid?
+          response = EXPRESS_GATEWAY.setup_purchase(@order.price_in_cent,
+            :ip                => request.remote_ip,
+            :return_url        => refinery.root_url,
+            # :currency          => "USD",
+            :cancel_return_url => refinery.process_order_orders_orders_url,
+            # :description => @order.tier_name,
+            # :amount => 1
+          )
+          Rails.logger.debug '==========START DEBUG============'
+          Rails.logger.debug "#{response.inspect}"
+          Rails.logger.debug '===========END DEBUG============='
+          redirect_to EXPRESS_GATEWAY.redirect_url_for(response.token)
+
           # Send email
           # Assign pledge to user
-          current_refinery_user.user_pledges.create tier_id: @order.tier_id
-          redirect_to '/thank-you'
+          # current_refinery_user.user_pledges.create tier_id: @order.tier_id
+          
+          # redirect_to '/thank-you'
         else
           @tier = @order.tier
           render :new
         end
       end
+
+      def process_order
+        
+      end
+
+
 
     protected
 
