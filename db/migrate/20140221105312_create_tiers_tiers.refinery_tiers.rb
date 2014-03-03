@@ -1,4 +1,4 @@
-# This migration comes from refinery_tiers (originally 1)
+y# This migration comes from refinery_tiers (originally 1)
 class CreateTiersTiers < ActiveRecord::Migration
 
   def up
@@ -13,6 +13,7 @@ class CreateTiersTiers < ActiveRecord::Migration
       t.integer :image_1_id
       t.integer :image_2_id
       t.integer :image_3_id
+      t.integer :project_id
       t.integer :position
 
       t.timestamps
