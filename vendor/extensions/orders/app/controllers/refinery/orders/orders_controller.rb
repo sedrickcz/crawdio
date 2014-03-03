@@ -38,10 +38,11 @@ module Refinery
       end
 
       def process_order
-        if params[:item_number1] && !params[:item_number1].empty?
-          #paypal sends an IPN even when the transaction is voided.
           if params[:payment_status] != 'Voided'
-            @order = Refinery::Order.find(params[:invoice].to_i) rescue nil
+            @order = Refinery::Orders::Order.find(params[:invoice].to_i) rescue nil
+            Rails.logger.debug '==========START DEBUG============'
+            Rails.logger.debug "Order ====> #{@order.inspect}"
+            Rails.logger.debug '===========END DEBUG============='
             unless @order.nil?
               @order.cart_id = params[:invoice]
               @order.payment_status = params[:payment_status]
@@ -56,14 +57,11 @@ module Refinery
               @order.save
             end
           end
-        end
         render json: {success: true}
       end
 
       def thank_you
-        Rails.logger.debug '==========START DEBUG============'
-        Rails.logger.debug "#{params.inspect}"
-        Rails.logger.debug '===========END DEBUG============='
+        
       end
 
 
