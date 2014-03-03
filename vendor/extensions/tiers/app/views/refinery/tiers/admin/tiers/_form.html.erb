@@ -43,6 +43,33 @@
     <%= f.check_box :active, :checked => @tier[:active] -%>
   </div>
 
+<h3>Bonuses</h3>
+    <div class='field'>
+      <%= f.label :platform_1 -%>
+      <%= f.check_box :platform_1 -%>
+    </div>
+
+    <div class='field'>
+      <%= f.label :platform_2 -%>
+      <%= f.check_box :platform_2-%>
+    </div>
+
+    <div class='field'>
+      <%= f.label :tshirt -%>
+      <%= f.check_box :tshirt-%>
+    </div>
+
+    <div class='field'>
+      <%= f.label :ingame_name -%>
+      <%= f.check_box :ingame_name -%>
+    </div>
+
+    <div class='field'>
+      <%= f.label :sword_legal -%>
+      <%= f.check_box :sword_legal -%>
+    </div>
+
+
   <div class='field'>
     <%= f.label :image_1 -%>
     <%= render '/refinery/admin/image_picker',

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20140303201534) do
+ActiveRecord::Schema.define(:version => 20140303225945) do
 
   create_table "refinery_images", :force => true do |t|
     t.string   "image_mime_type"
@@ -39,11 +39,17 @@ ActiveRecord::Schema.define(:version => 20140303201534) do
     t.string   "city"
     t.string   "country"
     t.integer  "position"
-    t.datetime "created_at",     :null => false
-    t.datetime "updated_at",     :null => false
+    t.datetime "created_at",                        :null => false
+    t.datetime "updated_at",                        :null => false
     t.string   "payment_status"
     t.integer  "cart_id"
     t.string   "transaction_id"
+    t.string   "platform_1"
+    t.string   "platform_2"
+    t.string   "tshirt"
+    t.string   "ingame_name"
+    t.boolean  "sword_legal",    :default => false
+    t.boolean  "agree",          :default => false
   end
 
   create_table "refinery_page_part_translations", :force => true do |t|
@@ -168,9 +174,14 @@ ActiveRecord::Schema.define(:version => 20140303201534) do
     t.integer  "image_2_id"
     t.integer  "image_3_id"
     t.integer  "position"
-    t.datetime "created_at",        :null => false
-    t.datetime "updated_at",        :null => false
+    t.datetime "created_at",                           :null => false
+    t.datetime "updated_at",                           :null => false
     t.integer  "project_id"
+    t.boolean  "platform_1",        :default => false
+    t.boolean  "platform_2",        :default => false
+    t.boolean  "tshirt",            :default => false
+    t.boolean  "ingame_name",       :default => false
+    t.boolean  "sword_legal",       :default => false
   end
 
   create_table "refinery_user_histories", :force => true do |t|

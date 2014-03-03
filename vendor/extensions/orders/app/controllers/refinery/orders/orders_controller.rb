@@ -40,9 +40,6 @@ module Refinery
       def process_order
           if params[:payment_status] != 'Voided'
             @order = Refinery::Orders::Order.find(params[:invoice].to_i) rescue nil
-            Rails.logger.debug '==========START DEBUG============'
-            Rails.logger.debug "Order ====> #{@order.inspect}"
-            Rails.logger.debug '===========END DEBUG============='
             unless @order.nil?
               @order.cart_id = params[:invoice]
               @order.payment_status = params[:payment_status]

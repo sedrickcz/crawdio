@@ -65,6 +65,46 @@
         <%= f.text_field :country, value: current_refinery_user.country || "" %>
       </div>
     <% end -%>
+
+    <% if @tier.platform_1 %>
+      <div class="field">
+        <%= f.label :platform_1 %>
+        <%= f.select :platform_1, options_for_select(['PC','XBOX','PS4'], @order.platform_1)-%>
+      </div>
+    <% end -%>
+
+    <% if @tier.platform_2 %>
+      <div class="field">
+        <%= f.label :platform_2 %>
+        <%= f.select :platform_2, options_for_select(['PC','XBOX','PS4'], @order.platform_2)-%>
+      </div>
+    <% end -%>
+
+    <% if @tier.tshirt %>
+      <div class="field">
+        <%= f.label :tshirt %>
+        <%= f.select :tshirt, options_for_select(['XS','S','M','L','XL','XXL','XXXL'], @order.tshirt)-%>
+      </div>
+    <% end -%>
+
+    <% if @tier.ingame_name %>
+      <div class="field">
+        <%= f.label :ingame_name %>
+        <%= f.text_field :ingame_name-%>
+      </div>
+    <% end -%>
+
+    <% if @tier.sword_legal %>
+      <div class='field'>
+        <%= f.label :sword_legal -%>
+        <%= f.check_box :sword_legal -%>
+      </div>
+    <% end -%>
+
+    <div class='field'>
+        <%= f.label :agree -%>
+        <%= f.check_box :agree -%>
+      </div>
     <div class="action">
       <%= f.submit %>
     </div>

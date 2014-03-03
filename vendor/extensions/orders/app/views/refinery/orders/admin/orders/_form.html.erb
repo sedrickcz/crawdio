@@ -68,6 +68,46 @@
     <%= f.text_field :country -%>
   </div>
 
+  <div class='field'>
+    <%= f.label :payment_status -%>
+    <%= f.text_field :payment_status -%>
+  </div>
+
+  <div class='field'>
+    <%= f.label :transaction_id -%>
+    <%= f.text_field :transaction_id -%>
+  </div>
+
+  <div class='field'>
+    <%= f.label :platform_1 -%>
+    <%= f.select :platform_1, options_for_select(['PC','XBOX','PS4'], @order.platform_1)-%>
+  </div>
+
+  <div class='field'>
+    <%= f.label :platform_2 -%>
+    <%= f.select :platform_2, options_for_select(['PC','XBOX','PS4'], @order.platform_2)-%>
+  </div>
+
+  <div class='field'>
+    <%= f.label :tshirt -%>
+    <%= f.select :tshirt, options_for_select(['XS','S','M','L','XL','XXL','XXXL'], @order.tshirt)-%>
+  </div>
+
+  <div class='field'>
+    <%= f.label :ingame_name -%>
+    <%= f.text_field :ingame_name -%>
+  </div>
+
+  <div class='field'>
+    <%= f.label :sword_legal -%>
+    <%= f.check_box :sword_legal -%>
+  </div>
+
+  <div class='field'>
+    <%= f.label :agree -%>
+    <%= f.check_box :agree -%>
+  </div>
+
   <%= render '/refinery/admin/form_actions', :f => f,
              :continue_editing => false,
              :delete_title => t('delete', :scope => 'refinery.orders.admin.orders.order'),
