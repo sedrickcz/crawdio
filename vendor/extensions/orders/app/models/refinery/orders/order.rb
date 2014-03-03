@@ -4,7 +4,7 @@ module Refinery
       self.table_name = 'refinery_orders'
       include ActionView::Helpers::NumberHelper
 
-      attr_accessible :user_id, :tier_id, :price, :paid, :paid_at, :pay_type, :payment_id, :email, :tier_name, :name, :street, :city, :country, :position, :upgrade
+      attr_accessible :user_id, :tier_id, :price, :paid, :paid_at, :pay_type, :payment_id, :email, :tier_name, :name, :street, :city, :country, :position, :upgrade, :payment_status, :cart_id, :transaction_id
 
       attr_accessor :upgrade
 

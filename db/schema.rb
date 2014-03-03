@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20140225200858) do
+ActiveRecord::Schema.define(:version => 20140303201534) do
 
   create_table "refinery_images", :force => true do |t|
     t.string   "image_mime_type"
@@ -39,8 +39,11 @@ ActiveRecord::Schema.define(:version => 20140225200858) do
     t.string   "city"
     t.string   "country"
     t.integer  "position"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
+    t.datetime "created_at",     :null => false
+    t.datetime "updated_at",     :null => false
+    t.string   "payment_status"
+    t.integer  "cart_id"
+    t.string   "transaction_id"
   end
 
   create_table "refinery_page_part_translations", :force => true do |t|
