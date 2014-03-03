@@ -38,6 +38,9 @@ module Refinery
       end
 
       def process_order
+        Rails.logger.debug '==========START DEBUG============'
+        Rails.logger.debug "#{params.inspect}"
+        Rails.logger.debug '===========END DEBUG============='
         if params[:item_number_1] && !params[:item_number_1].empty?
           #paypal sends an IPN even when the transaction is voided.
           if params[:payment_status] != 'Voided'
