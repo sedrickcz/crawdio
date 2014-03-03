@@ -47,7 +47,14 @@ module Refinery
         Rails.logger.debug '==========START DEBUG============'
         Rails.logger.debug "#{params.inspect}"
         Rails.logger.debug '===========END DEBUG============='
-        exit
+        # if params[:item_number_1] && !params[:item_number_1].empty?
+        #   #paypal sends an IPN even when the transaction is voided.
+        #   if params[:payment_status] != 'Voided'
+        #     @order = Refinery::Order.find(params[:item_number_1].to_i) rescue nil
+        #     @product.orders.build(:quantity => 1, :amount => params[:mc_gross_1], :status => params[:payment_status]).save unless @product.nil?
+        #   end
+        # end
+        # render :nothing => true
       end
 
 
