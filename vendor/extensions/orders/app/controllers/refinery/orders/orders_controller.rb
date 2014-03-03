@@ -41,7 +41,7 @@ module Refinery
         if params[:item_number1] && !params[:item_number1].empty?
           #paypal sends an IPN even when the transaction is voided.
           if params[:payment_status] != 'Voided'
-            @order = Refinery::Order.find(params[:item_number1].to_i) rescue nil
+            @order = Refinery::Order.find(params[:invoice].to_i) rescue nil
             unless @order.nil?
               @order.cart_id = params[:invoice]
               @order.payment_status = params[:payment_status]

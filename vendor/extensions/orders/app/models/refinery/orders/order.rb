@@ -29,7 +29,7 @@ module Refinery
         :upload => 1,
         :notify_url => notify_url,
         :return => return_url,
-        :invoice => 1 + rand(100000)
+        :invoice => id
         }
 
         values.merge!({ 
