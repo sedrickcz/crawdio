@@ -1,7 +1,7 @@
 module Refinery
   module Orders
     class OrdersController < ::ApplicationController
-
+      protect_from_forgery except: [:process_order]
       before_filter :find_all_orders
       before_filter :find_page
 
@@ -29,18 +29,8 @@ module Refinery
         @order.prepare(current_refinery_user)
 
         if @order.valid?
-          response = EXPRESS_GATEWAY.setup_purchase(@order.price_in_cent,
-            :ip                => request.remote_ip,
-            :return_url        => refinery.root_url,
-            # :currency          => "USD",
-            :cancel_return_url => refinery.process_order_orders_orders_url,
-            # :description => @order.tier_name,
-            # :amount => 1
-          )
-          Rails.logger.debug '==========START DEBUG============'
-          Rails.logger.debug "#{response.inspect}"
-          Rails.logger.debug '===========END DEBUG============='
-          redirect_to EXPRESS_GATEWAY.redirect_url_for(response.token)
+          
+          redirect_to @order.paypal_url(refinery.root_url, refinery.process_order_orders_orders_url) 
 
           # Send email
           # Assign pledge to user
@@ -54,8 +44,12 @@ module Refinery
       end
 
       def process_order
-        
+        Rails.logger.debug '==========START DEBUG============'
+        Rails.logger.debug "#{params.inspect}"
+        Rails.logger.debug '===========END DEBUG============='
+        exit
       end
+
 
 
 

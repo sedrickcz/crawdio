@@ -8,6 +8,7 @@ set :scm, :git
 set :git_shallow_clone, 1
 set :branch, "master"
 set :deploy_via, :remote_cache
+set :repository_cache, "git_cache"
 set :copy_exclude, %w(test .git doc)
 
 # Symlinks

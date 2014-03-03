@@ -5,6 +5,7 @@ require 'bundler/capistrano'
 
 set :application, "crawdio"
 
-set :repository, "git@github.com:sedrickcz/#{application}.git"
-set :ssh_options,   { :forward_agent => true }
+set :repository, "https://github.com/sedrickcz/crawdio.git"
+# set :ssh_options,   { :forward_agent => true }
+set :scm_passphrase, "simonka1989"
 set :machine,     "sedrick.cz"

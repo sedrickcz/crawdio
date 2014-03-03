@@ -22,6 +22,26 @@ module Refinery
         (number_to_currency(price, {:unit => "", :separator => ".", :delimiter => "", :format => "%n", :precision => 2}).to_f * 100).round
       end
 
+      def paypal_url(return_url, notify_url) 
+        values = { 
+        :business => 'paypal-facilitator@sedrick.cz',
+        :cmd => '_cart',
+        :upload => 1,
+        :notify_url => notify_url,
+        :return => return_url,
+        :invoice => 1 + rand(100000)
+        }
+
+        values.merge!({ 
+        "amount_1" => price,
+        "item_name_1" => tier_name,
+        "item_number_1" => tier_id,
+        "quantity_1" => '1'
+        })
+
+        "https://www.sandbox.paypal.com/cgi-bin/webscr?" + values.to_query
+        end
+
 
       def prepare user
         # set user_id
