@@ -4,6 +4,7 @@ Refinery::Core::Engine.routes.draw do
   namespace :orders do
     resources :orders, :path => '', :only => [:index, :show, :new, :create] do 
       post :process_order, on: :collection
+      get :thank_you, on: :collection
     end
   end
 

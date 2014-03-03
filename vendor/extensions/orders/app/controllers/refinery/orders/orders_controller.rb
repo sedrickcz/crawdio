@@ -30,7 +30,7 @@ module Refinery
 
         if @order.save
           
-          redirect_to @order.paypal_url(refinery.root_url, refinery.process_order_orders_orders_url) 
+          redirect_to @order.paypal_url(refinery.thank_you_orders_orders_url, refinery.process_order_orders_orders_url) 
         else
           @tier = @order.tier
           render :new
@@ -57,7 +57,13 @@ module Refinery
             end
           end
         end
-        render :nothing => true
+        render json: {success: true}
+      end
+
+      def thank_you
+        Rails.logger.debug '==========START DEBUG============'
+        Rails.logger.debug "#{params.inspect}"
+        Rails.logger.debug '===========END DEBUG============='
       end
 
 
