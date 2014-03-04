@@ -1,4 +1,4 @@
-y# This migration comes from refinery_tiers (originally 1)
+# This migration comes from refinery_tiers (originally 1)
 class CreateTiersTiers < ActiveRecord::Migration
 
   def up

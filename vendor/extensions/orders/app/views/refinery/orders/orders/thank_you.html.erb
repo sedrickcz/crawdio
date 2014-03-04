@@ -1,1 +1,45 @@
-<h1>Thank you for you purchase</h1>
+<h1>Thank you for your support</h1>
+
+<h2>Here is your order overview:</h2>
+
+<table style="width:100%;">
+  <tr>
+    <th></th>
+    <th>Tier</th>
+    <th>Price</th>
+    <th>E-mail</th>
+    <th>Name</th>
+    <th>Address</th>
+    <% if @order.platform_1 %>
+      <th>Platform first</th>
+    <% end %>
+    <% if @order.platform_1 %>
+      <th>Platform second</th>
+    <% end %>
+    <% if @order.tshirt %>
+      <th>T-shirt</th>
+    <% end %>
+    <% if @order.ingame_name %>
+      <th>In-game name</th>
+    <% end %>
+    <% if @order.sword_legal %>
+      <th>Sword legal?</th>
+    <% end %>
+    <th>Date</th>
+  </tr>
+  <tr>
+    <td><%= image_tag(@order.tier.image_1.url,size: "64x64") if @order.tier.image_1 %></td>
+    <td><%= @order.tier.title %></td>
+    <td><%= number_to_currency(@order.price) %></td>
+    <td><%= @order.email %></td>
+    <td><%= @order.name %></td>
+    <td><%= "#{@order.street}, #{@order.city}, #{@order.country}" if @order.street %></td>
+    <td><%= @order.platform_1 if @order.platform_1 %></td>
+    <td><%= @order.platform_2 if @order.platform_2 %></td>
+    <td><%= @order.tshirt if @order.tshirt %></td>
+    <td><%= @order.ingame_name if @order.ingame_name %></td>
+    <td><%= @order.sword_legal if @order.sword_legal %></td>
+    <td><%= l @order.created_at, format: :long %></td>
+  </tr>
+</table>
+

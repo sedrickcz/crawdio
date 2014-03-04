@@ -39,15 +39,11 @@ Craudio::Application.configure do
 
   config.log_level = :debug
 
-  #Paypal
-  config.after_initialize do
-    ActiveMerchant::Billing::Base.mode = :test
-    paypal_options = {
-      login: "paypal-facilitator_api1.sedrick.cz",
-      password: "1392200537",
-      signature: "AQU0e5vuZCvSg-XJploSa.sGUDlpAdQ-hWdSbyBqfDyUIZ2oIa.4d9Lm"
-    }
-    ::STANDARD_GATEWAY = ActiveMerchant::Billing::PaypalGateway.new(paypal_options)
-    ::EXPRESS_GATEWAY = ActiveMerchant::Billing::PaypalExpressGateway.new(paypal_options)
-  end
+    # Emails settings
+  config.action_mailer.asset_host = "http://localhost:3000"
+
+  config.action_mailer.default_url_options = { :host => 'localhost:3000' }
+  config.action_mailer.delivery_method = :smtp
+  config.action_mailer.smtp_settings = { :address => "localhost", :port => 1025 }
+
 end

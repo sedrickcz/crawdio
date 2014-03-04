@@ -2,6 +2,8 @@ Craudio::Application.routes.draw do
 
   resources :users do
     post 'log_in', on: :collection
+    get 'activate/:token', to: "users#activate", on: :collection, as: :activation_link
+    get 'resend', to: "users#resend_activation", on: :member, as: :resend_activation
   end
 
   # This line mounts Refinery's routes at the root of your application.

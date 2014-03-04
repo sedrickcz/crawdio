@@ -1,0 +1,11 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Thank you for your registration</title>
+</head>
+<body>
+<h1>Thank you for your registration</h1>
+
+<p>Here is your  <%= link_to("activation link", activation_link_users_url(@user.activation_token)) %> </p>
+</body>
+</html>
