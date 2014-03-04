@@ -6,6 +6,13 @@ Craudio::Application.routes.draw do
     get 'resend', to: "users#resend_activation", on: :member, as: :resend_activation
   end
 
+  # api routes
+  namespace :api, defaults: {format: 'json'} do
+    api_version(:module => "V1", :path => {:value => "v1"}, :default => true) do
+      resources :projects, only: [:index, :show]
+    end
+  end
+
   # This line mounts Refinery's routes at the root of your application.
   # This means, any requests to the root URL of your application will go to Refinery::PagesController#home.
   # If you would like to change where this extension is mounted, simply change the :at option to something different.

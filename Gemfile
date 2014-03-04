@@ -27,8 +27,9 @@ end
 
 gem 'jquery-rails'
 
-# Pay support
-gem 'activemerchant'
+# Versioning for API
+gem 'versionist'
+gem 'active_model_serializers'
 
 # Refinery CMS
 gem 'refinerycms', '~> 2.1.0'
