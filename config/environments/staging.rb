@@ -74,6 +74,7 @@ Craudio::Application.configure do
   config.action_mailer.perform_deliveries = true
 
   config.action_mailer.default_url_options = {host: "staging.crawdio.sedrick.cz"}
+  config.action_mailer.asset_host = "http://staging.crawdio.sedrick.cz"
 
 
 end
