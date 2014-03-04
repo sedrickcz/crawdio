@@ -5,10 +5,8 @@
 <%= raw %(<link rel="canonical" content="#{@canonical}" />) if @canonical.present? -%>
 <%= csrf_meta_tags if Refinery::Core.authenticity_token_on_frontend -%>
 <%= yield :meta %>
-
+<link href='http://fonts.googleapis.com/css?family=IM+Fell+DW+Pica+SC' rel='stylesheet' type='text/css'>
 <%= stylesheet_link_tag "application" %>
 <%= yield :stylesheets %>
-
 <%= render '/refinery/google_analytics' %>
-
 <%= javascript_include_tag 'modernizr-min' %>
