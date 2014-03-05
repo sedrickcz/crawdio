@@ -15,13 +15,34 @@
       
         <%= render "/refinery/header" -%>
     
+
+      <div id="primary" class="content-area">
+      <div id="content" class="site-content" role="main">
+      
+        <article id="post-shop" > 
+          <div class="decorator"></div>
+          <div class="navbar-top-hr">
+            <div class="decorator_shadow"></div>
+          </div>
+          <div class="border_shadow_left"></div>
+          <div class="border_shadow_right"></div>
+          <div class="inside_paper full_width_">
+              
+            <%= yield %>
+          
+          </div>
+        </article>
+      
+    </div>
+  </div>
+</div>
     
-        <%= yield %>
+       
      
       <footer>
         <%= render "/refinery/footer" -%>
       </footer>
-    </div>
+    </div></div>
     <%= render "/refinery/javascripts" %>
   </body>
 </html>
