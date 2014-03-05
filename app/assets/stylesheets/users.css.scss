@@ -3010,6 +3010,12 @@ margin: 10px 0 ;
 padding:0 10px 0 25px 
 }
 .tier_button {float:right;width: 351px;}
+
+a.faq_1,
+a.tc_1,
+a.index_1,
+a.index_2,
+a.index_3,
 .tier_button a{ 
 	width: 351px;
 
@@ -3027,8 +3033,40 @@ padding:0 10px 0 25px
 	color: #000;
 }
 
+a.faq_1:hover,
+a.tc_1:hover,
+a.index_1:hover,
+a.index_2:hover,
+a.index_3:hover,
+a.tier_button a:hover{ 
+	text-decoration: none;
+	color: #973023;
+}
 
+.right_menu ul {
+	margin: 0;
+padding: 0;
+width: 354px;}
+.right_menu ul li {
+	margin: 0 0 12px 0;
+padding: 0;
+width: 353px;
+float:right;
+list-style-type: none;}
 
+a.faq_1,
+a.tc_1,
+a.index_1,
+a.index_1,
+a.index_1 {width: 352px; 
+	background: url('/assets/buttonky.png')  0 0 no-repeat;
+}
+
+a.faq_1 {background-position: 0 0;}
+a.tc_1 {background-position: 0 0;}
+a.index_1{background-position: 0 0;} 
+a.index_1{background-position: -70px 0;} 
+a.index_1{background-position: -140px 0;}
 /*---------------------------------------------------------------------------------------------*/ 
 /*---------------------------------------------------------------------------------------------*/
 
