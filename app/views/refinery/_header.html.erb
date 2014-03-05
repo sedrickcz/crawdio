@@ -69,17 +69,38 @@
 	</header> <div class="cleaner"></div>
 
 
-<div class="header_a_block" style="background: url('/wp-content/themes/twentythirteendeliverance/images/banner.jpg') 50% 50% no-repeat;height:282px;min-height:282px;">
-				<div class="navbar-top-hr">
-					<div class="decorator_shadow"></div>
-				</div>
-				<div class="decorator"></div>
+<div class="header_a_block" style="background: rgba(46,61,0,0.75);height:282px;min-height:282px;">
+	<div class="navbar-top-hr">
+			<div class="decorator_shadow"></div>
+		</div>
+		<div class="decorator"></div><div class="header_green">
 		
+		
+		<div class="c_1">
+			<h1>Please support us and get early access and bonuses!</h1>
+			<p>This game is being developed without the aid of traditional publishers, so it relies on your support and funding from private investors.</p>
+		</div>
+		
+		<div class="c_2">			
+				<a href="http://kingdomcomerpg.com/?page_id=378" style="">Back This Project <br><span>3 USD MINIMUM PLEDGE</span></a>
+				<img src="/assets/paypal.png" alt="" class="paypal_and_others" />			
+				<div class="percent_wrapper">
+					<div class="percents" style="width:50%"></div>
+					<div class="inner_p" style="width:50%"></div><span>Pledged:<%= number_to_currency Refinery::Orders::Order.pledged %></span> 
+				</div>
+		</div>	
+		
+		<div class="c_3">
+			<h2>Backers: <span><%= Refinery::Orders::Order.pledgers %></span></h2>
+			<h2>Pledged: <span><%= number_to_currency Refinery::Orders::Order.pledged %></span></h2> 
+			<h2>Goal: <span><%= number_to_currency @main_project.goal %></span></h2> 
 			
-			
-				<a href="http://kingdomcomerpg.com/?page_id=378" style="display: block;width: 100%;height: 100%;position: absolute;top: 0;left: 0;"></a>
-	
-			</div>
+
+			<div class="sean">When we reach this goal, Sean Bean will give his likenes and voice to one of the characters</div>
+	</div>
+		</div>
+		
+</div>
 	
 		<!-- #masthead -->
 		<div id="main" class="site-main">

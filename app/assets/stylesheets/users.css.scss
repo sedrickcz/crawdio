@@ -2864,6 +2864,114 @@ width:100%;height:auto;
 }*/
 
 
+/*------------------------------------- Special -----------------------------------------------*/ 
+/*---------------------------------------------------------------------------------------------*/
+
+.header_green {
+min-width: 1200px;width: 1200px;
+position: absolute;
+top: 0;
+left: 50%;margin-left: -600px;
+padding-top: 20px;
+z-index: 997;
+}
+
+.c_1, .c_2, .c_3 {
+	width: 28%;float: left;padding-top: 10px;
+	
+
+
+}
+
+
+.c_2 {
+	width: 44%;
+	
+
+.c_3 {
+	width: 25%;
+	
+
+
+}
+}
+
+.c_1 h1,.c_3 h2 {
+font-size: 42px;	
+color: #d4aa45;
+font-weight:normal;
+line-height: 40px;
+margin: 10px 0 ;
+}
+.c_3 h2 {color:#fff;}
+.c_3 h2 span{color: #d4aa45;}
+.c_1 p, .c_3 div {
+	font-size: 18px;font-family: 'IM Fell DW Pica', serif;	color: #fff;
+	text-transform:none;
+}
+
+.c_2 a {
+	background: url('/assets/buttonek_big.png')  0 0 no-repeat;
+	text-align: center;
+	width: 472px; margin: 0 auto;
+	height: 106px;
+	padding-top: 25px;font-family: 'IM Fell DW Pica', serif;
+	display: block;
+	-webkit-box-sizing: border-box; /* Safari/Chrome, other WebKit */
+	-moz-box-sizing: border-box;    /* Firefox, other Gecko */
+	box-sizing: border-box;         /* Opera/IE 8+ */
+	font-size: 35px;line-height: 30px;text-decoration: none;color: #000;
+}
+.c_2 a span {
+	font-size: 40%;font-family: 'IM Fell DW Pica', serif;
+}
+
+.c_2 a:hover {
+	color: #973023;
+}
+
+.paypal_and_others {
+	margin: 0 auto;display: block;
+}
+
+.percent_wrapper  span {position: absolute;
+	height: 100%;
+	width: 100%;
+	text-align: center;
+	top: 0;
+	left: 0;}
+
+
+.percent_wrapper {
+	width: 75%;
+	height: 33px;
+	position: relative;
+	border:1px solid   rgba(220,159,23,0.8);
+	background:  rgba(255,255,255,0.2);margin: 10px auto;
+	-webkit-box-shadow: 0 0  15px #000;  /* Safari 3-4, iOS 4.0.2 - 4.2, Android 2.3+ */
+  	-moz-box-shadow:    0 0  15px #000;  /* Firefox 3.5 - 3.6 */
+  	box-shadow:         0 0  15px #000;  /* Opera 10.5, IE 9, Firefox 4+, Chrome 6+, iOS 5 */
+}
+
+.percents {
+	position: absolute;
+	height: 100%;
+	top: 0;
+	left: 0;
+	background:  url('http://kingdomcomerpg.com/wp-content/themes/twentythirteendeliverance/images/de_skrabance_bg_fin.png') repeat 0 0 ;
+}
+
+.inner_p {
+	position: absolute;
+	height: 100%;
+	top: 0;
+	left: 0;
+	background:  rgba(220,159,23,0.8) ;}
+
+/*---------------------------------------------------------------------------------------------*/ 
+/*---------------------------------------------------------------------------------------------*/
+
+
 #menu-item-206 ,
 #menu-item-207 ,
 #menu-item-208 ,
