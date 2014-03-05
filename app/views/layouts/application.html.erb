@@ -6,11 +6,29 @@
   </head>
   <body id="<%= canonical_id @page %>">
     <%= site_bar -%>
-    <div>
+
+
+
+
+
+
+
+
+
+    <div style="display:none">
       <% flash.each do |name, msg| -%>
         <%= content_tag :div, raw(msg), class: name %>
       <% end -%>
     </div>
+
+
+
+
+
+
+
+
+    
     <div id="page_container">
       
         <%= render "/refinery/header" -%>
