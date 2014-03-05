@@ -1,6 +1,17 @@
 <h1>Order</h1>
 
 
+<aside class="right_menu" >
+  <ul>
+    <% @project_pages.each_with_index do |page,index| %>
+      <li><%= link_to page.title, page, :class => "index_#{index}" %></li>
+    <% end -%>
+    <li><a href="/#faq">FAQ</a></li>
+    <li><a href="/#terms">Terms & Conditions</a></li>
+  </ul>
+</aside>
+
+<div class="left_main">
 <h2><%= @tier.title %></h2>  
 
 <div class="tier_left_image">
@@ -107,6 +118,6 @@
       </div>
     <div class="action">
       <%= f.submit %>
-    </div>
+    </div></div><div class="cleaner"></div>
   <% end -%>
 <% end -%>

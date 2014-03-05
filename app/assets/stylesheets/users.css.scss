@@ -2968,6 +2968,67 @@ margin: 10px 0 ;
 	left: 0;
 	background:  rgba(220,159,23,0.8) ;}
 
+.right_menu {width: 400px;float: right;}
+.left_main h2, .left_main h1{
+	font-family: 'IM Fell DW Pica SC', serif;
+	color: #9b3124;
+	font-weight: normal;margin: 10px 0;
+} 
+.left_main {width: 700px;float: left;font-family: 'IM Fell DW Pica', serif;}
+
+
+
+.tier_left_image, .desc, .tier_right_image, .tier_button { float:left;}
+
+.tier { clear:both;margin-bottom: 40px;}
+
+.tier_left_image { 
+	width:  125px;
+	height: 125px;
+}
+
+.desc { 
+	width: 389px;	
+	-webkit-box-sizing: border-box; /* Safari/Chrome, other WebKit */
+	-moz-box-sizing: border-box;    /* Firefox, other Gecko */
+	box-sizing: border-box;   
+	padding:0 0 0 15px       /* Opera/IE 8+ */
+}
+
+.desc .tier_title  {
+	font-family: 'IM Fell DW Pica SC', serif;
+	color: #9b3124;
+	font-weight: normal;font-size: 26px;
+}
+
+.desc .tier_short_desc { font-family: 'IM Fell DW Pica', serif;font-size: 20px;}
+       
+.tier_right_image { width: 215px;
+-webkit-box-sizing: border-box; /* Safari/Chrome, other WebKit */
+	-moz-box-sizing: border-box;    /* Firefox, other Gecko */
+	box-sizing: border-box;         /* Opera/IE 8+ */
+padding:0 10px 0 25px 
+}
+.tier_button {float:right;width: 351px;}
+.tier_button a{ 
+	width: 351px;
+
+	background: url('/assets/button.png')  0 0 no-repeat;
+	width: 351px; 
+	height: 65px;
+	font-size: 25px;
+	text-decoration: none;
+	text-align: center;
+	display: block;
+	-webkit-box-sizing: border-box; /* Safari/Chrome, other WebKit */
+	-moz-box-sizing: border-box;    /* Firefox, other Gecko */
+	box-sizing: border-box;         /* Opera/IE 8+ */
+	padding: 15px 0 0 0 ;
+	color: #000;
+}
+
+
+
 /*---------------------------------------------------------------------------------------------*/ 
 /*---------------------------------------------------------------------------------------------*/
 
