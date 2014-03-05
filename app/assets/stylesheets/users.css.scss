@@ -1681,7 +1681,7 @@ display: none;
 
 .image-navigation {
 	margin: 0 auto;
-	max-width: 1040px;
+	max-width: 1300px;
 	position: relative;
 }
 
@@ -2969,7 +2969,7 @@ margin: 10px 0 ;
 	background:  rgba(220,159,23,0.8) ;}
 
 .right_menu {width: 400px;float: right;}
-.left_main h2, .left_main h1{
+.left_main h2, .left_main h1, .no_side_body h2,.no_side_body h1, .inside_paper h1{
 	font-family: 'IM Fell DW Pica SC', serif;
 	color: #9b3124;
 	font-weight: normal;margin: 10px 0;
@@ -3015,13 +3015,13 @@ a.faq_1,
 a.tc_1,
 a.index_1,
 a.index_2,
-a.index_3,
+a.index_0,
 .tier_button a{ 
 	width: 351px;
 
 	background: url('/assets/button.png')  0 0 no-repeat;
 	width: 351px; 
-	height: 65px;
+	height: 67px;
 	font-size: 25px;
 	text-decoration: none;
 	text-align: center;
@@ -3037,15 +3037,15 @@ a.faq_1:hover,
 a.tc_1:hover,
 a.index_1:hover,
 a.index_2:hover,
-a.index_3:hover,
+a.index_0:hover,
 a.tier_button a:hover{ 
 	text-decoration: none;
 	color: #973023;
 }
 
 .right_menu ul {
-	margin: 0;
-padding: 0;
+	margin: 0  0 0  30px ;
+padding: 50px 0 0 0;
 width: 354px;}
 .right_menu ul li {
 	margin: 0 0 12px 0;
@@ -3057,16 +3057,16 @@ list-style-type: none;}
 a.faq_1,
 a.tc_1,
 a.index_1,
-a.index_1,
-a.index_1 {width: 352px; 
+a.index_2,
+a.index_0 {width: 352px; 
 	background: url('/assets/buttonky.png')  0 0 no-repeat;
 }
 
-a.faq_1 {background-position: 0 0;}
-a.tc_1 {background-position: 0 0;}
-a.index_1{background-position: 0 0;} 
-a.index_1{background-position: -70px 0;} 
-a.index_1{background-position: -140px 0;}
+a.faq_1 {background-position:  0 -212px;}
+a.tc_1 {background-position:  0 -285px;}
+a.index_0{background-position: 0 0;} 
+a.index_1{background-position:  0 -70px;} 
+a.index_2{background-position:  0 -140px;}
 /*---------------------------------------------------------------------------------------------*/ 
 /*---------------------------------------------------------------------------------------------*/
 
