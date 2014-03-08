@@ -1705,7 +1705,7 @@ width: 1200px;margin: 0 auto;position: relative;
 .informacni_pruh_in label {margin-right: 20px;}
 
 .order_form_tier {width: 700px;margin-top: 40px;}
-
+.order_form_tier h1 {font-size: 22px;}
 .order_form_tier h2 {color: #9b3024;clear:none;}
 .order_form_tier label,.order_form_tier input, .order_form_tier select{ float:left;margin-top: 10px;padding: 8px 4px ;}
 .order_form_tier input {
@@ -1734,8 +1734,8 @@ border-radius: 1px!important;}
 	-moz-box-sizing: border-box;    /* Firefox, other Gecko */
 	box-sizing: border-box;         /* Opera/IE 8+ */
 	font-size: 35px;line-height: 30px;text-decoration: none;color: #000;}
-	
-
+	body#terms-conditions-page {font-family: 'IM Fell DW Pica', serif;}
+body#faq-page {font-family: 'IM Fell DW Pica', serif;}
 	.order_form_tier.becker  div input[type=submit]{	
 	background: url('/assets/buttonek_big.png')  0 0 no-repeat;
 	text-align: center;border-width:0;
@@ -3022,7 +3022,7 @@ margin: 10px 0 ;
 
 
 .percent_wrapper {
-	width: 75%;
+	width: 75%;overflow: hidden;
 	height: 33px;
 	position: relative;
 	border:1px solid   rgba(220,159,23,0.8);
