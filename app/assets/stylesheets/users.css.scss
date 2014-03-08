@@ -1674,40 +1674,98 @@ display: none;
 }
 
 .informacni_pruh {
- top: 0;
-    width:100%;
-	margin: 0  auto;
-	position:relative;
-	float:left;
-	z-index: 1997;min-height: 58px;
-    background:  url('http://kingdomcomerpg.com/wp-content/themes/twentythirteendeliverance/images/de_skrabance_bg_fin.png') repeat 0 0 ;
- 
-     }
+top: 0;
+width: 100%;
+margin: 0 auto;
+position: relative;
+float: left;
+z-index: 1997;
 
-.informacni_pruh_in{
- top: 0;
-left:0;
+background: url("http://kingdomcomerpg.com/wp-content/themes/twentythirteendeliverance/images/de_skrabance_bg_fin.png") repeat 0 0;
+}
+
+.informacni_pruh_in {
+top: 0;
+left: 0;
 position: absolute;
-width: 100%;padding: 10px 0;
-height: 100%;z-index: 1997;
-  background: rgba(255, 250, 224, 0.6);
-    color: #000;
-    
-     }
+width: 100%;
+padding: 8px 0 10px 0;
+z-index: 1997;
+font-size: 20px;
+background: rgba(177, 16, 16, 0.6);
+color: #fff;
+font-family: 'IM Fell DW Pica', serif;
+}
 
+.informacni_pruh .navbar-top-hr {
+bottom: 0;
+position: absolute;
+}
 
 .informacni_pruh_in .registera{
-width: 1200px;margin: 0 auto;position: relative;
-    
+	width: 1200px;
+	margin: 0 auto;
+	position: relative;
+	line-height: 2;
      }
-     .informacni_pruh_in .clearfix{float:left;margin-right: 20px;}
-.informacni_pruh_in input[type=submit] {float:left;margin-right: 20px;}
+
+.informacni_pruh_in .clearfix{
+	float:left;
+	margin-right: 20px;
+}
+
+.informacni_pruh_in input{
+	font-family: 'IM Fell DW Pica', serif;
+}
+
+
+ .informacni_pruh_in input[type="text"], .informacni_pruh_in input[type="password"]{
+	-webkit-border-radius: 2px;
+	-moz-border-radius: 2px;
+	border-radius: 2px;
+}
+.informacni_pruh_in input[type=submit] {
+	float:left;
+	margin-right: 20px;
+	background: #e05d22;
+	background: -webkit-linear-gradient(top, #e05d22 0%, #d94412 100%);
+	background: linear-gradient(to bottom, #FFFFFF 0%, #C5C5C5 100%);
+	border: none;
+	border: 1px solid #FFFFFF;
+	border-radius: 2px;
+	color: #727272;
+	display: inline-block;
+	padding: 6px 24px 6px;
+	text-decoration: none;
+}
+
+
+.informacni_pruh_in a {
+	color:#fff;
+	text-decoration: underline;line-height: 2;
+
+}
+
 .informacni_pruh_in label {margin-right: 20px;}
 
-.order_form_tier {width: 700px;margin-top: 40px;}
+.order_form_tier {
+	width: 700px;
+	margin-top: 40px;
+}
+
 .order_form_tier h1 {font-size: 22px;}
-.order_form_tier h2 {color: #9b3024;clear:none;}
-.order_form_tier label,.order_form_tier input, .order_form_tier select{ float:left;margin-top: 10px;padding: 8px 4px ;}
+
+.order_form_tier h2 {
+	color: #9b3024;
+	clear:none;
+}
+
+.order_form_tier label,.order_form_tier input, .order_form_tier select{ 
+	float:left;
+	margin-top: 10px;
+	padding: 8px 4px ;
+}
+
 .order_form_tier input {
 	-webkit-border-radius: 1px!important;
 -moz-border-radius: 1px!important;
@@ -1717,11 +1775,26 @@ border-radius: 1px!important;}
 .tier_detail b, .tier_detail strong{color: #9b3024;}
 
 
-#side_text {clear:right;float:right;margin-top: 30px;width: 330px;line-height:90%}
+#side_text {
+	clear:right;
+	float:right;
+	margin-top: 30px;
+	width: 330px;
+	line-height:90%
+}
+
 #side_text p {margin: 0 0 10px;}
 #side_text h2 {color: #9b3024;font-size: 1.3em;}
 .order_form_tier .action {clear:left;} 
-.flash_mess {z-index: 580px ;position: fixed;top: 50px;left: 50%;width: 800px;margin-left: -400px;text-align: center;}
+.flash_mess {
+	z-index: 580px ;
+	position: fixed;
+	top: 50px;
+	left: 50%;
+	width: 800px;
+	margin-left: -400px;
+	text-align: center;
+}
 
 .order_form_tier  .action input[type=submit]{	
 	background: url('/assets/buttonek_big.png')  0 0 no-repeat;
@@ -1733,7 +1806,12 @@ border-radius: 1px!important;}
 	-webkit-box-sizing: border-box; /* Safari/Chrome, other WebKit */
 	-moz-box-sizing: border-box;    /* Firefox, other Gecko */
 	box-sizing: border-box;         /* Opera/IE 8+ */
-	font-size: 35px;line-height: 30px;text-decoration: none;color: #000;}
+	font-size: 35px;
+	line-height: 30px;
+	text-decoration: none;
+	color: #000;
+}
+
 	body#terms-conditions-page {font-family: 'IM Fell DW Pica', serif;}
 body#faq-page {font-family: 'IM Fell DW Pica', serif;}
 	.order_form_tier.becker  div input[type=submit]{	
@@ -4409,7 +4487,11 @@ height: auto;
 
 	.modal-header .close {color: #000;}
 
-	body.no-logged-in .hfeed.site{padding-top: 55px;}
+#user_header { margin-top: 20px; font-size: 22px;}
+#user_content table{  font-size: 20px;}
+	/*body.no-logged-in */.hfeed.site{padding-top: 55px;}
+
+	.left_main p, .inside_paper p {font-size: 19px;}
 /**
  * 8.0 Media Queries
  * ----------------------------------------------------------------------------
