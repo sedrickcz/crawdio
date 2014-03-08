@@ -1,43 +1,37 @@
 <h1>Order</h1>
 
-
 <aside class="right_menu" >
   <ul>
     <% @project_pages.each_with_index do |page,index| %>
 
       <li><%= link_to page.title, refinery.page_path(page), :class => "index_#{index}" %></li>
     <% end -%>
-    <li><a class="faq_1" href="/#faq">FAQ</a></li>
-    <li><a  class="tc_1" href="/#terms">Terms & Conditions</a></li>
   </ul>
   <br />
-  <p id="side_text"><%= raw @tier.side_text %></p>
+  <div id="side_text"><%= raw @tier.side_text %></div><div style="clear:right"></div>
 </aside>
 
-<div class="left_main" style="font-size: 20px;">
-<h2><%= @tier.title %></h2>  
+<div class="left_main tier_detail"  >
+<h2><%= @tier.title %> - <%= number_to_currency @tier.price %> </h2>  
+    <div class="tier_left_image">
+      <%= image_tag @tier.image_1.url if @tier.image_1 %>
+    </div>
 
-<div class="tier_left_image">
-  <%= image_tag @tier.image_1.url if @tier.image_1 %>
+    <div>
+      <%= raw @tier.long_description %> 
+    </div>
+
+    <div class="tier_right_image">
+      <%= image_tag @tier.image_2.url if @tier.image_2 %>
+    </div>
+
+   
 </div>
-
-<div>
-  <%= raw @tier.long_description %> 
-</div>
-
-<div class="@tier_right_image">
-  <%= image_tag @tier.image_2.url if @tier.image_2 %>
-</div>
-
-<div>
-  <%= number_to_currency @tier.price %>
-</div>
-
-<hr/>
+<div style="clear:left"></div>
+<div class="order_form_tier">
 <% if current_refinery_user %>
-
-
   <%= form_for [refinery, :orders, @order] do |f| %>
+  <h2>Purchase tier </h2>
     <div class="field">
       <%= f.label :email %>
       <%= f.text_field :email, value: current_refinery_user.email || "" %>
@@ -121,6 +115,12 @@
       </div>
     <div class="action">
       <%= f.submit %>
-    </div></div><div class="cleaner"></div>
+    </div>
+  </div>
+    <div class="cleaner"></div>
+      </div>   
+      <div class="cleaner"></div> 
   <% end -%>
-<% end -%>
+   <% else -%>
+   <h1>To purchase tier you must <a href="/user/new ">register od sign in.</h1>
+<% end -%></div>
