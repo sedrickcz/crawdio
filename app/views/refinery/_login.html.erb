@@ -1,32 +1,53 @@
-<% if current_refinery_user%>
-  E-mail: <%= current_refinery_user.email %>
-  <%= link_to t('user.profile'), [main_app, current_refinery_user] %>
-  <%= link_to t('user.sign_out'), refinery.logout_path %>
-  <% if tier = current_refinery_user.highest_tier %>
-    <%= image_tag(tier.image_1.url,size: "64x64") if tier.image_1 %>
-    <%= tier.title %>
-  <% end -%>
-<% else %>
-  <div id='login_form'>
-    <%= form_tag(main_app.log_in_users_url) do %>
-    <div class='field session_username clearfix'>
-      <%= label_tag :login %>
-      <%= text_field_tag :login, nil,:class => 'larger widest' %>
-    </div>
-    <div class='field session_password clearfix'>
-      <%= label_tag :password %>
-      <%= password_field_tag :password, nil,:autocomplete => 'off', :class => 'larger widest' %>
-    </div>
-    <div class='clearfix'>
-      <div class='field forgot_password'>
-        <%= link_to t('.forgot_password'), refinery.new_refinery_user_password_path %>
-      </div>
-    </div>
-    <%= submit_tag t('user.login')%>
-  <% end -%>
+<div class="informacni_pruh">
+          <div class="border_shadow_left"></div>
+      <div class="informacni_pruh_in">
+                    <div class="registera">
+                  <% if current_refinery_user%>
+                    E-mail: <%= current_refinery_user.email %>
+                    <%= link_to t('user.profile'), [main_app, current_refinery_user] %>
+                    <%= link_to t('user.sign_out'), refinery.logout_path %>
+                    <% if tier = current_refinery_user.highest_tier %>
+                      <%= image_tag(tier.image_1.url,size: "64x64") if tier.image_1 %>
+                      <%= tier.title %>
+                    <% end -%>
+                  <% else %>
+                    <div id='login_form'>
+                      <%= form_tag(main_app.log_in_users_url) do %>
+                      <div class='field session_username clearfix'>
+                        <%= label_tag :login %>
+                        <%= text_field_tag :login, nil,:class => 'larger widest' %>
+                      </div>
+                      <div class='field session_password clearfix'>
+                        <%= label_tag :password %>
+                        <%= password_field_tag :password, nil,:autocomplete => 'off', :class => 'larger widest' %>
+                      </div>
+                      <div class='clearfix'>
+                        <div class='field forgot_password'>
+                          <%= link_to t('.forgot_password'), refinery.new_refinery_user_password_path %>
+                        </div>
+                      </div>
+                      <%= submit_tag t('user.login')%>
+                    <% end -%>
+                  
+                    </div>
+                    <div class="register">
+                      <%=  link_to t('user.registration'), main_app.new_user_path %>
+                    </div>
+                          
 
-  </div>
-  <div style="display:none">
-    <%=  link_to t('user.registration'), main_app.new_user_path %>
-  </div>
-<% end -%>
+
+                <% end -%>
+
+
+                <div class="cleaner"></div>
+                </div>
+        <div class="cleaner"></div>
+                <div class="navbar-top-hr">
+                <div class="decorator_shadow"></div>
+                </div> 
+
+                <div class="navbar-top-hr">
+                <div class="decorator_shadow"></div>
+                </div> 
+    </div><div class="cleaner"></div> 
+ </div>

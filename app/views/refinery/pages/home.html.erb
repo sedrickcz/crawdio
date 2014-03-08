@@ -1,68 +1,44 @@
-<div style="display:none">
-  Backers: <%= Refinery::Orders::Order.pledgers %> <br/>
-  Pledged: <%= number_to_currency Refinery::Orders::Order.pledged %> <br/>
-  Goal: <%= number_to_currency @main_project.goal %> <br/>
-  Progress: <%=  Refinery::Orders::Order.pledged/(@main_project.goal/100) %> %
-
-</div>
-
 <aside class="right_menu" >
   <ul>
     <% @project_pages.each_with_index do |page,index| %>
       <li><%= link_to page.title, page, :class => "index_#{index}" %></li>
     <% end -%>
-    <li ><a class="faq_1" href="#faq">FAQ</a></li>
-    <li><a class="tc_1" href="#terms">Terms &amp; Conditions</a></li>
   </ul>
 </aside>
-
 <div class="left_main">
+  <section id="short_description">
+    <p><%= raw @main_project.short_description %></p> 
+  </section>
 
-<section id="short_description">
-  <p><%= raw @main_project.short_description %></p> 
-</section>
-
-<section id="long_description">
-  <p><%= raw @main_project.long_description %></p> 
-</section>
+  <section id="long_description">
+    <p><%= raw @main_project.long_description %></p> 
+  </section>
 </div>
+
 <div class="cleaner"></div>
+
 <h2>TIERS &amp; REWARDS</h2>
 <section id="tiers">
   <% @main_project.tiers.order(:position).each do |tier| %>
     <div class="tier">
-
-    <div class="tier_left_image">
-        <%= image_tag tier.image_1.url if tier.image_1 %>
+      <div class="tier_left_image">
+          <%= image_tag tier.image_1.url if tier.image_1 %>
       </div>
-
       <div class="desc">
-        <div class="tier_title">
-          <%= tier.title %>
-        </div>
-        
-        <div class="tier_short_desc">
-          <%= raw tier.short_description %>
-        </div>
+          <div class="tier_title">
+            <%= link_to tier.title, refinery.new_orders_order_path(tier: tier.id) %>
+          </div>
+          <div class="tier_short_desc">
+            <%= raw tier.short_description %>
+          </div>
       </div>
       <div class="tier_right_image">
-        <%= image_tag tier.image_2.url if tier.image_2 %>
+          <%= image_tag tier.image_2.url if tier.image_2 %>
       </div>
       <div class="tier_button">
-        <%= link_to "PLEDGE #{number_to_currency tier.price}", refinery.new_orders_order_path(tier: tier.id) %>
+          <%= link_to "PLEDGE #{number_to_currency tier.price}", refinery.new_orders_order_path(tier: tier.id) %>
       </div>
     </div>
   <% end -%>
 </section>
-
-<h2>FAQ</h2>
-<section id="faq">
-  <p><%= raw @main_project.faq %></p> 
-</section>
-
-<h2>TERMS & CONDITIONS</h2>
-<section id="terms">
-  <p><%= raw @main_project.terms %></p> 
-</section>
-
 <div class="cleaner"></div>

@@ -114,11 +114,6 @@ ActiveRecord::Schema.define(:version => 20140307175952) do
   add_index "refinery_pages", ["parent_id"], :name => "index_refinery_pages_on_parent_id"
   add_index "refinery_pages", ["rgt"], :name => "index_refinery_pages_on_rgt"
 
-  create_table "refinery_pages_roles", :id => false, :force => true do |t|
-    t.integer "page_id"
-    t.integer "role_id"
-  end
-
   create_table "refinery_projects", :force => true do |t|
     t.string   "title"
     t.text     "short_description"
@@ -173,10 +168,10 @@ ActiveRecord::Schema.define(:version => 20140307175952) do
     t.integer  "image_1_id"
     t.integer  "image_2_id"
     t.integer  "image_3_id"
+    t.integer  "project_id"
     t.integer  "position"
     t.datetime "created_at",                           :null => false
     t.datetime "updated_at",                           :null => false
-    t.integer  "project_id"
     t.boolean  "platform_1",        :default => false
     t.boolean  "platform_2",        :default => false
     t.boolean  "tshirt",            :default => false

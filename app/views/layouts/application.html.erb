@@ -4,105 +4,75 @@
   <head>
     <%= render "/refinery/head" %>
   </head>
-  <body id="<%= canonical_id @page %>">
+  <body id="<%= canonical_id @page %>" <% if !current_refinery_user %> class="no-logged-in"<% end -%> >
     <%= site_bar -%>
-
-
-
-
-
-
-
-
-
-    <div style="display:none">
+    <div class="flash_mess">
       <% flash.each do |name, msg| -%>
         <%= content_tag :div, raw(msg), class: name %>
       <% end -%>
     </div>
-
-
-
-
-
-
-
-
-    
-    <div id="page_container">
-      
+<div id="page_container">
         <%= render "/refinery/header" -%>
-    
-
-      <div id="primary" class="content-area">
+  <div id="primary" class="content-area">
       <div id="content" class="site-content" role="main">
-      
         <article id="post-shop" > 
           <div class="decorator"></div>
           <div class="navbar-top-hr">
             <div class="decorator_shadow"></div>
           </div>
-          <div class="border_shadow_left"></div>
           <div class="border_shadow_right"></div>
+          <div class="border_shadow_left"></div>
           <div class="inside_paper full_width_">
-              
             <%= yield %>
-          
+          <div class="cleaner"></div>
           </div>
         </article>
-      
     </div>
   </div>
 </div>
-    
-       
 <article id="post-11s" class="post-113s post type-post status-publish format-chat hentry category-home">
   <div class="decorator"></div>
-<div class="border_shadow_left"></div>
-<div class="border_shadow_right"></div> 
-  <div class="navbar-top-hr"><div class="decorator_shadow"></div></div>
-  <header class="entry-header">
-  </header><!-- .entry-header -->
+  <div class="border_shadow_left"></div>
+  <div class="border_shadow_right"></div> 
+  <div class="navbar-top-hr">
+    <div class="decorator_shadow">
+    </div>
+  </div>
+
 
   <div class="normal_iside">
     <div class="entry-content">  
-
-
- <div class="footer_socials">
-   <div class="copy">
-        © 2014 Warhorse Studios <a href="http://www.warhorsestudios.cz">www.warhorsestudios.cz</a>
-   </div>
-   <div class="social_links">
-        <ul id="menu-menu-1" class="nav-menu">
-           <li id="menu-item-206a" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-206"><a href="https://www.facebook.com/WarhorseStudios">Facebook</a></li>
-           <li id="menu-item-209a" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-209"><a href="https://twitter.com/WarhorseStudios">Twitter</a></li>
-           <li id="menu-item-207a" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-207"><a href="http://www.youtube.com/channel/UCIqUdfkbYmCGM-YRmk28zCg">Youtube</a></li>
-           <li id="menu-item-208a" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-208"><a href="https://plus.google.com/109413064918165877044/posts">Google Plus</a></li>
-           <li id="menu-item-285a" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-285"><a href="http://vimeo.com/warhorsestudios">Vimeo</a></li>
-       </ul>
-   </div>
-   <div class="social_wrapper">
-      <div class="fb-like" data-href="<?php echo site_url(); ?>" data-layout="button_count" data-action="like" data-show-faces="false" data-share="true"></div>
-      <a href="https://twitter.com/share" class="twitter-share-button" data-url="<?php echo site_url(); ?>" data-text="<?php echo site_url(); ?>" data-lang="en">Tweet</a>
-      <div class="g-plusone" data-size="medium" data-annotation="bubble" data-width="300" data-href="<?php echo site_url(); ?>"></div>
-   </div>
- </div>
-
-
-
-
-
+     <div class="footer_socials">
+       <div class="copy">
+            © 2014 Warhorse Studios <a href="http://www.warhorsestudios.cz">www.warhorsestudios.cz</a>
+       </div>
+       <div class="social_links">
+            <ul id="menu-menu-1" class="nav-menu">
+               <li id="menu-item-206a" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-206"><a href="https://www.facebook.com/WarhorseStudios">Facebook</a></li>
+               <li id="menu-item-209a" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-209"><a href="https://twitter.com/WarhorseStudios">Twitter</a></li>
+               <li id="menu-item-207a" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-207"><a href="http://www.youtube.com/channel/UCIqUdfkbYmCGM-YRmk28zCg">Youtube</a></li>
+               <li id="menu-item-208a" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-208"><a href="https://plus.google.com/109413064918165877044/posts">Google Plus</a></li>
+               <li id="menu-item-285a" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-285"><a href="http://vimeo.com/warhorsestudios">Vimeo</a></li>
+           </ul>
+       </div>
+       <div class="social_wrapper">
+          <div class="fb-like" data-href="<?php echo site_url(); ?>" data-layout="button_count" data-action="like" data-show-faces="false" data-share="true"></div>
+          <a href="https://twitter.com/share" class="twitter-share-button" data-url="<?php echo site_url(); ?>" data-text="<?php echo site_url(); ?>" data-lang="en">Tweet</a>
+          <div class="g-plusone" data-size="medium" data-annotation="bubble" data-width="300" data-href="<?php echo site_url(); ?>"></div>
+       </div>
+     </div>
     </div><!-- .entry-content -->
   </div>
-<footer id="colophon" class="site-footer" role="contentinfo">
+
+<footer id="colophon" class="site-footer" role="contentinfo" style="display:none;">
 <div class="border_shadow_left"></div>
 <div class="border_shadow_right"></div> 
-       <%= render "/refinery/footer" -%>
+       <%#= render "/refinery/footer" -%>
 </footer>
 </article>
      
-   
-    </div></div>
+   </div>
+ </div>
     <%= render "/refinery/javascripts" %>
   </body>
 </html>

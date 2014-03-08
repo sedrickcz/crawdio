@@ -1673,12 +1673,81 @@ display: none;
 	color: #9b3024;
 }
 
+.informacni_pruh {
+ top: 0;
+    width:100%;
+	margin: 0  auto;
+	position:relative;
+	float:left;
+	z-index: 1997;min-height: 58px;
+    background:  url('http://kingdomcomerpg.com/wp-content/themes/twentythirteendeliverance/images/de_skrabance_bg_fin.png') repeat 0 0 ;
+ 
+     }
+
+.informacni_pruh_in{
+ top: 0;
+left:0;
+position: absolute;
+width: 100%;padding: 10px 0;
+height: 100%;z-index: 1997;
+  background: rgba(255, 250, 224, 0.6);
+    color: #000;
+    
+     }
 
 
-#login_form {display:none}
+.informacni_pruh_in .registera{
+width: 1200px;margin: 0 auto;position: relative;
+    
+     }
+     .informacni_pruh_in .clearfix{float:left;margin-right: 20px;}
+.informacni_pruh_in input[type=submit] {float:left;margin-right: 20px;}
+.informacni_pruh_in label {margin-right: 20px;}
+
+.order_form_tier {width: 700px;margin-top: 40px;}
+
+.order_form_tier h2 {color: #9b3024;clear:none;}
+.order_form_tier label,.order_form_tier input, .order_form_tier select{ float:left;margin-top: 10px;padding: 8px 4px ;}
+.order_form_tier input {
+	-webkit-border-radius: 1px!important;
+-moz-border-radius: 1px!important;
+border-radius: 1px!important;}
+.order_form_tier label{ clear:left;width: 150px;}
+.order_form_tier.becker label{ clear:left;width: 230px;}
+.tier_detail b, .tier_detail strong{color: #9b3024;}
 
 
+#side_text {clear:right;float:right;margin-top: 30px;width: 330px;line-height:90%}
+#side_text p {margin: 0 0 10px;}
+#side_text h2 {color: #9b3024;font-size: 1.3em;}
+.order_form_tier .action {clear:left;} 
+.flash_mess {z-index: 580px ;position: fixed;top: 50px;left: 50%;width: 800px;margin-left: -400px;text-align: center;}
 
+.order_form_tier  .action input[type=submit]{	
+	background: url('/assets/buttonek_big.png')  0 0 no-repeat;
+	text-align: center;border-width:0;
+	width: 472px; margin: 20px auto;
+	height: 106px;
+	padding-top: 10px;font-family: 'IM Fell DW Pica', serif;
+	display: block;
+	-webkit-box-sizing: border-box; /* Safari/Chrome, other WebKit */
+	-moz-box-sizing: border-box;    /* Firefox, other Gecko */
+	box-sizing: border-box;         /* Opera/IE 8+ */
+	font-size: 35px;line-height: 30px;text-decoration: none;color: #000;}
+	
+
+	.order_form_tier.becker  div input[type=submit]{	
+	background: url('/assets/buttonek_big.png')  0 0 no-repeat;
+	text-align: center;border-width:0;
+	width: 472px; margin: 20px auto;
+	height: 106px;
+	padding-top: 10px;font-family: 'IM Fell DW Pica', serif;
+	display: block;
+	-webkit-box-sizing: border-box; /* Safari/Chrome, other WebKit */
+	-moz-box-sizing: border-box;    /* Firefox, other Gecko */
+	box-sizing: border-box;         /* Opera/IE 8+ */
+	font-size: 35px;line-height: 30px;text-decoration: none;color: #000;}
+#login_form .field{float: left;margin: 0 20px ;}
 
 
 .attachment .entry-content {
@@ -1689,7 +1758,7 @@ display: none;
 
 .image-navigation {
 	margin: 0 auto;
-	max-width: 1300px;
+	max-width: 1350px;
 	position: relative;
 }
 
@@ -2555,7 +2624,7 @@ width: 100%;
 .main-navigation {
 	clear: both;
 	margin: 0 auto;
-	max-width: 1110px;
+	max-width: 1200px;
 	min-height: 40px;
 	position: relative;
 }
@@ -2895,22 +2964,24 @@ z-index: 997;
 .c_2 {
 	width: 44%;
 	
-
+}
 .c_3 {
 	width: 25%;
 	
 
 
-}
+
 }
 
 .c_1 h1,.c_3 h2 {
-font-size: 42px;	
+font-size: 33px;	
 color: #d4aa45;
 font-weight:normal;
 line-height: 40px;
 margin: 10px 0 ;
 }
+
+.c_1 h1 {font-size: 40px;}
 .c_3 h2 {color:#fff;}
 .c_3 h2 span{color: #d4aa45;}
 .c_1 p, .c_3 div {
@@ -3015,12 +3086,16 @@ margin: 10px 0 ;
 -webkit-box-sizing: border-box; /* Safari/Chrome, other WebKit */
 	-moz-box-sizing: border-box;    /* Firefox, other Gecko */
 	box-sizing: border-box;         /* Opera/IE 8+ */
-padding:0 10px 0 25px 
+padding:0 5px 0 10px 
+}
+
+.tier_right_image img { max-width: 100%;
+
 }
 .tier_button {float:right;width: 351px;}
 
-a.faq_1,
-a.tc_1,
+a.index_3,
+a.index_4,
 a.index_1,
 a.index_2,
 a.index_0,
@@ -3041,8 +3116,8 @@ a.index_0,
 	color: #000;
 }
 
-a.faq_1:hover,
-a.tc_1:hover,
+a.index_3:hover,
+a.index_4:hover,
 a.index_1:hover,
 a.index_2:hover,
 a.index_0:hover,
@@ -3062,16 +3137,16 @@ width: 353px;
 float:right;
 list-style-type: none;}
 
-a.faq_1,
-a.tc_1,
+a.index_3,
+a.index_4,
 a.index_1,
 a.index_2,
 a.index_0 {width: 352px; 
 	background: url('/assets/buttonky.png')  0 0 no-repeat;
 }
 
-a.faq_1 {background-position:  0 -212px;}
-a.tc_1 {background-position:  0 -285px;}
+a.index_3 {background-position:  0 -212px;}
+a.index_4 {background-position:  0 -285px;}
 a.index_0{background-position: 0 0;} 
 a.index_1{background-position:  0 -70px;} 
 a.index_2{background-position:  0 -140px;}
@@ -3383,6 +3458,14 @@ color: #cea440;padding: 10px 0 ;margin:0;
  .post, .in-post {position: relative;}
 .format-gallery .normal_iside {margin-top:55px;z-index:2;}
 
+#post-shop .border_shadow_right {
+background: rgba(124, 99, 0, 0.55);
+height: 8000px;
+width: 100%;
+position: absolute;}
+#post-shop {display: block;
+overflow: hidden;
+position: relative;}
 
  html .mceContentBody {min-width: 100%;}
 
@@ -3508,7 +3591,9 @@ z-index:500}
 	position: absolute;
 	top: 0;
 }
-
+.hentry, .entry-header, .entry-meta, footer.entry-meta {
+margin: 0 auto;
+padding: 0 0 20px 0 ;}
 #facebook_status_box {width:820px; float:left;margin-top: 50px;}
 .format-quote #facebook_status_box {width:780px; float:left;margin-top: 25px;}
 
@@ -4323,6 +4408,8 @@ height: auto;
 	border-radius: 5px;}
 
 	.modal-header .close {color: #000;}
+
+	body.no-logged-in .hfeed.site{padding-top: 55px;}
 /**
  * 8.0 Media Queries
  * ----------------------------------------------------------------------------
@@ -4807,7 +4894,7 @@ background:rgba(3,3,3,0.5)  url('http://kingdomcomerpg.com/wp-content/uploads/20
 		height: 381px;width: 1200px;
 		}
 
-#navbar {width: 1200px;}
+#navbar {width: 1300px;}
 
 .decorator {
 	position: absolute;
