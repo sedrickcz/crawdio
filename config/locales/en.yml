@@ -18,3 +18,4 @@ en:
       subject: 'Activation e-mail to Kingdom Deliverance Shop'
     confirmation_email:
       subject: 'Thank you for your support'
+  forgot_password: 'Forgot password?'
