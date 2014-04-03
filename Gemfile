@@ -23,6 +23,7 @@ end
 group :development do
   gem "capistrano", '~>2.15.0', :require => nil
   gem "capistrano-ext", :require => nil
+  gem "capistrano-db-tasks", require: false
 end
 
 gem 'jquery-rails'
@@ -45,3 +46,5 @@ gem 'refinerycms-projects', :path => 'vendor/extensions'
 gem 'refinerycms-tiers', :path => 'vendor/extensions'
 gem 'refinerycms-orders', :path => 'vendor/extensions'
 gem 'refinerycms-user_histories', :path => 'vendor/extensions'
+
+gem 'carmen-rails', '~> 1.0.0'

@@ -1,0 +1,1505 @@
+--
+-- PostgreSQL database dump
+--
+
+SET statement_timeout = 0;
+SET client_encoding = 'UTF8';
+SET standard_conforming_strings = on;
+SET check_function_bodies = false;
+SET client_min_messages = warning;
+
+--
+-- Name: plpgsql; Type: EXTENSION; Schema: -; Owner: 
+--
+
+CREATE EXTENSION IF NOT EXISTS plpgsql WITH SCHEMA pg_catalog;
+
+
+--
+-- Name: EXTENSION plpgsql; Type: COMMENT; Schema: -; Owner: 
+--
+
+COMMENT ON EXTENSION plpgsql IS 'PL/pgSQL procedural language';
+
+
+SET search_path = public, pg_catalog;
+
+SET default_tablespace = '';
+
+SET default_with_oids = false;
+
+--
+-- Name: refinery_images; Type: TABLE; Schema: public; Owner: sedrick; Tablespace: 
+--
+
+CREATE TABLE refinery_images (
+    id integer NOT NULL,
+    image_mime_type character varying(255),
+    image_name character varying(255),
+    image_size integer,
+    image_width integer,
+    image_height integer,
+    image_uid character varying(255),
+    created_at timestamp without time zone NOT NULL,
+    updated_at timestamp without time zone NOT NULL
+);
+
+
+ALTER TABLE public.refinery_images OWNER TO sedrick;
+
+--
+-- Name: refinery_images_id_seq; Type: SEQUENCE; Schema: public; Owner: sedrick
+--
+
+CREATE SEQUENCE refinery_images_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.refinery_images_id_seq OWNER TO sedrick;
+
+--
+-- Name: refinery_images_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: sedrick
+--
+
+ALTER SEQUENCE refinery_images_id_seq OWNED BY refinery_images.id;
+
+
+--
+-- Name: refinery_orders; Type: TABLE; Schema: public; Owner: sedrick; Tablespace: 
+--
+
+CREATE TABLE refinery_orders (
+    id integer NOT NULL,
+    user_id integer,
+    tier_id integer,
+    price double precision,
+    paid boolean,
+    paid_at timestamp without time zone,
+    pay_type character varying(255),
+    payment_id integer,
+    email character varying(255),
+    tier_name character varying(255),
+    name character varying(255),
+    street character varying(255),
+    city character varying(255),
+    country character varying(255),
+    "position" integer,
+    created_at timestamp without time zone NOT NULL,
+    updated_at timestamp without time zone NOT NULL,
+    payment_status character varying(255),
+    cart_id integer,
+    transaction_id character varying(255),
+    platform_1 character varying(255),
+    platform_2 character varying(255),
+    tshirt character varying(255),
+    ingame_name character varying(255),
+    sword_legal boolean DEFAULT false,
+    agree boolean DEFAULT false
+);
+
+
+ALTER TABLE public.refinery_orders OWNER TO sedrick;
+
+--
+-- Name: refinery_orders_id_seq; Type: SEQUENCE; Schema: public; Owner: sedrick
+--
+
+CREATE SEQUENCE refinery_orders_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.refinery_orders_id_seq OWNER TO sedrick;
+
+--
+-- Name: refinery_orders_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: sedrick
+--
+
+ALTER SEQUENCE refinery_orders_id_seq OWNED BY refinery_orders.id;
+
+
+--
+-- Name: refinery_page_part_translations; Type: TABLE; Schema: public; Owner: sedrick; Tablespace: 
+--
+
+CREATE TABLE refinery_page_part_translations (
+    id integer NOT NULL,
+    refinery_page_part_id integer,
+    locale character varying(255) NOT NULL,
+    created_at timestamp without time zone NOT NULL,
+    updated_at timestamp without time zone NOT NULL,
+    body text
+);
+
+
+ALTER TABLE public.refinery_page_part_translations OWNER TO sedrick;
+
+--
+-- Name: refinery_page_part_translations_id_seq; Type: SEQUENCE; Schema: public; Owner: sedrick
+--
+
+CREATE SEQUENCE refinery_page_part_translations_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.refinery_page_part_translations_id_seq OWNER TO sedrick;
+
+--
+-- Name: refinery_page_part_translations_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: sedrick
+--
+
+ALTER SEQUENCE refinery_page_part_translations_id_seq OWNED BY refinery_page_part_translations.id;
+
+
+--
+-- Name: refinery_page_parts; Type: TABLE; Schema: public; Owner: sedrick; Tablespace: 
+--
+
+CREATE TABLE refinery_page_parts (
+    id integer NOT NULL,
+    refinery_page_id integer,
+    title character varying(255),
+    body text,
+    "position" integer,
+    created_at timestamp without time zone NOT NULL,
+    updated_at timestamp without time zone NOT NULL
+);
+
+
+ALTER TABLE public.refinery_page_parts OWNER TO sedrick;
+
+--
+-- Name: refinery_page_parts_id_seq; Type: SEQUENCE; Schema: public; Owner: sedrick
+--
+
+CREATE SEQUENCE refinery_page_parts_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.refinery_page_parts_id_seq OWNER TO sedrick;
+
+--
+-- Name: refinery_page_parts_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: sedrick
+--
+
+ALTER SEQUENCE refinery_page_parts_id_seq OWNED BY refinery_page_parts.id;
+
+
+--
+-- Name: refinery_page_translations; Type: TABLE; Schema: public; Owner: sedrick; Tablespace: 
+--
+
+CREATE TABLE refinery_page_translations (
+    id integer NOT NULL,
+    refinery_page_id integer,
+    locale character varying(255) NOT NULL,
+    created_at timestamp without time zone NOT NULL,
+    updated_at timestamp without time zone NOT NULL,
+    title character varying(255),
+    custom_slug character varying(255),
+    menu_title character varying(255),
+    slug character varying(255)
+);
+
+
+ALTER TABLE public.refinery_page_translations OWNER TO sedrick;
+
+--
+-- Name: refinery_page_translations_id_seq; Type: SEQUENCE; Schema: public; Owner: sedrick
+--
+
+CREATE SEQUENCE refinery_page_translations_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.refinery_page_translations_id_seq OWNER TO sedrick;
+
+--
+-- Name: refinery_page_translations_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: sedrick
+--
+
+ALTER SEQUENCE refinery_page_translations_id_seq OWNED BY refinery_page_translations.id;
+
+
+--
+-- Name: refinery_pages; Type: TABLE; Schema: public; Owner: sedrick; Tablespace: 
+--
+
+CREATE TABLE refinery_pages (
+    id integer NOT NULL,
+    parent_id integer,
+    path character varying(255),
+    slug character varying(255),
+    show_in_menu boolean DEFAULT true,
+    link_url character varying(255),
+    menu_match character varying(255),
+    deletable boolean DEFAULT true,
+    draft boolean DEFAULT false,
+    skip_to_first_child boolean DEFAULT false,
+    lft integer,
+    rgt integer,
+    depth integer,
+    view_template character varying(255),
+    layout_template character varying(255),
+    created_at timestamp without time zone NOT NULL,
+    updated_at timestamp without time zone NOT NULL
+);
+
+
+ALTER TABLE public.refinery_pages OWNER TO sedrick;
+
+--
+-- Name: refinery_pages_id_seq; Type: SEQUENCE; Schema: public; Owner: sedrick
+--
+
+CREATE SEQUENCE refinery_pages_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.refinery_pages_id_seq OWNER TO sedrick;
+
+--
+-- Name: refinery_pages_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: sedrick
+--
+
+ALTER SEQUENCE refinery_pages_id_seq OWNED BY refinery_pages.id;
+
+
+--
+-- Name: refinery_projects; Type: TABLE; Schema: public; Owner: sedrick; Tablespace: 
+--
+
+CREATE TABLE refinery_projects (
+    id integer NOT NULL,
+    title character varying(255),
+    short_description text,
+    long_description text,
+    goal double precision,
+    main_image_id integer,
+    image_1_id integer,
+    image_2_id integer,
+    image_3_id integer,
+    image_4_id integer,
+    image_5_id integer,
+    active boolean,
+    video character varying(255),
+    faq text,
+    terms text,
+    updates text,
+    "position" integer,
+    created_at timestamp without time zone NOT NULL,
+    updated_at timestamp without time zone NOT NULL
+);
+
+
+ALTER TABLE public.refinery_projects OWNER TO sedrick;
+
+--
+-- Name: refinery_projects_id_seq; Type: SEQUENCE; Schema: public; Owner: sedrick
+--
+
+CREATE SEQUENCE refinery_projects_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.refinery_projects_id_seq OWNER TO sedrick;
+
+--
+-- Name: refinery_projects_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: sedrick
+--
+
+ALTER SEQUENCE refinery_projects_id_seq OWNED BY refinery_projects.id;
+
+
+--
+-- Name: refinery_resources; Type: TABLE; Schema: public; Owner: sedrick; Tablespace: 
+--
+
+CREATE TABLE refinery_resources (
+    id integer NOT NULL,
+    file_mime_type character varying(255),
+    file_name character varying(255),
+    file_size integer,
+    file_uid character varying(255),
+    file_ext character varying(255),
+    created_at timestamp without time zone NOT NULL,
+    updated_at timestamp without time zone NOT NULL
+);
+
+
+ALTER TABLE public.refinery_resources OWNER TO sedrick;
+
+--
+-- Name: refinery_resources_id_seq; Type: SEQUENCE; Schema: public; Owner: sedrick
+--
+
+CREATE SEQUENCE refinery_resources_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.refinery_resources_id_seq OWNER TO sedrick;
+
+--
+-- Name: refinery_resources_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: sedrick
+--
+
+ALTER SEQUENCE refinery_resources_id_seq OWNED BY refinery_resources.id;
+
+
+--
+-- Name: refinery_roles; Type: TABLE; Schema: public; Owner: sedrick; Tablespace: 
+--
+
+CREATE TABLE refinery_roles (
+    id integer NOT NULL,
+    title character varying(255)
+);
+
+
+ALTER TABLE public.refinery_roles OWNER TO sedrick;
+
+--
+-- Name: refinery_roles_id_seq; Type: SEQUENCE; Schema: public; Owner: sedrick
+--
+
+CREATE SEQUENCE refinery_roles_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.refinery_roles_id_seq OWNER TO sedrick;
+
+--
+-- Name: refinery_roles_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: sedrick
+--
+
+ALTER SEQUENCE refinery_roles_id_seq OWNED BY refinery_roles.id;
+
+
+--
+-- Name: refinery_roles_users; Type: TABLE; Schema: public; Owner: sedrick; Tablespace: 
+--
+
+CREATE TABLE refinery_roles_users (
+    user_id integer,
+    role_id integer
+);
+
+
+ALTER TABLE public.refinery_roles_users OWNER TO sedrick;
+
+--
+-- Name: refinery_tiers; Type: TABLE; Schema: public; Owner: sedrick; Tablespace: 
+--
+
+CREATE TABLE refinery_tiers (
+    id integer NOT NULL,
+    title character varying(255),
+    price double precision,
+    "limit" integer,
+    physical boolean,
+    short_description text,
+    long_description text,
+    active boolean,
+    image_1_id integer,
+    image_2_id integer,
+    image_3_id integer,
+    "position" integer,
+    created_at timestamp without time zone NOT NULL,
+    updated_at timestamp without time zone NOT NULL,
+    project_id integer,
+    platform_1 boolean DEFAULT false,
+    platform_2 boolean DEFAULT false,
+    tshirt boolean DEFAULT false,
+    ingame_name boolean DEFAULT false,
+    sword_legal boolean DEFAULT false,
+    side_text text
+);
+
+
+ALTER TABLE public.refinery_tiers OWNER TO sedrick;
+
+--
+-- Name: refinery_tiers_id_seq; Type: SEQUENCE; Schema: public; Owner: sedrick
+--
+
+CREATE SEQUENCE refinery_tiers_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.refinery_tiers_id_seq OWNER TO sedrick;
+
+--
+-- Name: refinery_tiers_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: sedrick
+--
+
+ALTER SEQUENCE refinery_tiers_id_seq OWNED BY refinery_tiers.id;
+
+
+--
+-- Name: refinery_user_histories; Type: TABLE; Schema: public; Owner: sedrick; Tablespace: 
+--
+
+CREATE TABLE refinery_user_histories (
+    id integer NOT NULL,
+    user_id integer,
+    field character varying(255),
+    original_value character varying(255),
+    new_value character varying(255),
+    "position" integer,
+    created_at timestamp without time zone NOT NULL,
+    updated_at timestamp without time zone NOT NULL
+);
+
+
+ALTER TABLE public.refinery_user_histories OWNER TO sedrick;
+
+--
+-- Name: refinery_user_histories_id_seq; Type: SEQUENCE; Schema: public; Owner: sedrick
+--
+
+CREATE SEQUENCE refinery_user_histories_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.refinery_user_histories_id_seq OWNER TO sedrick;
+
+--
+-- Name: refinery_user_histories_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: sedrick
+--
+
+ALTER SEQUENCE refinery_user_histories_id_seq OWNED BY refinery_user_histories.id;
+
+
+--
+-- Name: refinery_user_plugins; Type: TABLE; Schema: public; Owner: sedrick; Tablespace: 
+--
+
+CREATE TABLE refinery_user_plugins (
+    id integer NOT NULL,
+    user_id integer,
+    name character varying(255),
+    "position" integer
+);
+
+
+ALTER TABLE public.refinery_user_plugins OWNER TO sedrick;
+
+--
+-- Name: refinery_user_plugins_id_seq; Type: SEQUENCE; Schema: public; Owner: sedrick
+--
+
+CREATE SEQUENCE refinery_user_plugins_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.refinery_user_plugins_id_seq OWNER TO sedrick;
+
+--
+-- Name: refinery_user_plugins_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: sedrick
+--
+
+ALTER SEQUENCE refinery_user_plugins_id_seq OWNED BY refinery_user_plugins.id;
+
+
+--
+-- Name: refinery_users; Type: TABLE; Schema: public; Owner: sedrick; Tablespace: 
+--
+
+CREATE TABLE refinery_users (
+    id integer NOT NULL,
+    username character varying(255) NOT NULL,
+    email character varying(255) NOT NULL,
+    encrypted_password character varying(255) NOT NULL,
+    current_sign_in_at timestamp without time zone,
+    last_sign_in_at timestamp without time zone,
+    current_sign_in_ip character varying(255),
+    last_sign_in_ip character varying(255),
+    sign_in_count integer,
+    remember_created_at timestamp without time zone,
+    reset_password_token character varying(255),
+    reset_password_sent_at timestamp without time zone,
+    created_at timestamp without time zone NOT NULL,
+    updated_at timestamp without time zone NOT NULL,
+    slug character varying(255),
+    name character varying(255),
+    street character varying(255),
+    city character varying(255),
+    country character varying(255),
+    activated boolean DEFAULT false,
+    activation_token character varying(255)
+);
+
+
+ALTER TABLE public.refinery_users OWNER TO sedrick;
+
+--
+-- Name: refinery_users_id_seq; Type: SEQUENCE; Schema: public; Owner: sedrick
+--
+
+CREATE SEQUENCE refinery_users_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.refinery_users_id_seq OWNER TO sedrick;
+
+--
+-- Name: refinery_users_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: sedrick
+--
+
+ALTER SEQUENCE refinery_users_id_seq OWNED BY refinery_users.id;
+
+
+--
+-- Name: schema_migrations; Type: TABLE; Schema: public; Owner: sedrick; Tablespace: 
+--
+
+CREATE TABLE schema_migrations (
+    version character varying(255) NOT NULL
+);
+
+
+ALTER TABLE public.schema_migrations OWNER TO sedrick;
+
+--
+-- Name: seo_meta; Type: TABLE; Schema: public; Owner: sedrick; Tablespace: 
+--
+
+CREATE TABLE seo_meta (
+    id integer NOT NULL,
+    seo_meta_id integer,
+    seo_meta_type character varying(255),
+    browser_title character varying(255),
+    meta_description text,
+    created_at timestamp without time zone NOT NULL,
+    updated_at timestamp without time zone NOT NULL
+);
+
+
+ALTER TABLE public.seo_meta OWNER TO sedrick;
+
+--
+-- Name: seo_meta_id_seq; Type: SEQUENCE; Schema: public; Owner: sedrick
+--
+
+CREATE SEQUENCE seo_meta_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.seo_meta_id_seq OWNER TO sedrick;
+
+--
+-- Name: seo_meta_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: sedrick
+--
+
+ALTER SEQUENCE seo_meta_id_seq OWNED BY seo_meta.id;
+
+
+--
+-- Name: user_pledges; Type: TABLE; Schema: public; Owner: sedrick; Tablespace: 
+--
+
+CREATE TABLE user_pledges (
+    id integer NOT NULL,
+    user_id integer,
+    tier_id integer,
+    created_at timestamp without time zone NOT NULL,
+    updated_at timestamp without time zone NOT NULL
+);
+
+
+ALTER TABLE public.user_pledges OWNER TO sedrick;
+
+--
+-- Name: user_pledges_id_seq; Type: SEQUENCE; Schema: public; Owner: sedrick
+--
+
+CREATE SEQUENCE user_pledges_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.user_pledges_id_seq OWNER TO sedrick;
+
+--
+-- Name: user_pledges_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: sedrick
+--
+
+ALTER SEQUENCE user_pledges_id_seq OWNED BY user_pledges.id;
+
+
+--
+-- Name: id; Type: DEFAULT; Schema: public; Owner: sedrick
+--
+
+ALTER TABLE ONLY refinery_images ALTER COLUMN id SET DEFAULT nextval('refinery_images_id_seq'::regclass);
+
+
+--
+-- Name: id; Type: DEFAULT; Schema: public; Owner: sedrick
+--
+
+ALTER TABLE ONLY refinery_orders ALTER COLUMN id SET DEFAULT nextval('refinery_orders_id_seq'::regclass);
+
+
+--
+-- Name: id; Type: DEFAULT; Schema: public; Owner: sedrick
+--
+
+ALTER TABLE ONLY refinery_page_part_translations ALTER COLUMN id SET DEFAULT nextval('refinery_page_part_translations_id_seq'::regclass);
+
+
+--
+-- Name: id; Type: DEFAULT; Schema: public; Owner: sedrick
+--
+
+ALTER TABLE ONLY refinery_page_parts ALTER COLUMN id SET DEFAULT nextval('refinery_page_parts_id_seq'::regclass);
+
+
+--
+-- Name: id; Type: DEFAULT; Schema: public; Owner: sedrick
+--
+
+ALTER TABLE ONLY refinery_page_translations ALTER COLUMN id SET DEFAULT nextval('refinery_page_translations_id_seq'::regclass);
+
+
+--
+-- Name: id; Type: DEFAULT; Schema: public; Owner: sedrick
+--
+
+ALTER TABLE ONLY refinery_pages ALTER COLUMN id SET DEFAULT nextval('refinery_pages_id_seq'::regclass);
+
+
+--
+-- Name: id; Type: DEFAULT; Schema: public; Owner: sedrick
+--
+
+ALTER TABLE ONLY refinery_projects ALTER COLUMN id SET DEFAULT nextval('refinery_projects_id_seq'::regclass);
+
+
+--
+-- Name: id; Type: DEFAULT; Schema: public; Owner: sedrick
+--
+
+ALTER TABLE ONLY refinery_resources ALTER COLUMN id SET DEFAULT nextval('refinery_resources_id_seq'::regclass);
+
+
+--
+-- Name: id; Type: DEFAULT; Schema: public; Owner: sedrick
+--
+
+ALTER TABLE ONLY refinery_roles ALTER COLUMN id SET DEFAULT nextval('refinery_roles_id_seq'::regclass);
+
+
+--
+-- Name: id; Type: DEFAULT; Schema: public; Owner: sedrick
+--
+
+ALTER TABLE ONLY refinery_tiers ALTER COLUMN id SET DEFAULT nextval('refinery_tiers_id_seq'::regclass);
+
+
+--
+-- Name: id; Type: DEFAULT; Schema: public; Owner: sedrick
+--
+
+ALTER TABLE ONLY refinery_user_histories ALTER COLUMN id SET DEFAULT nextval('refinery_user_histories_id_seq'::regclass);
+
+
+--
+-- Name: id; Type: DEFAULT; Schema: public; Owner: sedrick
+--
+
+ALTER TABLE ONLY refinery_user_plugins ALTER COLUMN id SET DEFAULT nextval('refinery_user_plugins_id_seq'::regclass);
+
+
+--
+-- Name: id; Type: DEFAULT; Schema: public; Owner: sedrick
+--
+
+ALTER TABLE ONLY refinery_users ALTER COLUMN id SET DEFAULT nextval('refinery_users_id_seq'::regclass);
+
+
+--
+-- Name: id; Type: DEFAULT; Schema: public; Owner: sedrick
+--
+
+ALTER TABLE ONLY seo_meta ALTER COLUMN id SET DEFAULT nextval('seo_meta_id_seq'::regclass);
+
+
+--
+-- Name: id; Type: DEFAULT; Schema: public; Owner: sedrick
+--
+
+ALTER TABLE ONLY user_pledges ALTER COLUMN id SET DEFAULT nextval('user_pledges_id_seq'::regclass);
+
+
+--
+-- Data for Name: refinery_images; Type: TABLE DATA; Schema: public; Owner: sedrick
+--
+
+COPY refinery_images (id, image_mime_type, image_name, image_size, image_width, image_height, image_uid, created_at, updated_at) FROM stdin;
+1	image/png	21_19_43_298_peasant.png	21462	128	128	2014/03/03/06_15_36_755_21_19_43_298_peasant.png	2014-03-03 02:15:36.758037	2014-03-03 02:15:36.758037
+2	image/png	21_20_15_207_baron.png	16547	128	128	2014/03/03/06_15_36_823_21_20_15_207_baron.png	2014-03-03 02:15:36.824259	2014-03-03 02:15:36.824259
+3	image/png	21_20_15_269_duke.png	18634	128	128	2014/03/03/06_15_37_191_21_20_15_269_duke.png	2014-03-03 02:15:37.191853	2014-03-03 02:15:37.191853
+4	image/png	21_20_15_328_earl.png	17390	128	128	2014/03/03/06_15_37_240_21_20_15_328_earl.png	2014-03-03 02:15:37.241122	2014-03-03 02:15:37.241122
+5	image/png	21_20_15_390_emperor.png	18793	128	128	2014/03/03/06_15_37_295_21_20_15_390_emperor.png	2014-03-03 02:15:37.296677	2014-03-03 02:15:37.296677
+6	image/png	21_20_15_447_illuminatus.png	16395	128	128	2014/03/03/06_15_39_165_21_20_15_447_illuminatus.png	2014-03-03 02:15:39.170338	2014-03-03 02:15:39.170338
+7	image/png	21_20_15_504_king.png	17244	128	128	2014/03/03/06_15_39_305_21_20_15_504_king.png	2014-03-03 02:15:39.305882	2014-03-03 02:15:39.305882
+8	image/png	21_20_15_562_knight.png	15968	128	128	2014/03/03/06_15_39_353_21_20_15_562_knight.png	2014-03-03 02:15:39.353801	2014-03-03 02:15:39.353801
+9	image/png	21_20_15_623_pope.png	20435	128	128	2014/03/03/06_15_39_404_21_20_15_623_pope.png	2014-03-03 02:15:39.40535	2014-03-03 02:15:39.40535
+10	image/png	21_20_15_681_saint.png	24307	128	128	2014/03/03/06_15_39_450_21_20_15_681_saint.png	2014-03-03 02:15:39.451066	2014-03-03 02:15:39.451066
+11	image/png	21_20_15_736_soldier.png	14233	128	128	2014/03/03/06_15_39_499_21_20_15_736_soldier.png	2014-03-03 02:15:39.500444	2014-03-03 02:15:39.500444
+12	image/png	21_20_15_792_wenzel.png	20041	128	128	2014/03/03/06_15_39_554_21_20_15_792_wenzel.png	2014-03-03 02:15:39.555002	2014-03-03 02:15:39.555002
+13	image/png	21_23_38_639_Screen_Shot_2014_02_25_at_21.22.34.png	12197	53	79	2014/03/03/06_15_39_608_21_23_38_639_Screen_Shot_2014_02_25_at_21.22.34.png	2014-03-03 02:15:39.609912	2014-03-03 02:15:39.609912
+14	image/png	21_23_38_706_Screen_Shot_2014_02_25_at_21.22.43.png	21863	83	99	2014/03/03/06_15_39_661_21_23_38_706_Screen_Shot_2014_02_25_at_21.22.43.png	2014-03-03 02:15:39.662621	2014-03-03 02:15:39.662621
+15	image/png	21_23_38_773_Screen_Shot_2014_02_25_at_21.22.53.png	45497	198	123	2014/03/03/06_15_39_717_21_23_38_773_Screen_Shot_2014_02_25_at_21.22.53.png	2014-03-03 02:15:39.717859	2014-03-03 02:15:39.717859
+16	image/png	21_23_38_847_Screen_Shot_2014_02_25_at_21.22.59.png	53888	192	120	2014/03/03/06_15_39_767_21_23_38_847_Screen_Shot_2014_02_25_at_21.22.59.png	2014-03-03 02:15:39.768396	2014-03-03 02:15:39.768396
+17	image/png	21_23_38_936_Screen_Shot_2014_02_25_at_21.23.09.png	160462	279	324	2014/03/03/06_15_39_822_21_23_38_936_Screen_Shot_2014_02_25_at_21.23.09.png	2014-03-03 02:15:39.823292	2014-03-03 02:15:39.823292
+18	image/gif	Knight Physical.gif	9148	183	107	2014/03/14/21_00_32_835_Knight_Physical.gif	2014-03-14 17:00:32.837156	2014-03-14 17:00:32.837156
+19	image/png	Knight physical.png	28556	183	107	2014/03/14/21_02_06_578_Knight_physical.png	2014-03-14 17:02:06.579143	2014-03-14 17:02:06.579143
+20	image/jpeg	coins.jpg	136774	550	516	2014/03/28/16_56_34_526_coins.jpg	2014-03-28 12:56:34.580908	2014-03-28 12:56:34.580908
+21	image/jpeg	engraving.jpg	113094	550	583	2014/03/28/16_56_44_401_engraving.jpg	2014-03-28 12:56:44.403019	2014-03-28 12:56:44.403019
+22	image/jpeg	figurky.jpg	66352	550	411	2014/03/28/16_56_50_410_figurky.jpg	2014-03-28 12:56:50.411691	2014-03-28 12:56:50.411691
+23	image/jpeg	meceazbroje.jpg	75688	550	411	2014/03/28/16_56_55_955_meceazbroje.jpg	2014-03-28 12:56:55.955944	2014-03-28 12:56:55.955944
+\.
+
+
+--
+-- Name: refinery_images_id_seq; Type: SEQUENCE SET; Schema: public; Owner: sedrick
+--
+
+SELECT pg_catalog.setval('refinery_images_id_seq', 23, true);
+
+
+--
+-- Data for Name: refinery_orders; Type: TABLE DATA; Schema: public; Owner: sedrick
+--
+
+COPY refinery_orders (id, user_id, tier_id, price, paid, paid_at, pay_type, payment_id, email, tier_name, name, street, city, country, "position", created_at, updated_at, payment_status, cart_id, transaction_id, platform_1, platform_2, tshirt, ingame_name, sword_legal, agree) FROM stdin;
+7	1	6	1000	t	2014-03-03 22:51:46.007618	\N	\N	admin@sedrick.cz	WENZEL der FAULE (ULTIMATE ED.)	Jirka	Na pískách	Praha	CZ	\N	2014-03-03 22:51:27.848531	2014-03-03 22:51:46.065993	\N	\N	\N	\N	\N	\N	\N	f	f
+8	2	6	1000	t	2014-03-03 23:43:01.661793	\N	\N	kratoj@gmail.com	WENZEL der FAULE (ULTIMATE ED.)	Jiří Kratochvíl	Ovenecká 330/44	Praha 7	Czech Republic	\N	2014-03-03 23:42:38.520288	2014-03-03 23:43:01.703614	Completed	8	4FC45115MK8867022	XBOX	PC	L	Sedrick	t	t
+9	6	1	5	t	2014-03-04 22:10:45.766893	\N	\N	u1@sedrick.cz	PEASANT TIER	\N	\N	\N	\N	\N	2014-03-04 22:10:18.26985	2014-03-04 22:10:45.881072	Completed	9	257599505R203960X	\N	\N	\N	\N	f	t
+10	6	6	995	t	2014-03-04 22:13:17.057704	\N	\N	u1@sedrick.cz	WENZEL der FAULE (ULTIMATE ED.)	Jiří Kratochvíl	Nerudova 709	Jirkov	Česká Republika	\N	2014-03-04 22:12:53.036169	2014-03-04 22:13:17.155867	Completed	10	74178318DD378552P	PC	PC	L	Sedrick	t	t
+11	6	6	1000	t	2014-03-04 22:18:52.520547	\N	\N	u1bracha@sedrick.cz	WENZEL der FAULE (ULTIMATE ED.)	Jiří Kratochvíl	Nerudova 709	Jirkov	Česká Republika	\N	2014-03-04 22:18:20.135958	2014-03-04 22:18:52.73786	Completed	11	4H200254VK597004B	XBOX	PC	XXXL	SedrickCZ	f	t
+12	6	8	20	t	2014-03-31 20:35:32.649167	\N	\N	u1@sedrick.cz	VISCOUNT TIER (DIGITAL)	\N	\N	\N	\N	\N	2014-03-31 20:34:57.834664	2014-03-31 20:35:33.093462	Completed	12	9RR50250PW394835S	PC	\N	\N	\N	f	t
+13	7	4	40	\N	\N	\N	\N	jiri.rydl@warhorsestudios.cz	KNIGHT TIER (DIGITAL)	\N	\N	\N	\N	\N	2014-04-03 10:40:09.313053	2014-04-03 10:40:09.313053	\N	\N	\N	PC	\N	\N	\N	f	t
+\.
+
+
+--
+-- Name: refinery_orders_id_seq; Type: SEQUENCE SET; Schema: public; Owner: sedrick
+--
+
+SELECT pg_catalog.setval('refinery_orders_id_seq', 13, true);
+
+
+--
+-- Data for Name: refinery_page_part_translations; Type: TABLE DATA; Schema: public; Owner: sedrick
+--
+
+COPY refinery_page_part_translations (id, refinery_page_part_id, locale, created_at, updated_at, body) FROM stdin;
+1	1	en	2014-03-03 01:52:30.964548	2014-03-03 01:52:30.964548	<p>Welcome to our site. This is just a place holder page while we gather our content.</p>
+2	2	en	2014-03-03 01:52:30.974708	2014-03-03 01:52:30.974708	<p>This is another block of content over here.</p>
+3	3	en	2014-03-03 01:52:31.053016	2014-03-03 01:52:31.053016	<h2>Sorry, there was a problem...</h2><p>The page you requested was not found.</p><p><a href='/'>Return to the home page</a></p>
+4	4	en	2014-03-03 01:52:31.116235	2014-03-03 01:52:31.116235	<p>This is just a standard text page example. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin metus dolor, hendrerit sit amet, aliquet nec, posuere sed, purus. Nullam et velit iaculis odio sagittis placerat. Duis metus tellus, pellentesque ut, luctus id, egestas a, lorem. Praesent vitae mauris. Aliquam sed nulla. Sed id nunc vitae leo suscipit viverra. Proin at leo ut lacus consequat rhoncus. In hac habitasse platea dictumst. Nunc quis tortor sed libero hendrerit dapibus.\n\nInteger interdum purus id erat. Duis nec velit vitae dolor mattis euismod. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Suspendisse pellentesque dignissim lacus. Nulla semper euismod arcu. Suspendisse egestas, erat a consectetur dapibus, felis orci cursus eros, et sollicitudin purus urna et metus. Integer eget est sed nunc euismod vestibulum. Integer nulla dui, tristique in, euismod et, interdum imperdiet, enim. Mauris at lectus. Sed egestas tortor nec mi.</p>
+5	5	en	2014-03-03 01:52:31.126786	2014-03-03 01:52:31.126786	<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus fringilla nisi a elit. Duis ultricies orci ut arcu. Ut ac nibh. Duis blandit rhoncus magna. Pellentesque semper risus ut magna. Etiam pulvinar tellus eget diam. Morbi blandit. Donec pulvinar mauris at ligula. Sed pellentesque, ipsum id congue molestie, lectus risus egestas pede, ac viverra diam lacus ac urna. Aenean elit.</p>
+6	6	en	2014-03-03 01:52:31.366019	2014-03-03 01:52:31.366019	\N
+7	7	en	2014-03-03 01:52:31.377675	2014-03-03 01:52:31.377675	\N
+8	8	en	2014-03-03 01:52:31.43933	2014-03-03 01:52:31.43933	\N
+9	9	en	2014-03-03 01:52:31.448098	2014-03-03 01:52:31.448098	\N
+10	10	en	2014-03-03 01:52:31.518293	2014-03-03 01:52:31.518293	\N
+11	11	en	2014-03-03 01:52:31.526493	2014-03-03 01:52:31.526493	\N
+12	12	en	2014-03-03 01:52:31.594129	2014-03-03 01:52:31.594129	\N
+13	13	en	2014-03-03 01:52:31.604566	2014-03-03 01:52:31.604566	\N
+14	14	en	2014-03-03 02:21:39.413314	2014-03-03 02:21:39.413314	
+15	15	en	2014-03-03 02:21:39.420262	2014-03-03 02:21:39.420262	
+17	17	en	2014-03-03 02:22:13.003522	2014-03-03 02:22:13.003522	
+21	21	en	2014-03-03 02:23:08.02927	2014-03-03 02:23:08.02927	
+22	22	en	2014-03-03 02:23:36.696258	2014-03-03 02:23:36.696258	<p>Thank you for your money :) </p>
+23	23	en	2014-03-03 02:23:36.786249	2014-03-03 02:23:36.786249	
+25	25	en	2014-03-08 00:36:43.209906	2014-03-08 00:36:43.209906	
+27	27	en	2014-03-08 00:38:40.307281	2014-03-08 00:38:40.307281	
+24	24	en	2014-03-08 00:36:43.107138	2014-03-28 12:35:55.025371	<p><strong>I don’t understand the concept of Acts. What is Act I, II and III? Why there is not cheaper tier offering all three Acts?</strong> </p>\r\n<p>Kingdom Come: Deliverance, Act I, as it is planned, is a full scale, stand-alone game. It has 30+ hours of gameplay, complete open world map, all quests and closed story line. Most (if not all) game mechanics described above will be included: horse riding, combat, castle sieges, there will be at least one large-scale battle. Acts II &amp; III extend the story, add new environment in separate maps, new quests, gear and weapons. They will also add new quests to the map of Act I. It will be possible to travel between maps of all Acts, some quests will require you to visit all of them.</p>\r\n<p>We definitely intend to make Acts II &amp; III and release them as soon as possible. However, our funding and schedule does not reach past first Act. We will finalize our plans for the release of Acts II &amp; III when we get closer to the release date of Act I. For these reasons we don’t want to offer and promise them as a Kickstarter reward in their own right. We want to use them as a token of our gratitude to higher tiers backers, but you should think about it more like 100% discount offer than a guaranteed reward.</p>\r\n<p><em>Last updated: Wed, Jan 22 2014 2:25 PM CET</em> </p>\r\n<p><strong>What platforms are offered to backers on Kickstarter and what is minimum requirement of PC version ?</strong> </p>\r\n<p>We are developing the game to run smoothly on “good gaming PC” and next-gen consoles. If you have a PC, hardware-wise similar to Xbox One or PS4, you should be able to run Kingdom Come: Deliverance well.</p>\r\n<p>About platforms: we are using proven technology (Cryengine by CryTek) that runs on both PS4 and Xbox One, as well as on Windows PC, Mac and Linux. While we are developing on PC , we definitely want to bring the game to other platforms. While there should be nothing but technical problems with Linux and Mac, on closed platforms we need to deal with the platform holders and we cannot prejudge their decision. In an ideal world, we would release the game on all five platforms at the same time.</p>\r\n<p>In our world, we can offer you PC version in all tiers. From the “Baron” tier above, you will be able to choose our game on any platform you wish from those mentioned above (i.e. Windows PC / Mac / Linux / Xbox One / PS4), with the proviso that on consoles the game must be approved by the platform holders first. In case we are not able to finish or release the game on the platform you chose for any reason, you will be able to choose again (from available platforms) or demand your money back.</p>\r\n<p>UDPATE: Since we came to agreement with Microsoft we can now guarantee Xbox One version of the game also on lower tiers. The situation is still the same with PS4 though. Actual situation:</p>\r\n<p>Soldier, Knight: 1 license, digital copy (Win/Mac/Linux/Xone) OR physical copy (Win/Mac/Linux) <br />Baron, Viscount, Earl: 1 license, digital copy AND physical copy (Win/Mac/Linux/Xone/PS4) <br />Duke and all higher tiers: 2 licenses, 2 digital copies AND 1 physical copy (Win/Mac/Linux/Xone/PS4)</p>\r\n<p>UPDATE 2: We have now been approved by Sony for PS4 as well. We are now happy to offer the digital version for all platforms and for all tiers. With boxed version on console platforms, we are not sure, but the worst-case scenario is that you will get all physical rewards (including box, etc.) for your tier and a digital license.</p>\r\n<p><em>Last updated: Wed, Feb 19 2014 12:12 PM CET</em> </p>\r\n<p><strong>But how can I choose a specific platform while pledging? </strong>\r\n</p>\r\n<p>You don’t need to! Just choose a pledge that suits you. Your pledge will be filed and if it’s of Baron tier or higher you will be asked to choose a platform once the release date draws nigh. You can change this any time later – we will inform you how to do that via an e-mail.</p>\r\n<p><em>Last updated: Wed, Jan 22 2014 2:25 PM CET</em>\r\n</p>\r\n<p><strong>What are the differences between PC and console versions of the game? </strong>\r\n</p>\r\n<p>We develop both version together so neither is a port of the other. Technically speaking, console version will be very similar to a PC one; it’s probable that on a high-end PC you can get better and smoother visual effects but artistic feeling should be very close.</p>\r\n<p>Controls-wise, the game is designed separately for console controller and for keyboard &amp; mouse gaming. Of course, you can still use your favorite game controller on PC or on SteamBox. But if you decide to use mouse and keyboard, you will control the game just like other first-person games on the market: you will be able to use your mouse in the UI, there will be no controller hints and controls will be fully customizable. Some control elements may be slightly different on keyboard &amp; mouse than they are on a gamepad but neither control method will be generally superior to the other.</p>\r\n<p><em>Last updated: Wed, Jan 22 2014 2:25 PM CET</em>\r\n</p>\r\n<p><strong>Can I download the game even if I buy the physical reward tier? </strong>\r\n</p>\r\n<p>On Soldier and Knight you have to choose between digital and physical copy of the game. We anticipate that there will be some costs associated with digital distribution (and we know there are going to be costs with the physical copies) and for this reason we have created an option to choose one or the other and we cannot fulfill both. From Baron (special edition) tier upwards you will get both physical and digital version of the game.</p>\r\n<p><em>Last updated: Wed, Jan 22 2014 2:25 PM CET</em>\r\n</p>\r\n<p><strong>Do you plan to support Oculus Rift? </strong>\r\n</p>\r\n<p>Cryengine supports Oculus Rift by default, so general answer is: yes. We plan to support this awesome hardware gadget.<br />Oculus Rift captured the imagination of many players and you ask about it very often. Cryengine supports Oculus Rift by default, however we realize that the game has to be developed with Oculus in mind and we are aware of their recommended Best Practices. We shall try to stick to these recommendations, but VR is still an uncharted territory and we can’t guarantee ideal results from get go. To create horse riding experience that won’t give you motion sickness looks like a real challenge.</p>\r\n<p><em>Last updated: Wed, Jan 22 2014 2:25 PM CET</em>\r\n</p>\r\n<p><strong>What language versions do you plan? </strong>\r\n</p>\r\n<p>We’re creating the game in English and with English voiceovers. We would like to make French, Italian, German and Spanish versions of the game as well. Our past experience also suggests there will be a Polish, Russian and Czech version of the game, not necessarily with voiceovers, though.</p>\r\n<p><em>Last updated: Wed, Jan 22 2014 2:25 PM CET</em>\r\n</p>\r\n<p><strong>What type of sword do I get on the highest tiers? </strong>\r\n</p>\r\n<p>It is a medieval European 15th century type of one-handed sword (for Emperor, Wenzel der Faule and Pope tiers) or hand-and-a-half sword, also called bastard sword (Illuminatus and Saint tiers). It is a real-sized hand-forged weapon created by a local blacksmith, not a serial production. It can be used for combat or combat training, you can choose whether it's sharpened or not. We will communicate with you via e-mail once the campaign ends regarding the details.</p>\r\n<p><em>Last updated: Wed, Jan 22 2014 2:25 PM CET</em>\r\n</p>\r\n<p><strong>If I get physical as well as digital copy of the game, how many licenses do I get? </strong>\r\n</p>\r\n<p>This depends on your Tier (and we apologize it is not clearer in the tier description):<br />On Baron and Earl tier you only receive one license (i.e. you can play either one, but you cannot for example sell the box and keep the digital copy). Obviously, both physical and digital license have to be on the same platform.</p>\r\n<p>From Duke tier upwards you receive additional digital copy, meaning extra digital license. The physical and 'first' digital copy again have to be for the same platform, but the extra license can be for a different one.</p>\r\n<p>To sum it up:<br />Soldier: 1 license, digital copy (Win/Mac/Linux/Xbox/PS4) OR physical copy (Win/Mac/Linux) <br />Knight: 1 license, digital copy (Win/Mac/Linux/Xbox/PS4) OR physical copy (Win/Mac/Linux) <br />Baron: Win/Mac/Linux/Xbox/PS4, 1 license, digital AND physical <br />Earl: Win/Mac/Linux/Xbox/PS4, 1 license, digital AND physical <br />Duke: Win/Mac/Linux/Xbox/PS4, 2 licenses, digital AND physical <br />… all higher tiers are like Duke in this respect</p>\r\n<p><em>Last updated: Wed, Jan 22 2014 2:25 PM CET</em>\r\n</p>\r\n<p><strong>You described the game also as a sandbox but how much sandboxy is going to be? Can I buy castles or run an army for example? </strong>\r\n</p>\r\n<p>Many people wonder how much of a sandbox our sandbox is going to be. You will be able to solve quests in multiple ways, kill most of NPCs or influence their day/night cycles. We have a complex system of reputation, relationships and law. You can influence local economy to an extent (price of goods).</p>\r\n<p>The player’s character is going to have a place to stay and live, but you will not be able to buy and sell real estate. Nor you can control other characters. Companions/henchmen have their own AI and they are quest-specific. Your character will develop relationships with NPCs.</p>\r\n<p><em>Last updated: Wed, Jan 22 2014 2:25 PM CET</em>\r\n</p>\r\n<p><strong>9 sq km doesn't sound like a lot so what about the map size?</strong>\r\n</p>\r\n<p>Some people are concerned about our maps size and seem to think that 9 sq. km. is not enough. Please trust us that it is. Our map is bigger than the one in Read Dead Redemption. The population/point-of-interest density is going to be on par with RDR. We want the world to look natural.<br />Also please mind that both Act II and Act III will each come with their own map, although they will be a bit smaller the length of designed gameplay should be on par with Act I.</p>\r\n<p><em>Last updated: Wed, Jan 22 2014 2:25 PM CET</em>\r\n</p>\r\n<p><strong>What about multiplayer? Some of your systems could make for a cool multiplayre experience.</strong>\r\n</p>\r\n<p>There seems to be demand for multiplayer experience. Unfortunately, Kingdom Come: Deliverance is a singleplayer game only. We are thinking about cooperative multiplayer in some further future, but definitely not for Act I.</p>\r\n<p><em>Last updated: Wed, Jan 22 2014 2:25 PM CET</em>\r\n</p>\r\n<p><strong>Do you plan to implement 3rd person view? </strong>\r\n</p>\r\n<p>We are sorry, but we do not plan to allow you to control your character in 3rd person view (TPV). You will be able to see your character e.g. in cutscenes, dialogues or in the inventory screen, you can also see your body and hands all the time. We believe that FPV allows for better immersion in the world; we also think that we can make the FPV combat work. Moreover the many of the systems, including combat, are designed with FPV in mind and wouldn't work in TPV without a major redesign.</p>\r\n<p><em>Last updated: Fri, Feb 7 2014 12:22 PM CET </em>\r\n</p>\r\n<p><strong>Can I get a DRM-free version of the game? </strong>\r\n</p>\r\n<p>We get many questions about DRM and whether our game is going to be DRM free. Frankly, we have to admit we are not sure at this moment. We are planning to use Steam on open platforms, so the game will be using Steam default copy protection mechanics. Other options including GOG.com are being considered but can't be confirmed as of yet.</p>\r\n<p><em>Last updated: Fri, Feb 7 2014 12:22 PM CET </em>\r\n</p>
+26	26	en	2014-03-08 00:38:40.301671	2014-03-28 12:39:58.407496	<h2>1. GENERAL PROVISIONS</h2>\r\n<p>1.1. The company Prague Game Studios s.r.o., ID no. 241 55 489, with its registered office at Praha 8, Pernerova 652/55, post code 186 00, registered with the commercial register maintained by the Municipal Court in Prague, section C, file no. 183756 (the Company) hereby issues these General Fundraising Terms and Conditions (the TaC).</p>\r\n<p>1.2. The Company is raising funds for the development of a computer game with the title “Kingdom Come: Deliverance” (the Project). Legal relations between the Company and the person contributing certain amount of money to the Company for the purposes of the Project development (the Donor) shall be regulated by these TaC.</p>\r\n<p>1.3. These TaC shall form an integral part of each Contract.</p>\r\n<h2>2. DEFINITIONS</h2>\r\n<p>2.1. Apart from the terms defined elsewhere in these TaC, the following definitions shall apply throughout these TaC:<br />Civil Code means Czech Act no. 89/2012 Coll., the Civil Code, as amended;<br />Contribution means a monetary contribution of the Donor to the Company;<br />Contract means a contract between the Company and the Donor regarding the rights and duties of the Parties connected with the Contribution, as further specified by these TaC;<br />Publishing Date means the official publishing date of the Project, i.e. the day the Project shall become finished and available via official distribution; <br />Parties mean the Company and the Donor and the Party means any of them;<br />Payment System means external internet payment service for the payment of the Contribution;<br />Personal Information means the name, e-mail and the address of the Donor;<br />Price means lowest possible Contribution connected with specific Reward;<br />Reward means an item, whether tangible or intangible, specified on the Website for each Reward Tier;<br />Reward Tier means a combination of Price and Reward specified on the Website; and<br />Website means the website www.kingdomcomerpg.com.</p>\r\n<h2>3. CONCLUSION OF THE CONTRACT</h2>\r\n<p>3.1. The Contract shall be concluded and shall become valid and effective by clicking on the button located on the Website indicating that the Donor agrees with these TaC. By clicking on the button, the Donor accepts these TaC unconditionally and in their full extent.</p>\r\n<p>3.2. The Contract can only be concluded between the Company and a natural person of age 18 or higher. No legal person, whether a company, collective, association or any other kind thereof shall be allowed to enter into the Contract. If a natural person that is entitled to act for or on behalf of any legal person enters into the Contract, that natural person alone shall be bound by the Contract regardless of that person’s powers vis-à-vis the respective legal person.</p>\r\n<h2>4. THE CONTRIBUTION</h2>\r\n<p>4.1. After entering into the Contract, the Donor shall choose the Reward Tier.</p>\r\n<p>4.2. The Donor is obliged to contribute to the Company the Contribution in the amount of the Price according to the chosen Reward Tier or any amount higher, subject to the Donor’s discretion.</p>\r\n<p>4.3. The Contribution shall be paid via the Payment System without undue delay after the conclusion of the Contract.</p>\r\n<p>4.4. In case the Contribution payment is not entered into the Payment System within next 24 hours after the conclusion of the Contract, the Contract automatically terminates (condition subsequent).</p>\r\n<p>4.5. The Contribution is a non-refundable donation that shall be used by the Company solely for the purposes of the development and distribution of the Project and/or the manufacturing and distribution of the Rewards (the Use). Should the total sum of the Contributions exceed the costs of the Use, the exceeding amount shall also be regarded as a non-refundable donation. The Donor waives any right to return of the Contribution or any part of it to the maximum extent allowed by the mandatory provisions of the Civil Code, provided that the Project and the Reward are developed, produced and delivered to the Donor properly.</p>\r\n<h2>5. PERSONAL INFORMATION</h2>\r\n<p>5.1. The Donor shall submit to the Company the Personal Information. The Company shall use the Personal Information solely for the purposes of distribution of the Project and the Reward to the Donor (the Purpose).</p>\r\n<p>5.2. The Company shall not use the Personal Information for any other purpose. The Company is entitled to disclose the Personal Information to a third party only if such disclosure is necessary for the Purpose.</p>\r\n<p>5.3. The Donor acknowledges that the submission and processing of the Personal Information is necessary for the obligations of the Company under the Contract. The Donor expressly gives his consent to the processing and use of the Personal Information for the Purpose according to this Article 5.</p>\r\n<p>5.4. The Company is not liable for any damage caused by the use of the Personal Information according to this Article 5.</p>\r\n<p>5.5. The Donor represents and warrants that the submitted Personal Information is whole and correct. The Company shall not be liable and shall not be in default regarding any of its obligations under the Contract, should the representation be incorrect or misleading.</p>\r\n<h2>6. RIGHTS AND DUTIES OF THE PARTIES</h2>\r\n<p>6.1. The Company shall deliver to the Donor the Reward and the Project (subject to conditions specified by the relevant Reward Tier chosen by the Donor) without undue delay after the Publishing Date, provided that the Project has been finished.</p>\r\n<p>6.2. By the delivery of the Project to the Donor, the Company grants to the Donor a non-exclusive, limited, non-transferable, personal, end-user licence to use the Project for the Donor’s individual, non-commercial and entertainment purposes only, subject to further End-User Licence Agreement between the Donor and the Company.</p>\r\n<p>6.3. The final form, state and features of the Project and the Reward are strictly subject to the Company’s discretion. The Donor shall not have any rights in that respect and no claim of the Donor shall arise from the final form, state and features of the Project and the Reward.</p>\r\n<p>6.4. Unless expressly stated otherwise, nothing in the Contract and / or these TaC shall have any impact on the intellectual property rights of the Company, including (but not limited to) any such rights with respect to any software, software updates or patches, or other utilities and tools or any other technology, text and audio visual material, the design and appearance of the Website, the Project and / or the Reward.</p>\r\n<p>6.5. The Company shall use all necessary diligence and professional care to develop, produce and deliver the Product and the Reward with the use of the Contribution. Should the development, production and delivery of the Project and / or the Reward become impossible or non-proportionally difficult, the Company has the right to cancel the Project. In such case, the Company shall publish on the Website an audited financial report regarding the use of the Contributions. The Contribution used according to the report shall be in such case regarded as a non-refundable donation and the Donor waives any right to return of the Contribution or any part of it to the maximum extent allowed by the mandatory provisions of the Civil Code.</p>\r\n<h2>7. LIMITATION OF LIABILITY</h2>\r\n<p>7.1. To the maximum extent permitted by the applicable law, the Donor agrees that the use of the Product and / or the Reward and / or the Website is at the Donor’s sole risk. The Company grants no warranty, whether expressed or implied, regarding the Product, Reward or the Website, unless it is mandatory under applicable legal regulations.</p>\r\n<p>7.2. To the maximum extent permitted by the applicable law, the Parties hereby expressly exclude any liability of the Company for the damage caused by the use of the Product, the Reward or the Website.</p>\r\n<p>7.3. To the maximum extent permitted by the applicable law and unless expressly stated otherwise, the Parties hereby expressly exclude any liability of the Company for the damage caused by the failure of the Company to develop, produce and / or deliver the Project and / or the Reward.</p>\r\n<p>7.4. The Company shall not be liable for any delay or failure to perform resulting from causes outside the reasonable control of the Company, including, without limitation, any failure to perform due to unforeseen circumstances or cause beyond the Company’s control such as war, terrorism, riots, embargoes, acts of civil or military authorities, fire, floods, accidents, strikes, or shortages of transportation facilities, fuel, energy, labour or materials.</p>\r\n<h2>8. FINAL PROVISIONS</h2>\r\n<p>8.1. The Contract shall be governed by the Czech law.</p>\r\n<p>8.2. For the purposes of any disputes arising from the Contract, the Parties hereby expressly agree on the international jurisdiction of the Czech courts and local jurisdiction of the relevant courts according to the registered seat of the Company.</p>\r\n<p>8.3. Clauses in these TaC regarding the termination of the Contract contain only conditions for the termination of the Contract. The Parties expressly exclude any and all relevant provisions of the Civil Code that would allow any Party to terminate the Contract in any other way.</p>\r\n<p>8.4. Each Party waives any rights and claims that might arise from the conduct of the other Party prior to conclusion of the Contract. Both Parties acknowledge that they have been made aware of all facts and legal circumstances whilst entering into the Contract in such a way that each Party could rely on the possibility of entering into a valid agreement and that the intent of the other Party to enter into the Contract was undisputable.</p>\r\n<p>8.5. Neither Party is a weaker Party in relation to the other Party. The Contribution is not granted to the Company in a consumer – entrepreneur relation. The Donor acknowledges and accepts that his profit from the Contract depends on a future uncertain event (finalisation of the Project) in the meaning of Sec. 2756 and seq. of the Civil Code.</p>\r\n<p>8.6. These TaC shall become valid and effective as of April 1st 2014.</p>
+20	20	en	2014-03-03 02:23:08.02447	2014-03-28 14:50:35.449754	
+19	19	en	2014-03-03 02:22:38.808537	2014-03-28 16:40:23.385471	<p>Boční text</p>\r\n<p>qwfwefqwefqwef</p>\r\n<p>qwefqwegrgwtrčeherthertherthertherther wegwergwergwerg</p>
+18	18	en	2014-03-03 02:22:38.803601	2014-03-29 00:30:25.700432	<p><strong>Forum access &amp; badge: </strong>You will be able to post on our forums with your unique Kickstarter backer's badge. You will have access to VIP part of forum to discuss game features. </p>\r\n<p><strong>Digital copy of the game: </strong>You will be able to download and play a copy of Act I of our game. Steam, PS4 Store, Xbox One store.</p>\r\n<p><strong>Digital manual, Soundtrack, Making-of video: </strong>You will get PDF copy of the game manual, complete game soundtrack in mp3, and digital version of our making of documentary.</p>\r\n<p><strong>Boxed copy of the game: </strong>You will receive your own copy of Act I in standard DVD box with manual.</p>\r\n<p><strong>Digipak copy of the game (w/soundtrack, making-of video and manual): </strong>You will receive your own copy of Act I in a nice digipak box. This box will also contain soundtrack CD and DVD with the making-of video, as well as a printed manual.</p>\r\n<strong>Digital Special Edition:</strong>\r\n<ul><li><span style="background-color: transparent;">Digital Art book</span>\r\n</li><li><span style="background-color: transparent;">Digital High-res Poster</span>\r\n</li><li><span style="background-color: transparent;">Digital High-res Map</span>\r\n</li><li><span style="background-color: transparent;">Screenplay of Act I in PDF</span>\r\n</li><li><span style="background-color: transparent;">3D printer ready Action figure model</span>\r\n</li></ul>\r\n<strong>Collector's edition box: </strong>This will be an exquisite collector's box edition that will take a place of pride in your collection.<ul><li><span style="background-color: transparent;">T-Shirt: CE will contain a T-shirt with Kingdom Come: Deliverance motifs.</span>\r\n</li><li><span style="background-color: transparent;">Art book: CE will contain a 100+ pages art book printed on quality stock paper, with artworks for the game.</span>\r\n</li><li><span style="background-color: transparent;">Poster/Signed poster: CE will contain a 24" x 36" full color poster of the game. In higher tiers this poster will be signed by members of the development team.</span>\r\n</li><li><span style="background-color: transparent;">Dice: CE will contain a set for playing authentic medieval precursor to computer games.</span>\r\n</li><li><span style="background-color: transparent;">Commemorative coin: CE will contain unique coin with original design, stamped in limited quantity for our backers. In lower tiers, the coin will be made of brass; for higher levels, it will be made of sterling silver. Our coin is not going to be a thin penny-press elongateds. One of our best engravers, Dan’s buddy and former classmate, Martin Reichard, who creates gold and silver designs for the best mints, will create a top notch collectible 30x2mm coin with a game motif. Look at his older designs (works for the Prague Mint) and see for yourself.</span>\r\n</li><li><span style="background-color: transparent;">Action figure: Your CE will include a quality die-cast 4" action figure. We briefly entertained a possibility of making plastic figures in China, but then we thought better of it. Europe has a tradition of tin soldiers and so we found someone to produce a beautiful, detailed, metal, four inch figure of a knight.</span>\r\n</li></ul>\r\n<p><strong>Acts II &amp; III: </strong>You will be able to download Act II or II &amp; III of Kingdom Come: Deliverance if and when they are released. We assume that it will take us nine months to develop Act II and further nine months for Act III. Please note that we cannot guarantee developing these Acts; while it is our best intention to do so at this moment, circumstances beyond our control may force us to alter our plans. <a href="/kingdom-come-deliverance/faq" title="FAQ">What are these Acts?</a>\r\n</p><p><strong>In-game bonuses:</strong>\r\n</p><ul><li><span style="background-color: transparent;">In-game Calvary memorial (crucifix): The world of Kingdom Come: Deliverance is dotted with small memorial crosses – small stone or wooden crucifixes on a stone plinth. The plinth carries an inscription that can include your name.</span>\r\n</li><li><span style="background-color: transparent;">In-game Conciliatory cross: Similar to the Calvary memorial above, but smaller and less conspicuous. These crosses were usually put up on places where a crime has occurred, as a gesture of reconciliation. The cross will carry your name.</span>\r\n</li><li><span style="background-color: transparent;">In-game Church painting: Every town or village in Kingdom Come: Deliverance will have a church, sometimes two. You face can appear in one of them as the face of a saint, or some other figure, on paintings inside.</span>\r\n</li><li><span style="background-color: transparent;">In-game Statue: We shall create a statue of a saint of your choice and endow him or her with your likeness. The statue will be a prominent feature of one of the in-game churches.´</span>\r\n</li></ul>\r\n<p><strong>Copper engraving:</strong> An original, limited series print from one of the best engravers in our country and Dan’s friend, Jindra (Henry) Faktor. You can get ready for an exceptional artistic work, numbered and signed on luxury, hand-made paper. This will be an 6" x 8" print made from wooden plate in limited quantity. It will feature a motif from the game.</p>\r\n<p><strong>Alpha access:</strong> You will in-effect become part of our development team, getting access to the earliest barely playable version of Kingdom Come: Deliverance. Your comments and observations will help to shape the game.</p>\r\n<p><strong>Beta access: </strong>This is similar to Early access on Steam. We are hoping we will be able to use the Steam platform itself.</p>\r\n<p><span style="background-color: transparent;"><strong>Visit in our office: </strong>Opportunity to visit our studio and talk with the team in medieval tavern.</span>\r\n</p><p><strong>Guided tour: </strong>We will treat you to a two day trip through the real-world locations that served as models for the places within the game. We shall have a professional archaeologist/historian to guide you and explain everything and you will be able to get to places that are normally off limits. </p>\r\n<h2>Collectors items</h2>\r\n<p>Various collectors’ items are part of our special editions. We are making an authentic medieval game, though, and we are loath to give our fans usual cheap trinkets. Know then, that everything you are going to get, are unique, bespoke crafted items, far cry from plastic tchotchke.<br />It may have something to do with the fact that Dan studied at School of applied arts in Turnov among engravers, smiths and goldsmiths, he doesn’t settle for less and knows a lot of craftsmen that can help us.</p>\r\n<h3><span style="background-color: transparent;">Swords</span>\r\n</h3>\r\n<p>Swords are perhaps the most attractive reward. Fantastic looking swords covered from grip to tip by Celtic knots, glass gems and entwined dragons are available almost anywhere for few bucks. Such a worthless trinket will of course break when a zombie apocalypse comes and you try to use it to decapitate an undead one.</p>\r\n<p>Our swords are real, made for fencing, with forged blades, you can take them to battle. Of course, these are replicas of real swords, no phantasmagoria from a kids movie. The blade will be decorated by etching or engraving and pommel with a pattern.</p>\r\n<ul><li><span style="background-color: transparent;">Sword (Emperor): You will receive hand made, forged, one-handed sword. It will be sharpened and ready for battle. This is not a toy! 18+. Inscription. Check your country laws about import.</span>\r\n</li><li><span style="background-color: transparent;">Deliverance Sword (Wenzel) – Deliverance motive&#160;</span>\r\n</li><li><span style="background-color: transparent;">Sword (Pope) – Personal inscription</span>\r\n</li><li><span style="background-color: transparent;">Sword (Iluminatus/Saint) – One and half handed, personal inscription</span>\r\n</li><li><span style="background-color: transparent;">Shield: This will be hand-decorated shield adorned with coat-of-arms of a noble family related to the events within the game.</span>\r\n</li></ul>\r\n<p><span style="background-color: transparent;">As we are going to need really lot of swords, they are probably going to be produced in more workshops. At the bottom, you can watch the video where Dan visits some of them to see their manufacturing process. In this case it’s Dan’s former fellow student Ondřej Piskáček and one of the biggest armories in Europe – </span>\r\n<a title="http://www.kovex-ars.cz/" href="http://www.kovex-ars.cz/" target="_blank" style="background-color: transparent;">Kovex Ars</a>\r\n<span style="background-color: transparent;">.</span>\r\n</p>\r\n<p>&#160;<img src="/system/images/W1siZiIsIjIwMTQvMDMvMjgvMTZfNTZfNTVfOTU1X21lY2VhemJyb2plLmpwZyJdLFsicCIsInRodW1iIiwiNDUweDQ1MD4iXSxbInAiLCJzdHJpcCJdXQ/meceazbroje.jpg" title="Meceazbroje" alt="Meceazbroje" data-rel="450x450" height="336" width="450" /></p>\r\n<h3>Action Figure</h3>\r\n<p>We briefly entertained a possibility of making plastic figures in China, but then we thought better of it. Europe has a tradition of tin soldiers and so we were looking for someone to produce a beautiful, detailed, metal, four inch figure of a knight. And we found as you can see. (The images demonstrate quality of craftsmanship, the actual figure will be that of an in-game character.)</p>\r\n<p><img src="/system/images/W1siZiIsIjIwMTQvMDMvMjgvMTZfNTZfNTBfNDEwX2ZpZ3Vya3kuanBnIl0sWyJwIiwidGh1bWIiLCI0NTB4NDUwPiJdLFsicCIsInN0cmlwIl1d/figurky.jpg" title="Figurky" alt="Figurky" data-rel="450x450" height="336" width="450" /></p>\r\n<h3>Engraving</h3>\r\n<p>We can give you a poster (actually, we do). But for higher tiers we wanted something special – an original, limited series print from one of the best engravers in our country and Dan’s friend, Jindra (Henry) Faktor.</p>\r\n<p>Originally we were thinking about a copper engraving (and that’s what the rewards say), but then we realized copper engravings only became widespread in the second half of 15th century. Jindra suggested woodcut and you can get ready for an exceptional artistic work, numbered and signed on luxury, hand-made paper. The pictures show some of Jindra’s work and an original print of a fifteenth century woodblock.</p>\r\n<p><img src="/system/images/W1siZiIsIjIwMTQvMDMvMjgvMTZfNTZfNDRfNDAxX2VuZ3JhdmluZy5qcGciXSxbInAiLCJ0aHVtYiIsIjQ1MHg0NTA%2BIl0sWyJwIiwic3RyaXAiXV0/engraving.jpg" title="Engraving" alt="Engraving" data-rel="450x450" height="450" width="425" /></p>\r\n<h3>Coin</h3>\r\n<p>Our coin is not going to be a thin penny-press elongateds. One of our best engravers, Dan’s buddy and former classmate, Martin Reichard, who creates gold and silver designs for the best mints, will create a top notch collectible 30x2mm coin with a game motif. Look at his older designs (works for the <a title="http://www.prague-mint.eu/" href="http://www.prague-mint.eu/" target="_blank">Prague Mint</a>) and see for yourself.</p>\r\n<p><img src="/system/images/W1siZiIsIjIwMTQvMDMvMjgvMTZfNTZfMzRfNTI2X2NvaW5zLmpwZyJdLFsicCIsInRodW1iIiwiNDUweDQ1MD4iXSxbInAiLCJzdHJpcCJdXQ/coins.jpg" title="Coins" alt="Coins" data-rel="450x450" height="422" width="450" /></p>
+16	16	en	2014-03-03 02:22:12.998358	2014-03-28 12:43:11.769351	<p>Since we are going to self-publish the game and are asking for the help of the community, we are also willing to give something back and develop the game with the community.</p>\r\n<p>What does it mean? In Q4 2014 we will release an early build of the game, with one smaller location (village and a part of the countryside) where you will be able to test core mechanics of the game. We will start with the basic mechanics (interaction with the world, inventory, map, NPC cycles) and we will constantly update this build with new features as we progress with the development (dialogues, bows, hunting, crafting, combat, horses). This is the access to Alpha version of the game and it will be available to all tiers from the Baron onwards.</p>\r\n<p>When the game is in Beta stage, we will release the full game beta as Early Access on PC (or any other platform where it’s going to be possible) for all backers up from the Knight Tier.</p>\r\n<p>Our backers can influence the development, help us improve the game, and give us feedback about our game mechanics.</p>
+\.
+
+
+--
+-- Name: refinery_page_part_translations_id_seq; Type: SEQUENCE SET; Schema: public; Owner: sedrick
+--
+
+SELECT pg_catalog.setval('refinery_page_part_translations_id_seq', 27, true);
+
+
+--
+-- Data for Name: refinery_page_parts; Type: TABLE DATA; Schema: public; Owner: sedrick
+--
+
+COPY refinery_page_parts (id, refinery_page_id, title, body, "position", created_at, updated_at) FROM stdin;
+1	1	Body	<p>Welcome to our site. This is just a place holder page while we gather our content.</p>	0	2014-03-03 01:52:30.950867	2014-03-03 01:52:30.950867
+2	1	Side Body	<p>This is another block of content over here.</p>	1	2014-03-03 01:52:30.972135	2014-03-03 01:52:30.972135
+3	2	Body	<h2>Sorry, there was a problem...</h2><p>The page you requested was not found.</p><p><a href='/'>Return to the home page</a></p>	0	2014-03-03 01:52:31.049973	2014-03-03 01:52:31.049973
+4	3	Body	<p>This is just a standard text page example. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin metus dolor, hendrerit sit amet, aliquet nec, posuere sed, purus. Nullam et velit iaculis odio sagittis placerat. Duis metus tellus, pellentesque ut, luctus id, egestas a, lorem. Praesent vitae mauris. Aliquam sed nulla. Sed id nunc vitae leo suscipit viverra. Proin at leo ut lacus consequat rhoncus. In hac habitasse platea dictumst. Nunc quis tortor sed libero hendrerit dapibus.\n\nInteger interdum purus id erat. Duis nec velit vitae dolor mattis euismod. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Suspendisse pellentesque dignissim lacus. Nulla semper euismod arcu. Suspendisse egestas, erat a consectetur dapibus, felis orci cursus eros, et sollicitudin purus urna et metus. Integer eget est sed nunc euismod vestibulum. Integer nulla dui, tristique in, euismod et, interdum imperdiet, enim. Mauris at lectus. Sed egestas tortor nec mi.</p>	0	2014-03-03 01:52:31.113529	2014-03-03 01:52:31.113529
+5	3	Side Body	<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus fringilla nisi a elit. Duis ultricies orci ut arcu. Ut ac nibh. Duis blandit rhoncus magna. Pellentesque semper risus ut magna. Etiam pulvinar tellus eget diam. Morbi blandit. Donec pulvinar mauris at ligula. Sed pellentesque, ipsum id congue molestie, lectus risus egestas pede, ac viverra diam lacus ac urna. Aenean elit.</p>	1	2014-03-03 01:52:31.124125	2014-03-03 01:52:31.124125
+6	4	Body	\N	0	2014-03-03 01:52:31.362357	2014-03-03 01:52:31.362357
+7	4	Side Body	\N	1	2014-03-03 01:52:31.375101	2014-03-03 01:52:31.375101
+8	5	Body	\N	0	2014-03-03 01:52:31.436623	2014-03-03 01:52:31.436623
+9	5	Side Body	\N	1	2014-03-03 01:52:31.445226	2014-03-03 01:52:31.445226
+10	6	Body	\N	0	2014-03-03 01:52:31.514907	2014-03-03 01:52:31.514907
+11	6	Side Body	\N	1	2014-03-03 01:52:31.52388	2014-03-03 01:52:31.52388
+12	7	Body	\N	0	2014-03-03 01:52:31.587161	2014-03-03 01:52:31.587161
+13	7	Side Body	\N	1	2014-03-03 01:52:31.601531	2014-03-03 01:52:31.601531
+14	8	Body		0	2014-03-03 02:21:39.398973	2014-03-03 02:21:39.398973
+15	8	Side Body		1	2014-03-03 02:21:39.417529	2014-03-03 02:21:39.417529
+17	9	Side Body		1	2014-03-03 02:22:13.000812	2014-03-03 02:22:13.000812
+21	11	Side Body		1	2014-03-03 02:23:08.02667	2014-03-03 02:23:08.02667
+22	12	Body	<p>Thank you for your money :) </p>	0	2014-03-03 02:23:36.693758	2014-03-03 02:23:36.693758
+23	12	Side Body		1	2014-03-03 02:23:36.698276	2014-03-03 02:23:36.698276
+25	13	Side Body		1	2014-03-08 00:36:43.206611	2014-03-08 00:36:43.206611
+27	14	Side Body		1	2014-03-08 00:38:40.304866	2014-03-08 00:38:40.304866
+24	13	Body	<p><strong>I don’t understand the concept of Acts. What is Act I, II and III? Why there is not cheaper tier offering all three Acts?</strong> </p>\r\n<p>Kingdom Come: Deliverance, Act I, as it is planned, is a full scale, stand-alone game. It has 30+ hours of gameplay, complete open world map, all quests and closed story line. Most (if not all) game mechanics described above will be included: horse riding, combat, castle sieges, there will be at least one large-scale battle. Acts II &amp; III extend the story, add new environment in separate maps, new quests, gear and weapons. They will also add new quests to the map of Act I. It will be possible to travel between maps of all Acts, some quests will require you to visit all of them.</p>\r\n<p>We definitely intend to make Acts II &amp; III and release them as soon as possible. However, our funding and schedule does not reach past first Act. We will finalize our plans for the release of Acts II &amp; III when we get closer to the release date of Act I. For these reasons we don’t want to offer and promise them as a Kickstarter reward in their own right. We want to use them as a token of our gratitude to higher tiers backers, but you should think about it more like 100% discount offer than a guaranteed reward.</p>\r\n<p><em>Last updated: Wed, Jan 22 2014 2:25 PM CET</em> </p>\r\n<p><strong>What platforms are offered to backers on Kickstarter and what is minimum requirement of PC version ?</strong> </p>\r\n<p>We are developing the game to run smoothly on “good gaming PC” and next-gen consoles. If you have a PC, hardware-wise similar to Xbox One or PS4, you should be able to run Kingdom Come: Deliverance well.</p>\r\n<p>About platforms: we are using proven technology (Cryengine by CryTek) that runs on both PS4 and Xbox One, as well as on Windows PC, Mac and Linux. While we are developing on PC , we definitely want to bring the game to other platforms. While there should be nothing but technical problems with Linux and Mac, on closed platforms we need to deal with the platform holders and we cannot prejudge their decision. In an ideal world, we would release the game on all five platforms at the same time.</p>\r\n<p>In our world, we can offer you PC version in all tiers. From the “Baron” tier above, you will be able to choose our game on any platform you wish from those mentioned above (i.e. Windows PC / Mac / Linux / Xbox One / PS4), with the proviso that on consoles the game must be approved by the platform holders first. In case we are not able to finish or release the game on the platform you chose for any reason, you will be able to choose again (from available platforms) or demand your money back.</p>\r\n<p>UDPATE: Since we came to agreement with Microsoft we can now guarantee Xbox One version of the game also on lower tiers. The situation is still the same with PS4 though. Actual situation:</p>\r\n<p>Soldier, Knight: 1 license, digital copy (Win/Mac/Linux/Xone) OR physical copy (Win/Mac/Linux) <br />Baron, Viscount, Earl: 1 license, digital copy AND physical copy (Win/Mac/Linux/Xone/PS4) <br />Duke and all higher tiers: 2 licenses, 2 digital copies AND 1 physical copy (Win/Mac/Linux/Xone/PS4)</p>\r\n<p>UPDATE 2: We have now been approved by Sony for PS4 as well. We are now happy to offer the digital version for all platforms and for all tiers. With boxed version on console platforms, we are not sure, but the worst-case scenario is that you will get all physical rewards (including box, etc.) for your tier and a digital license.</p>\r\n<p><em>Last updated: Wed, Feb 19 2014 12:12 PM CET</em> </p>\r\n<p><strong>But how can I choose a specific platform while pledging? </strong>\r\n</p>\r\n<p>You don’t need to! Just choose a pledge that suits you. Your pledge will be filed and if it’s of Baron tier or higher you will be asked to choose a platform once the release date draws nigh. You can change this any time later – we will inform you how to do that via an e-mail.</p>\r\n<p><em>Last updated: Wed, Jan 22 2014 2:25 PM CET</em>\r\n</p>\r\n<p><strong>What are the differences between PC and console versions of the game? </strong>\r\n</p>\r\n<p>We develop both version together so neither is a port of the other. Technically speaking, console version will be very similar to a PC one; it’s probable that on a high-end PC you can get better and smoother visual effects but artistic feeling should be very close.</p>\r\n<p>Controls-wise, the game is designed separately for console controller and for keyboard &amp; mouse gaming. Of course, you can still use your favorite game controller on PC or on SteamBox. But if you decide to use mouse and keyboard, you will control the game just like other first-person games on the market: you will be able to use your mouse in the UI, there will be no controller hints and controls will be fully customizable. Some control elements may be slightly different on keyboard &amp; mouse than they are on a gamepad but neither control method will be generally superior to the other.</p>\r\n<p><em>Last updated: Wed, Jan 22 2014 2:25 PM CET</em>\r\n</p>\r\n<p><strong>Can I download the game even if I buy the physical reward tier? </strong>\r\n</p>\r\n<p>On Soldier and Knight you have to choose between digital and physical copy of the game. We anticipate that there will be some costs associated with digital distribution (and we know there are going to be costs with the physical copies) and for this reason we have created an option to choose one or the other and we cannot fulfill both. From Baron (special edition) tier upwards you will get both physical and digital version of the game.</p>\r\n<p><em>Last updated: Wed, Jan 22 2014 2:25 PM CET</em>\r\n</p>\r\n<p><strong>Do you plan to support Oculus Rift? </strong>\r\n</p>\r\n<p>Cryengine supports Oculus Rift by default, so general answer is: yes. We plan to support this awesome hardware gadget.<br />Oculus Rift captured the imagination of many players and you ask about it very often. Cryengine supports Oculus Rift by default, however we realize that the game has to be developed with Oculus in mind and we are aware of their recommended Best Practices. We shall try to stick to these recommendations, but VR is still an uncharted territory and we can’t guarantee ideal results from get go. To create horse riding experience that won’t give you motion sickness looks like a real challenge.</p>\r\n<p><em>Last updated: Wed, Jan 22 2014 2:25 PM CET</em>\r\n</p>\r\n<p><strong>What language versions do you plan? </strong>\r\n</p>\r\n<p>We’re creating the game in English and with English voiceovers. We would like to make French, Italian, German and Spanish versions of the game as well. Our past experience also suggests there will be a Polish, Russian and Czech version of the game, not necessarily with voiceovers, though.</p>\r\n<p><em>Last updated: Wed, Jan 22 2014 2:25 PM CET</em>\r\n</p>\r\n<p><strong>What type of sword do I get on the highest tiers? </strong>\r\n</p>\r\n<p>It is a medieval European 15th century type of one-handed sword (for Emperor, Wenzel der Faule and Pope tiers) or hand-and-a-half sword, also called bastard sword (Illuminatus and Saint tiers). It is a real-sized hand-forged weapon created by a local blacksmith, not a serial production. It can be used for combat or combat training, you can choose whether it's sharpened or not. We will communicate with you via e-mail once the campaign ends regarding the details.</p>\r\n<p><em>Last updated: Wed, Jan 22 2014 2:25 PM CET</em>\r\n</p>\r\n<p><strong>If I get physical as well as digital copy of the game, how many licenses do I get? </strong>\r\n</p>\r\n<p>This depends on your Tier (and we apologize it is not clearer in the tier description):<br />On Baron and Earl tier you only receive one license (i.e. you can play either one, but you cannot for example sell the box and keep the digital copy). Obviously, both physical and digital license have to be on the same platform.</p>\r\n<p>From Duke tier upwards you receive additional digital copy, meaning extra digital license. The physical and 'first' digital copy again have to be for the same platform, but the extra license can be for a different one.</p>\r\n<p>To sum it up:<br />Soldier: 1 license, digital copy (Win/Mac/Linux/Xbox/PS4) OR physical copy (Win/Mac/Linux) <br />Knight: 1 license, digital copy (Win/Mac/Linux/Xbox/PS4) OR physical copy (Win/Mac/Linux) <br />Baron: Win/Mac/Linux/Xbox/PS4, 1 license, digital AND physical <br />Earl: Win/Mac/Linux/Xbox/PS4, 1 license, digital AND physical <br />Duke: Win/Mac/Linux/Xbox/PS4, 2 licenses, digital AND physical <br />… all higher tiers are like Duke in this respect</p>\r\n<p><em>Last updated: Wed, Jan 22 2014 2:25 PM CET</em>\r\n</p>\r\n<p><strong>You described the game also as a sandbox but how much sandboxy is going to be? Can I buy castles or run an army for example? </strong>\r\n</p>\r\n<p>Many people wonder how much of a sandbox our sandbox is going to be. You will be able to solve quests in multiple ways, kill most of NPCs or influence their day/night cycles. We have a complex system of reputation, relationships and law. You can influence local economy to an extent (price of goods).</p>\r\n<p>The player’s character is going to have a place to stay and live, but you will not be able to buy and sell real estate. Nor you can control other characters. Companions/henchmen have their own AI and they are quest-specific. Your character will develop relationships with NPCs.</p>\r\n<p><em>Last updated: Wed, Jan 22 2014 2:25 PM CET</em>\r\n</p>\r\n<p><strong>9 sq km doesn't sound like a lot so what about the map size?</strong>\r\n</p>\r\n<p>Some people are concerned about our maps size and seem to think that 9 sq. km. is not enough. Please trust us that it is. Our map is bigger than the one in Read Dead Redemption. The population/point-of-interest density is going to be on par with RDR. We want the world to look natural.<br />Also please mind that both Act II and Act III will each come with their own map, although they will be a bit smaller the length of designed gameplay should be on par with Act I.</p>\r\n<p><em>Last updated: Wed, Jan 22 2014 2:25 PM CET</em>\r\n</p>\r\n<p><strong>What about multiplayer? Some of your systems could make for a cool multiplayre experience.</strong>\r\n</p>\r\n<p>There seems to be demand for multiplayer experience. Unfortunately, Kingdom Come: Deliverance is a singleplayer game only. We are thinking about cooperative multiplayer in some further future, but definitely not for Act I.</p>\r\n<p><em>Last updated: Wed, Jan 22 2014 2:25 PM CET</em>\r\n</p>\r\n<p><strong>Do you plan to implement 3rd person view? </strong>\r\n</p>\r\n<p>We are sorry, but we do not plan to allow you to control your character in 3rd person view (TPV). You will be able to see your character e.g. in cutscenes, dialogues or in the inventory screen, you can also see your body and hands all the time. We believe that FPV allows for better immersion in the world; we also think that we can make the FPV combat work. Moreover the many of the systems, including combat, are designed with FPV in mind and wouldn't work in TPV without a major redesign.</p>\r\n<p><em>Last updated: Fri, Feb 7 2014 12:22 PM CET </em>\r\n</p>\r\n<p><strong>Can I get a DRM-free version of the game? </strong>\r\n</p>\r\n<p>We get many questions about DRM and whether our game is going to be DRM free. Frankly, we have to admit we are not sure at this moment. We are planning to use Steam on open platforms, so the game will be using Steam default copy protection mechanics. Other options including GOG.com are being considered but can't be confirmed as of yet.</p>\r\n<p><em>Last updated: Fri, Feb 7 2014 12:22 PM CET </em>\r\n</p>	0	2014-03-08 00:36:42.962435	2014-03-28 12:35:54.965523
+26	14	Body	<h2>1. GENERAL PROVISIONS</h2>\r\n<p>1.1. The company Prague Game Studios s.r.o., ID no. 241 55 489, with its registered office at Praha 8, Pernerova 652/55, post code 186 00, registered with the commercial register maintained by the Municipal Court in Prague, section C, file no. 183756 (the Company) hereby issues these General Fundraising Terms and Conditions (the TaC).</p>\r\n<p>1.2. The Company is raising funds for the development of a computer game with the title “Kingdom Come: Deliverance” (the Project). Legal relations between the Company and the person contributing certain amount of money to the Company for the purposes of the Project development (the Donor) shall be regulated by these TaC.</p>\r\n<p>1.3. These TaC shall form an integral part of each Contract.</p>\r\n<h2>2. DEFINITIONS</h2>\r\n<p>2.1. Apart from the terms defined elsewhere in these TaC, the following definitions shall apply throughout these TaC:<br />Civil Code means Czech Act no. 89/2012 Coll., the Civil Code, as amended;<br />Contribution means a monetary contribution of the Donor to the Company;<br />Contract means a contract between the Company and the Donor regarding the rights and duties of the Parties connected with the Contribution, as further specified by these TaC;<br />Publishing Date means the official publishing date of the Project, i.e. the day the Project shall become finished and available via official distribution; <br />Parties mean the Company and the Donor and the Party means any of them;<br />Payment System means external internet payment service for the payment of the Contribution;<br />Personal Information means the name, e-mail and the address of the Donor;<br />Price means lowest possible Contribution connected with specific Reward;<br />Reward means an item, whether tangible or intangible, specified on the Website for each Reward Tier;<br />Reward Tier means a combination of Price and Reward specified on the Website; and<br />Website means the website www.kingdomcomerpg.com.</p>\r\n<h2>3. CONCLUSION OF THE CONTRACT</h2>\r\n<p>3.1. The Contract shall be concluded and shall become valid and effective by clicking on the button located on the Website indicating that the Donor agrees with these TaC. By clicking on the button, the Donor accepts these TaC unconditionally and in their full extent.</p>\r\n<p>3.2. The Contract can only be concluded between the Company and a natural person of age 18 or higher. No legal person, whether a company, collective, association or any other kind thereof shall be allowed to enter into the Contract. If a natural person that is entitled to act for or on behalf of any legal person enters into the Contract, that natural person alone shall be bound by the Contract regardless of that person’s powers vis-à-vis the respective legal person.</p>\r\n<h2>4. THE CONTRIBUTION</h2>\r\n<p>4.1. After entering into the Contract, the Donor shall choose the Reward Tier.</p>\r\n<p>4.2. The Donor is obliged to contribute to the Company the Contribution in the amount of the Price according to the chosen Reward Tier or any amount higher, subject to the Donor’s discretion.</p>\r\n<p>4.3. The Contribution shall be paid via the Payment System without undue delay after the conclusion of the Contract.</p>\r\n<p>4.4. In case the Contribution payment is not entered into the Payment System within next 24 hours after the conclusion of the Contract, the Contract automatically terminates (condition subsequent).</p>\r\n<p>4.5. The Contribution is a non-refundable donation that shall be used by the Company solely for the purposes of the development and distribution of the Project and/or the manufacturing and distribution of the Rewards (the Use). Should the total sum of the Contributions exceed the costs of the Use, the exceeding amount shall also be regarded as a non-refundable donation. The Donor waives any right to return of the Contribution or any part of it to the maximum extent allowed by the mandatory provisions of the Civil Code, provided that the Project and the Reward are developed, produced and delivered to the Donor properly.</p>\r\n<h2>5. PERSONAL INFORMATION</h2>\r\n<p>5.1. The Donor shall submit to the Company the Personal Information. The Company shall use the Personal Information solely for the purposes of distribution of the Project and the Reward to the Donor (the Purpose).</p>\r\n<p>5.2. The Company shall not use the Personal Information for any other purpose. The Company is entitled to disclose the Personal Information to a third party only if such disclosure is necessary for the Purpose.</p>\r\n<p>5.3. The Donor acknowledges that the submission and processing of the Personal Information is necessary for the obligations of the Company under the Contract. The Donor expressly gives his consent to the processing and use of the Personal Information for the Purpose according to this Article 5.</p>\r\n<p>5.4. The Company is not liable for any damage caused by the use of the Personal Information according to this Article 5.</p>\r\n<p>5.5. The Donor represents and warrants that the submitted Personal Information is whole and correct. The Company shall not be liable and shall not be in default regarding any of its obligations under the Contract, should the representation be incorrect or misleading.</p>\r\n<h2>6. RIGHTS AND DUTIES OF THE PARTIES</h2>\r\n<p>6.1. The Company shall deliver to the Donor the Reward and the Project (subject to conditions specified by the relevant Reward Tier chosen by the Donor) without undue delay after the Publishing Date, provided that the Project has been finished.</p>\r\n<p>6.2. By the delivery of the Project to the Donor, the Company grants to the Donor a non-exclusive, limited, non-transferable, personal, end-user licence to use the Project for the Donor’s individual, non-commercial and entertainment purposes only, subject to further End-User Licence Agreement between the Donor and the Company.</p>\r\n<p>6.3. The final form, state and features of the Project and the Reward are strictly subject to the Company’s discretion. The Donor shall not have any rights in that respect and no claim of the Donor shall arise from the final form, state and features of the Project and the Reward.</p>\r\n<p>6.4. Unless expressly stated otherwise, nothing in the Contract and / or these TaC shall have any impact on the intellectual property rights of the Company, including (but not limited to) any such rights with respect to any software, software updates or patches, or other utilities and tools or any other technology, text and audio visual material, the design and appearance of the Website, the Project and / or the Reward.</p>\r\n<p>6.5. The Company shall use all necessary diligence and professional care to develop, produce and deliver the Product and the Reward with the use of the Contribution. Should the development, production and delivery of the Project and / or the Reward become impossible or non-proportionally difficult, the Company has the right to cancel the Project. In such case, the Company shall publish on the Website an audited financial report regarding the use of the Contributions. The Contribution used according to the report shall be in such case regarded as a non-refundable donation and the Donor waives any right to return of the Contribution or any part of it to the maximum extent allowed by the mandatory provisions of the Civil Code.</p>\r\n<h2>7. LIMITATION OF LIABILITY</h2>\r\n<p>7.1. To the maximum extent permitted by the applicable law, the Donor agrees that the use of the Product and / or the Reward and / or the Website is at the Donor’s sole risk. The Company grants no warranty, whether expressed or implied, regarding the Product, Reward or the Website, unless it is mandatory under applicable legal regulations.</p>\r\n<p>7.2. To the maximum extent permitted by the applicable law, the Parties hereby expressly exclude any liability of the Company for the damage caused by the use of the Product, the Reward or the Website.</p>\r\n<p>7.3. To the maximum extent permitted by the applicable law and unless expressly stated otherwise, the Parties hereby expressly exclude any liability of the Company for the damage caused by the failure of the Company to develop, produce and / or deliver the Project and / or the Reward.</p>\r\n<p>7.4. The Company shall not be liable for any delay or failure to perform resulting from causes outside the reasonable control of the Company, including, without limitation, any failure to perform due to unforeseen circumstances or cause beyond the Company’s control such as war, terrorism, riots, embargoes, acts of civil or military authorities, fire, floods, accidents, strikes, or shortages of transportation facilities, fuel, energy, labour or materials.</p>\r\n<h2>8. FINAL PROVISIONS</h2>\r\n<p>8.1. The Contract shall be governed by the Czech law.</p>\r\n<p>8.2. For the purposes of any disputes arising from the Contract, the Parties hereby expressly agree on the international jurisdiction of the Czech courts and local jurisdiction of the relevant courts according to the registered seat of the Company.</p>\r\n<p>8.3. Clauses in these TaC regarding the termination of the Contract contain only conditions for the termination of the Contract. The Parties expressly exclude any and all relevant provisions of the Civil Code that would allow any Party to terminate the Contract in any other way.</p>\r\n<p>8.4. Each Party waives any rights and claims that might arise from the conduct of the other Party prior to conclusion of the Contract. Both Parties acknowledge that they have been made aware of all facts and legal circumstances whilst entering into the Contract in such a way that each Party could rely on the possibility of entering into a valid agreement and that the intent of the other Party to enter into the Contract was undisputable.</p>\r\n<p>8.5. Neither Party is a weaker Party in relation to the other Party. The Contribution is not granted to the Company in a consumer – entrepreneur relation. The Donor acknowledges and accepts that his profit from the Contract depends on a future uncertain event (finalisation of the Project) in the meaning of Sec. 2756 and seq. of the Civil Code.</p>\r\n<p>8.6. These TaC shall become valid and effective as of April 1st 2014.</p>	0	2014-03-08 00:38:40.297833	2014-03-28 12:39:58.404148
+20	11	Body		0	2014-03-03 02:23:08.021583	2014-03-28 14:50:35.440402
+19	10	Side Body	<p>Boční text</p>\r\n<p>qwfwefqwefqwef</p>\r\n<p>qwefqwegrgwtrčeherthertherthertherther wegwergwergwerg</p>	1	2014-03-03 02:22:38.805881	2014-03-28 16:40:23.383009
+18	10	Body	<p><strong>Forum access &amp; badge: </strong>You will be able to post on our forums with your unique Kickstarter backer's badge. You will have access to VIP part of forum to discuss game features. </p>\r\n<p><strong>Digital copy of the game: </strong>You will be able to download and play a copy of Act I of our game. Steam, PS4 Store, Xbox One store.</p>\r\n<p><strong>Digital manual, Soundtrack, Making-of video: </strong>You will get PDF copy of the game manual, complete game soundtrack in mp3, and digital version of our making of documentary.</p>\r\n<p><strong>Boxed copy of the game: </strong>You will receive your own copy of Act I in standard DVD box with manual.</p>\r\n<p><strong>Digipak copy of the game (w/soundtrack, making-of video and manual): </strong>You will receive your own copy of Act I in a nice digipak box. This box will also contain soundtrack CD and DVD with the making-of video, as well as a printed manual.</p>\r\n<strong>Digital Special Edition:</strong>\r\n<ul><li><span style="background-color: transparent;">Digital Art book</span>\r\n</li><li><span style="background-color: transparent;">Digital High-res Poster</span>\r\n</li><li><span style="background-color: transparent;">Digital High-res Map</span>\r\n</li><li><span style="background-color: transparent;">Screenplay of Act I in PDF</span>\r\n</li><li><span style="background-color: transparent;">3D printer ready Action figure model</span>\r\n</li></ul>\r\n<strong>Collector's edition box: </strong>This will be an exquisite collector's box edition that will take a place of pride in your collection.<ul><li><span style="background-color: transparent;">T-Shirt: CE will contain a T-shirt with Kingdom Come: Deliverance motifs.</span>\r\n</li><li><span style="background-color: transparent;">Art book: CE will contain a 100+ pages art book printed on quality stock paper, with artworks for the game.</span>\r\n</li><li><span style="background-color: transparent;">Poster/Signed poster: CE will contain a 24" x 36" full color poster of the game. In higher tiers this poster will be signed by members of the development team.</span>\r\n</li><li><span style="background-color: transparent;">Dice: CE will contain a set for playing authentic medieval precursor to computer games.</span>\r\n</li><li><span style="background-color: transparent;">Commemorative coin: CE will contain unique coin with original design, stamped in limited quantity for our backers. In lower tiers, the coin will be made of brass; for higher levels, it will be made of sterling silver. Our coin is not going to be a thin penny-press elongateds. One of our best engravers, Dan’s buddy and former classmate, Martin Reichard, who creates gold and silver designs for the best mints, will create a top notch collectible 30x2mm coin with a game motif. Look at his older designs (works for the Prague Mint) and see for yourself.</span>\r\n</li><li><span style="background-color: transparent;">Action figure: Your CE will include a quality die-cast 4" action figure. We briefly entertained a possibility of making plastic figures in China, but then we thought better of it. Europe has a tradition of tin soldiers and so we found someone to produce a beautiful, detailed, metal, four inch figure of a knight.</span>\r\n</li></ul>\r\n<p><strong>Acts II &amp; III: </strong>You will be able to download Act II or II &amp; III of Kingdom Come: Deliverance if and when they are released. We assume that it will take us nine months to develop Act II and further nine months for Act III. Please note that we cannot guarantee developing these Acts; while it is our best intention to do so at this moment, circumstances beyond our control may force us to alter our plans. <a href="/kingdom-come-deliverance/faq" title="FAQ">What are these Acts?</a>\r\n</p><p><strong>In-game bonuses:</strong>\r\n</p><ul><li><span style="background-color: transparent;">In-game Calvary memorial (crucifix): The world of Kingdom Come: Deliverance is dotted with small memorial crosses – small stone or wooden crucifixes on a stone plinth. The plinth carries an inscription that can include your name.</span>\r\n</li><li><span style="background-color: transparent;">In-game Conciliatory cross: Similar to the Calvary memorial above, but smaller and less conspicuous. These crosses were usually put up on places where a crime has occurred, as a gesture of reconciliation. The cross will carry your name.</span>\r\n</li><li><span style="background-color: transparent;">In-game Church painting: Every town or village in Kingdom Come: Deliverance will have a church, sometimes two. You face can appear in one of them as the face of a saint, or some other figure, on paintings inside.</span>\r\n</li><li><span style="background-color: transparent;">In-game Statue: We shall create a statue of a saint of your choice and endow him or her with your likeness. The statue will be a prominent feature of one of the in-game churches.´</span>\r\n</li></ul>\r\n<p><strong>Copper engraving:</strong> An original, limited series print from one of the best engravers in our country and Dan’s friend, Jindra (Henry) Faktor. You can get ready for an exceptional artistic work, numbered and signed on luxury, hand-made paper. This will be an 6" x 8" print made from wooden plate in limited quantity. It will feature a motif from the game.</p>\r\n<p><strong>Alpha access:</strong> You will in-effect become part of our development team, getting access to the earliest barely playable version of Kingdom Come: Deliverance. Your comments and observations will help to shape the game.</p>\r\n<p><strong>Beta access: </strong>This is similar to Early access on Steam. We are hoping we will be able to use the Steam platform itself.</p>\r\n<p><span style="background-color: transparent;"><strong>Visit in our office: </strong>Opportunity to visit our studio and talk with the team in medieval tavern.</span>\r\n</p><p><strong>Guided tour: </strong>We will treat you to a two day trip through the real-world locations that served as models for the places within the game. We shall have a professional archaeologist/historian to guide you and explain everything and you will be able to get to places that are normally off limits. </p>\r\n<h2>Collectors items</h2>\r\n<p>Various collectors’ items are part of our special editions. We are making an authentic medieval game, though, and we are loath to give our fans usual cheap trinkets. Know then, that everything you are going to get, are unique, bespoke crafted items, far cry from plastic tchotchke.<br />It may have something to do with the fact that Dan studied at School of applied arts in Turnov among engravers, smiths and goldsmiths, he doesn’t settle for less and knows a lot of craftsmen that can help us.</p>\r\n<h3><span style="background-color: transparent;">Swords</span>\r\n</h3>\r\n<p>Swords are perhaps the most attractive reward. Fantastic looking swords covered from grip to tip by Celtic knots, glass gems and entwined dragons are available almost anywhere for few bucks. Such a worthless trinket will of course break when a zombie apocalypse comes and you try to use it to decapitate an undead one.</p>\r\n<p>Our swords are real, made for fencing, with forged blades, you can take them to battle. Of course, these are replicas of real swords, no phantasmagoria from a kids movie. The blade will be decorated by etching or engraving and pommel with a pattern.</p>\r\n<ul><li><span style="background-color: transparent;">Sword (Emperor): You will receive hand made, forged, one-handed sword. It will be sharpened and ready for battle. This is not a toy! 18+. Inscription. Check your country laws about import.</span>\r\n</li><li><span style="background-color: transparent;">Deliverance Sword (Wenzel) – Deliverance motive&#160;</span>\r\n</li><li><span style="background-color: transparent;">Sword (Pope) – Personal inscription</span>\r\n</li><li><span style="background-color: transparent;">Sword (Iluminatus/Saint) – One and half handed, personal inscription</span>\r\n</li><li><span style="background-color: transparent;">Shield: This will be hand-decorated shield adorned with coat-of-arms of a noble family related to the events within the game.</span>\r\n</li></ul>\r\n<p><span style="background-color: transparent;">As we are going to need really lot of swords, they are probably going to be produced in more workshops. At the bottom, you can watch the video where Dan visits some of them to see their manufacturing process. In this case it’s Dan’s former fellow student Ondřej Piskáček and one of the biggest armories in Europe – </span>\r\n<a title="http://www.kovex-ars.cz/" href="http://www.kovex-ars.cz/" target="_blank" style="background-color: transparent;">Kovex Ars</a>\r\n<span style="background-color: transparent;">.</span>\r\n</p>\r\n<p>&#160;<img src="/system/images/W1siZiIsIjIwMTQvMDMvMjgvMTZfNTZfNTVfOTU1X21lY2VhemJyb2plLmpwZyJdLFsicCIsInRodW1iIiwiNDUweDQ1MD4iXSxbInAiLCJzdHJpcCJdXQ/meceazbroje.jpg" title="Meceazbroje" alt="Meceazbroje" data-rel="450x450" height="336" width="450" /></p>\r\n<h3>Action Figure</h3>\r\n<p>We briefly entertained a possibility of making plastic figures in China, but then we thought better of it. Europe has a tradition of tin soldiers and so we were looking for someone to produce a beautiful, detailed, metal, four inch figure of a knight. And we found as you can see. (The images demonstrate quality of craftsmanship, the actual figure will be that of an in-game character.)</p>\r\n<p><img src="/system/images/W1siZiIsIjIwMTQvMDMvMjgvMTZfNTZfNTBfNDEwX2ZpZ3Vya3kuanBnIl0sWyJwIiwidGh1bWIiLCI0NTB4NDUwPiJdLFsicCIsInN0cmlwIl1d/figurky.jpg" title="Figurky" alt="Figurky" data-rel="450x450" height="336" width="450" /></p>\r\n<h3>Engraving</h3>\r\n<p>We can give you a poster (actually, we do). But for higher tiers we wanted something special – an original, limited series print from one of the best engravers in our country and Dan’s friend, Jindra (Henry) Faktor.</p>\r\n<p>Originally we were thinking about a copper engraving (and that’s what the rewards say), but then we realized copper engravings only became widespread in the second half of 15th century. Jindra suggested woodcut and you can get ready for an exceptional artistic work, numbered and signed on luxury, hand-made paper. The pictures show some of Jindra’s work and an original print of a fifteenth century woodblock.</p>\r\n<p><img src="/system/images/W1siZiIsIjIwMTQvMDMvMjgvMTZfNTZfNDRfNDAxX2VuZ3JhdmluZy5qcGciXSxbInAiLCJ0aHVtYiIsIjQ1MHg0NTA%2BIl0sWyJwIiwic3RyaXAiXV0/engraving.jpg" title="Engraving" alt="Engraving" data-rel="450x450" height="450" width="425" /></p>\r\n<h3>Coin</h3>\r\n<p>Our coin is not going to be a thin penny-press elongateds. One of our best engravers, Dan’s buddy and former classmate, Martin Reichard, who creates gold and silver designs for the best mints, will create a top notch collectible 30x2mm coin with a game motif. Look at his older designs (works for the <a title="http://www.prague-mint.eu/" href="http://www.prague-mint.eu/" target="_blank">Prague Mint</a>) and see for yourself.</p>\r\n<p><img src="/system/images/W1siZiIsIjIwMTQvMDMvMjgvMTZfNTZfMzRfNTI2X2NvaW5zLmpwZyJdLFsicCIsInRodW1iIiwiNDUweDQ1MD4iXSxbInAiLCJzdHJpcCJdXQ/coins.jpg" title="Coins" alt="Coins" data-rel="450x450" height="422" width="450" /></p>	0	2014-03-03 02:22:38.79884	2014-03-29 00:30:25.697116
+16	9	Body	<p>Since we are going to self-publish the game and are asking for the help of the community, we are also willing to give something back and develop the game with the community.</p>\r\n<p>What does it mean? In Q4 2014 we will release an early build of the game, with one smaller location (village and a part of the countryside) where you will be able to test core mechanics of the game. We will start with the basic mechanics (interaction with the world, inventory, map, NPC cycles) and we will constantly update this build with new features as we progress with the development (dialogues, bows, hunting, crafting, combat, horses). This is the access to Alpha version of the game and it will be available to all tiers from the Baron onwards.</p>\r\n<p>When the game is in Beta stage, we will release the full game beta as Early Access on PC (or any other platform where it’s going to be possible) for all backers up from the Knight Tier.</p>\r\n<p>Our backers can influence the development, help us improve the game, and give us feedback about our game mechanics.</p>	0	2014-03-03 02:22:12.995422	2014-03-28 12:43:11.742324
+\.
+
+
+--
+-- Name: refinery_page_parts_id_seq; Type: SEQUENCE SET; Schema: public; Owner: sedrick
+--
+
+SELECT pg_catalog.setval('refinery_page_parts_id_seq', 27, true);
+
+
+--
+-- Data for Name: refinery_page_translations; Type: TABLE DATA; Schema: public; Owner: sedrick
+--
+
+COPY refinery_page_translations (id, refinery_page_id, locale, created_at, updated_at, title, custom_slug, menu_title, slug) FROM stdin;
+1	1	en	2014-03-03 01:52:30.797311	2014-03-03 01:52:30.826894	Home	\N	\N	home
+2	2	en	2014-03-03 01:52:30.99175	2014-03-03 01:52:30.99877	Page not found	\N	\N	page-not-found
+3	3	en	2014-03-03 01:52:31.070454	2014-03-03 01:52:31.07739	About	\N	\N	about
+4	4	en	2014-03-03 01:52:31.322357	2014-03-03 01:52:31.329485	Projects	\N	\N	projects
+5	5	en	2014-03-03 01:52:31.395238	2014-03-03 01:52:31.407318	Tiers	\N	\N	tiers
+6	6	en	2014-03-03 01:52:31.466736	2014-03-03 01:52:31.481403	Orders	\N	\N	orders
+7	7	en	2014-03-03 01:52:31.540088	2014-03-03 01:52:31.551958	User Histories	\N	\N	user-histories
+8	8	en	2014-03-03 02:21:39.38341	2014-03-03 02:21:39.395125	Kingdom Come: Deliverance	\N		kingdom-come-deliverance
+9	9	en	2014-03-03 02:22:12.984688	2014-03-03 02:22:12.992983	What is Early Access	\N		what-is-early-access
+12	12	en	2014-03-03 02:23:36.685402	2014-03-03 02:23:36.691812	Thank you	\N		thank-you
+13	13	en	2014-03-08 00:36:42.941993	2014-03-08 00:36:42.958984	FAQ	\N		faq
+14	14	en	2014-03-08 00:38:40.288437	2014-03-08 00:38:40.295859	Terms & Conditions	\N		terms-conditions
+10	10	en	2014-03-03 02:22:38.789817	2014-03-28 13:00:16.010431	Rewards Description	\N		rewards-description--2
+11	11	en	2014-03-03 02:23:08.012128	2014-03-28 13:18:38.291626	Buy Game & Merch.	\N		buy-game-merch
+\.
+
+
+--
+-- Name: refinery_page_translations_id_seq; Type: SEQUENCE SET; Schema: public; Owner: sedrick
+--
+
+SELECT pg_catalog.setval('refinery_page_translations_id_seq', 14, true);
+
+
+--
+-- Data for Name: refinery_pages; Type: TABLE DATA; Schema: public; Owner: sedrick
+--
+
+COPY refinery_pages (id, parent_id, path, slug, show_in_menu, link_url, menu_match, deletable, draft, skip_to_first_child, lft, rgt, depth, view_template, layout_template, created_at, updated_at) FROM stdin;
+1	\N	\N	home	t	/	^/$	f	f	f	1	4	0	\N	\N	2014-03-03 01:52:30.823488	2014-03-03 01:52:30.823488
+2	1	\N	page-not-found	f	\N	^/404$	f	f	f	2	3	1	\N	\N	2014-03-03 01:52:30.996978	2014-03-03 01:52:30.996978
+3	\N	\N	about	t	\N	\N	t	f	f	5	6	0	\N	\N	2014-03-03 01:52:31.075557	2014-03-03 01:52:31.075557
+4	\N	\N	projects	t	/projects	^/projects(/|/.+?|)$	f	f	f	7	8	0	\N	\N	2014-03-03 01:52:31.327602	2014-03-03 01:52:31.327602
+5	\N	\N	tiers	t	/tiers	^/tiers(/|/.+?|)$	f	f	f	9	10	0	\N	\N	2014-03-03 01:52:31.40414	2014-03-03 01:52:31.40414
+6	\N	\N	orders	t	/orders	^/orders(/|/.+?|)$	f	f	f	11	12	0	\N	\N	2014-03-03 01:52:31.477421	2014-03-03 01:52:31.477421
+7	\N	\N	user-histories	t	/user_histories	^/user_histories(/|/.+?|)$	f	f	f	13	14	0	\N	\N	2014-03-03 01:52:31.547828	2014-03-03 01:52:31.547828
+9	8	\N	what-is-early-access	f		\N	t	f	f	18	19	1	show	\N	2014-03-03 02:22:12.990117	2014-03-03 02:22:12.990117
+11	8	\N	buy-game-merch	f		\N	t	f	f	16	17	1	show	\N	2014-03-03 02:23:08.017328	2014-03-28 13:18:38.286963
+10	8	\N	rewards-description--2	f		\N	t	f	f	20	21	1	show	\N	2014-03-03 02:22:38.794232	2014-03-28 13:00:16.005515
+14	8	\N	terms-conditions	f		\N	t	f	f	22	23	1	show	\N	2014-03-08 00:38:40.293771	2014-03-08 00:38:40.293771
+13	8	\N	faq	f		\N	t	f	f	24	25	1	show	\N	2014-03-08 00:36:42.955836	2014-03-08 00:36:42.955836
+8	\N	\N	kingdom-come-deliverance	f		\N	t	f	f	15	26	0	show	\N	2014-03-03 02:21:39.391783	2014-03-03 02:21:39.391783
+12	\N	\N	thank-you	f		\N	t	f	f	27	28	0	show	\N	2014-03-03 02:23:36.689721	2014-03-03 02:23:36.689721
+\.
+
+
+--
+-- Name: refinery_pages_id_seq; Type: SEQUENCE SET; Schema: public; Owner: sedrick
+--
+
+SELECT pg_catalog.setval('refinery_pages_id_seq', 14, true);
+
+
+--
+-- Data for Name: refinery_projects; Type: TABLE DATA; Schema: public; Owner: sedrick
+--
+
+COPY refinery_projects (id, title, short_description, long_description, goal, main_image_id, image_1_id, image_2_id, image_3_id, image_4_id, image_5_id, active, video, faq, terms, updates, "position", created_at, updated_at) FROM stdin;
+1	Kingdom Come: Deliverance		<h1>Crowd Funding Revolution</h1>\r\n<p>In the past, when you wanted to develop a big AAA game, you needed a publisher. You needed to convince guys in suits, who don’t understand games at all, to give you money. Those guys usually don’t like <span id="626c7a63-f7f7-490c-bb29-733c65784121" class="GINGER_SOFTWARE_mark">original unproven</span> ideas and so most of the games were uninspired clones of each other. Fortunately these times are over.</p>\r\n<p>Our game is being developed without the aid of traditional publishers, so it relies on your support and funding from private investors. Originally we tried to approach publishers, but they refused to finance <span id="f0de4adf-c0da-4c58-8acc-92b2dcc1c1a1" class="GINGER_SOFTWARE_mark">project</span> they considered to be too risky and niche.</p>\r\n<p>After two years of development without finding a publisher to finance us, it seemed that we would have to close doors. So we tried our last chance and started a Kickstarter campaign. And it turned out that our game is anything but <span id="c59a56a4-1d8e-4cde-8a87-86a28e59091b" class="GINGER_SOFTWARE_mark">niche</span>. We raised over <strong>£1.1 million</strong> (US$1.82 million) within one month and the response from gamers and media was awesome.</p>\r\n<p>The game was saved and overnight it grew to be one of the most expected projects. We can hardly expressed how we felt after months of desperation. Now we are independent of publishers, we are going to self-publish the game and we are funded by private investors and our fans. This gives us creative freedom to make the best game we can. If you like what we do, please support our game. In exchange you will get a chance to influence its design and play an early access version.</p>\r\n<p>Help us to bring our vision to life. Help us to create not the 176th free-to-play mobile RPG MMO Elven village-builder with DIAMONDS™, but a unique, engaging experience we think you’d like to play. Every extra dollar will allow us to make the final product that much better because it means more money for development and more support from our investor.</p>	2000000	\N	\N	\N	\N	\N	\N	t					0	2014-03-03 02:05:50.150266	2014-03-28 12:36:44.02026
+\.
+
+
+--
+-- Name: refinery_projects_id_seq; Type: SEQUENCE SET; Schema: public; Owner: sedrick
+--
+
+SELECT pg_catalog.setval('refinery_projects_id_seq', 1, true);
+
+
+--
+-- Data for Name: refinery_resources; Type: TABLE DATA; Schema: public; Owner: sedrick
+--
+
+COPY refinery_resources (id, file_mime_type, file_name, file_size, file_uid, file_ext, created_at, updated_at) FROM stdin;
+\.
+
+
+--
+-- Name: refinery_resources_id_seq; Type: SEQUENCE SET; Schema: public; Owner: sedrick
+--
+
+SELECT pg_catalog.setval('refinery_resources_id_seq', 1, false);
+
+
+--
+-- Data for Name: refinery_roles; Type: TABLE DATA; Schema: public; Owner: sedrick
+--
+
+COPY refinery_roles (id, title) FROM stdin;
+1	Refinery
+2	Superuser
+3	Backer
+\.
+
+
+--
+-- Name: refinery_roles_id_seq; Type: SEQUENCE SET; Schema: public; Owner: sedrick
+--
+
+SELECT pg_catalog.setval('refinery_roles_id_seq', 3, true);
+
+
+--
+-- Data for Name: refinery_roles_users; Type: TABLE DATA; Schema: public; Owner: sedrick
+--
+
+COPY refinery_roles_users (user_id, role_id) FROM stdin;
+1	2
+1	1
+2	3
+3	1
+3	2
+6	3
+7	3
+\.
+
+
+--
+-- Data for Name: refinery_tiers; Type: TABLE DATA; Schema: public; Owner: sedrick
+--
+
+COPY refinery_tiers (id, title, price, "limit", physical, short_description, long_description, active, image_1_id, image_2_id, image_3_id, "position", created_at, updated_at, project_id, platform_1, platform_2, tshirt, ingame_name, sword_legal, side_text) FROM stdin;
+3	SOLDIER TIER (PHYSICAL)	35	\N	t	<p>Get the game in a box!</p>	<p><strong>Forum access &amp; badge: </strong>You will be able to post on our forums with your unique Kickstarter backer's badge. You will have access to VIP part of forum to discuss game features.&#160;</p>\r\n<p><strong>Boxed copy of the game: </strong>You will receive your own copy of Act I in standard DVD box with manual.&#160;<a href="/kingdom-come-deliverance/faq" title="FAQ" style="background-color: transparent;">What is Act I?</a>\r\n</p>	t	11	14	\N	2	2014-03-03 02:18:00.838174	2014-03-29 00:36:10.310726	1	t	f	f	f	f	<h2>Hardware requirements</h2>\r\n<p>CPU</p>\r\n<p>GPU</p>\r\n<p>RAM</p>\r\n<p>HDD</p>\r\n<p>DVD/BR drive</p>\r\n<p>Internet connection</p>\r\n<h2>Available platforms</h2>\r\n<p>PC (Windows, Linux)</p>\r\n<p>MAC</p>\r\n<p>Xbox ONE</p>\r\n<p>PlayStation 4</p>\r\n<h2>Release date</h2>\r\n<p>Aprox Q4 2015</p>
+2	SOLDIER TIER (DIGITAL)	25	\N	f	<p>Get the digital copy of the game!</p>	<p><strong>With the Soldier (digital) reward tier you are going to receive: </strong>Digital copy of Act I + Access to our forums + Soldier forum badge•\tForum access &amp; badge: You will be able to post on our forums with your unique Kickstarter backer's badge. You will have access to VIP part of forum to discuss game features.&#160;</p>\r\n<p><strong>Digital copy of the game: </strong>You will be able to download and play a copy of Act I of our game. Available on Steam, PS4 Store, Xbox One store.</p>\r\n<p><a href="/kingdom-come-deliverance/faq" title="FAQ" style="background-color: transparent;">What is Act I?</a>\r\n</p>	t	11	\N	\N	1	2014-03-03 02:17:08.360496	2014-03-29 00:36:31.793732	1	t	f	f	f	f	<h2>Hardware requirements </h2>\r\n<p>CPU </p>\r\n<p>GPU</p>\r\n<p>RAM </p>\r\n<p>HDD</p>\r\n<p><span style="background-color: transparent;">Internet connection</span>\r\n</p>\r\n<h2>Avilable platforms </h2>\r\n<p>PC (Windows, Linux)</p>\r\n<p>MAC</p>\r\n<p>Xbox ONE</p>\r\n<p>PlayStation 4</p>\r\n<h2><span style="background-color: transparent;">Release date</span>\r\n</h2>\r\n<p>Aprox Q4 2015</p>
+1	PEASANT TIER	5	\N	f	<p>Access to VIP part of our forums!</p>	<p><strong>Forum access &amp; badge: </strong>You will be able to post on our forums with your unique Kickstarter backer's badge. You will have access to VIP part of forum to discuss game features.</p>	t	1	\N	\N	0	2014-03-03 02:15:50.363482	2014-03-28 23:29:10.088207	1	f	f	f	f	f	<h2>Hardware requirements</h2>\r\n<p><span style="background-color: transparent;">Internet connection</span>\r\n</p>\r\n<h2>Available platforms</h2>\r\n<p>PC (Windows, Linux)</p>\r\n<p>MAC</p>
+7	BARON TIER (PHYSICAL)	70	\N	t	<p>Get the alpha access and all the goodies in a box!</p>	<p><strong>Forum access &amp; badge:</strong> You will be able to post on our forums with your unique Kickstarter backer's badge. You will have access to VIP part of forum to&#160;<span style="background-color: transparent;">discuss game features.&#160;</span>\r\n</p>\r\n<p><span style="background-color: transparent;"><strong>Digipak copy of the game (w/soundtrack, making-of video and manual): </strong>You will receive your own copy of Act I in a nice digipak box. This box will also contain soundtrack CD and DVD with the making-of video, as well as a printed manual.</span>\r\n</p>\r\n<p><strong>Alpha access: </strong>You will in-effect become part of our development team, getting access to the earliest barely playable version of Kingdom Come: Deliverance. Your comments and observations will help to shape the game.</p>\r\n<p><strong>Beta access: </strong>This is similar to Early access on Steam. We are hoping we will be able to use the Steam platform itself.</p>	t	2	\N	\N	6	2014-03-28 23:55:38.877398	2014-03-29 00:41:24.389216	1	t	f	f	f	f	<h2>Hardware requirements</h2>\r\n<p>CPU</p>\r\n<p>GPU</p>\r\n<p>RAM</p>\r\n<p>HDD</p>\r\n<p>DVD/BR drive</p>\r\n<p>Internet connection</p>\r\n<h2>Available platforms</h2>\r\n<p>PC (Windows, Linux)</p>\r\n<p>MAC</p>\r\n<p>Xbox ONE</p>\r\n<p>PlayStation 4</p>\r\n<h2>Release date</h2>\r\n<p>Aprox Q4 2015</p>
+4	KNIGHT TIER (DIGITAL)	40	\N	f	<p>Get the beta access!</p>	<p><span style="background-color: transparent;"><strong>Forum access &amp; badge: </strong>You will be able to post on our forums with your unique Kickstarter backer's badge. You will have access to VIP part of forum to discuss game features.&#160;</span>\r\n</p>\r\n<p><span style="background-color: transparent;"><strong>Digital copy of the game: </strong>You will be able to download and play a copy of Act I of our game. Available on Steam, PS4 Store, Xbox One store.&#160;</span>\r\n</p>\r\n<p><strong>Digital manual, Soundtrack, Making-of video: </strong>You will get PDF copy of the game manual, complete game soundtrack in mp3, and digital version of our making of documentary.</p>\r\n<p><strong>Beta access:</strong> This is similar to Early access on Steam. We are hoping we will be able to use the Steam platform itself.</p>\r\n<p><a href="http://staging.crawdio.sedrick.cz/kingdom-come-deliverance/faq" title="FAQ" style="background-color: transparent;">What is Act I?</a>\r\n</p>	t	8	15	\N	3	2014-03-03 02:18:50.932715	2014-03-29 00:38:15.92783	1	t	f	f	f	f	<h2><strong>Hardware requirements</strong>\r\n</h2>\r\n<p>CPU</p>\r\n<p>GPU</p>\r\n<p>RAM</p>\r\n<p>HDD</p>\r\n<p><span style="background-color: transparent;">Internet connection</span>\r\n</p>\r\n<h2><strong>Available platforms</strong>\r\n</h2>\r\n<p>PC (Windows, Linux)</p>\r\n<p>MAC</p>\r\n<p>Xbox ONE</p>\r\n<p>PlayStation 4</p>\r\n<h2><strong>Release date</strong>\r\n</h2>\r\n<p>Aprox Q4 2015</p>
+6	BARON TIER (DIGITAL)	60	\N	f	<p>Get the alpha access!</p>	<p><strong>Forum access &amp; badge: </strong>You will be able to post on our forums with your unique Kickstarter backer's badge. You will have access to VIP part of forum to discuss game features.&#160;</p>\r\n<p><strong>Digital copy of the game: </strong>You will be able to download and play a copy of Act I of our game. Available on Steam, PS4 Store, Xbox One store.&#160;</p>\r\n<p><strong>Digital manual, Soundtrack, Making-of video: </strong>You will get PDF copy of the game manual, complete game soundtrack in mp3, and digital version of our making of documentary.</p>\r\n<p><span style="background-color: transparent;"><strong>Alpha access: </strong>You will in-effect become part of our development team, getting access to the earliest barely playable version of <em>Kingdom Come: Deliverance</em>. Your comments and observations will help to shape the game.</span>\r\n</p>\r\n<p><span style="background-color: transparent;"><strong>Beta access: </strong>This is similar to Early access on Steam. We are hoping we will be able to use the Steam platform itself.</span>\r\n</p>\r\n<p><a href="/kingdom-come-deliverance/faq" title="FAQ">What is Act I?</a>\r\n<span style="background-color: transparent;"></span>\r\n</p>\r\n	t	2	\N	\N	5	2014-03-03 02:20:49.683927	2014-03-29 00:41:16.320043	1	t	f	f	f	f	<h2>Hardware requirements </h2>\r\n<p>CPU </p>\r\n<p>GPU</p>\r\n<p>RAM </p>\r\n<p>HDD</p>\r\n<p>DVD/BR drive</p>\r\n<p>Internet connection</p>\r\n<h2>Available platforms </h2>\r\n<p>PC (Windows, Linux)</p>\r\n<p>MAC</p>\r\n<p><span style="background-color: transparent;">Xbox ONE</span>\r\n</p>\r\n<p><span style="background-color: transparent;">PlayStation 4</span>\r\n</p>\r\n<h2>Release date</h2>\r\n<p>Aprox Q4 2015</p>
+5	KNIGHT TIER (PHYSICAL)	50	\N	t	<p>Get the beta accesss and all the goodies in a box !</p>	<p><strong>Forum access &amp; badge:</strong> You will be able to post on our forums with your unique Kickstarter backer's badge. You will have access to VIP part of forum to discuss game features.&#160;</p>\r\n<p><strong>Digipak copy of the game (w/soundtrack, making-of video and manual): </strong>You will receive your own copy of Act I in a nice digipak box. This box will also contain soundtrack CD and DVD with the making-of video, as well as a printed manual.</p>\r\n<p><strong>Beta access: </strong>This is similar to Early access on Steam. We are hoping we will be able to use the Steam platform itself.</p>\r\n<p><img data-rel="450x450" alt="21 23 38 706 Screen Shot 2014 02 25 At 21.22.43" title="21 23 38 706 Screen Shot 2014 02 25 At 21.22.43" src="/system/images/W1siZiIsIjIwMTQvMDMvMDMvMDZfMTVfMzlfNjYxXzIxXzIzXzM4XzcwNl9TY3JlZW5fU2hvdF8yMDE0XzAyXzI1X2F0XzIxLjIyLjQzLnBuZyJdLFsicCIsInRodW1iIiwiNDUweDQ1MD4iXSxbInAiLCJzdHJpcCJdXQ/21_23_38_706_Screen_Shot_2014_02_25_at_21.22.43.png" height="99" width="83" /></p>	t	8	19	\N	4	2014-03-03 02:19:51.950712	2014-03-29 00:41:06.897307	1	t	f	f	f	f	<h2>Hardware requirements</h2>\r\n<p>CPU</p>\r\n<p>GPU</p>\r\n<p>RAM</p>\r\n<p>HDD</p>\r\n<p>DVD/BR drive</p>\r\n<p>Internet connection</p>\r\n<h2>Available platforms</h2>\r\n<p>PC (Windows, Linux)</p>\r\n<p>MAC</p>\r\n<p>Xbox ONE</p>\r\n<p>PlayStation 4</p>\r\n<h2>Release date</h2>\r\n<p>Aprox Q4 2015</p>
+8	VISCOUNT TIER (DIGITAL)	80	\N	f	<p>Get alpha and beta access and printable figure!</p>	<p>Forum access &amp; badge: You will be able to post on our forums with your unique Kickstarter backer's badge. You will have access to VIP part of forum to discuss game features.&#160;</p>\r\n<p><strong>Digital copy of the game: </strong>You will be able to download and play a copy of Act I of our game. Available on Steam, PS4 Store, Xbox One store.</p>\r\n<p><strong>Digital manual, Soundtrack, Making-of video: </strong>You will get PDF copy of the game manual, complete game soundtrack in mp3, and digital version of our making of documentary.</p>\r\n<p><strong>Alpha access:</strong> You will in-effect become part of our development team, getting access to the earliest barely playable version of Kingdom Come: Deliverance. Your comments and observations will help to shape the game.</p>\r\n<p><strong>Beta access: </strong>This is similar to Early access on Steam. We are hoping we will be able to use the Steam platform itself.</p>\r\n<p><strong>And even more:</strong>\r\n</p>\r\n<ul><li><span style="background-color: transparent;">Digital Art book</span>\r\n</li>\r\n<li><span style="background-color: transparent;">Digital High-res Poster</span>\r\n</li>\r\n<li><span style="background-color: transparent;">Digital High-res Map</span>\r\n</li>\r\n<li><span style="background-color: transparent;">Screenplay of Act I in PDF</span>\r\n</li>\r\n<li><span style="background-color: transparent;">3D printer ready Action figure model</span>\r\n</li>\r\n</ul>\r\n\r\n\r\n\r\n\r\n<p><a href="/kingdom-come-deliverance/faq" title="FAQ">What is Act I?</a>\r\n</p>	t	\N	\N	\N	7	2014-03-29 00:04:13.925759	2014-03-29 00:40:52.590198	1	t	f	f	f	f	<h2>Hardware requirements</h2>\r\n<p>CPU</p>\r\n<p>GPU</p>\r\n<p>RAM</p>\r\n<p>HDD</p>\r\n<p><span style="background-color: transparent;">Internet connection</span>\r\n</p>\r\n<h2>Available platforms</h2>\r\n<p>PC (Windows, Linux)</p>\r\n<p>MAC</p>\r\n<p>Xbox ONE</p>\r\n<p>PlayStation 4</p>\r\n<h2>Release date</h2>\r\n<p>Aprox Q4 2015</p>
+\.
+
+
+--
+-- Name: refinery_tiers_id_seq; Type: SEQUENCE SET; Schema: public; Owner: sedrick
+--
+
+SELECT pg_catalog.setval('refinery_tiers_id_seq', 8, true);
+
+
+--
+-- Data for Name: refinery_user_histories; Type: TABLE DATA; Schema: public; Owner: sedrick
+--
+
+COPY refinery_user_histories (id, user_id, field, original_value, new_value, "position", created_at, updated_at) FROM stdin;
+\.
+
+
+--
+-- Name: refinery_user_histories_id_seq; Type: SEQUENCE SET; Schema: public; Owner: sedrick
+--
+
+SELECT pg_catalog.setval('refinery_user_histories_id_seq', 1, false);
+
+
+--
+-- Data for Name: refinery_user_plugins; Type: TABLE DATA; Schema: public; Owner: sedrick
+--
+
+COPY refinery_user_plugins (id, user_id, name, "position") FROM stdin;
+1	1	refinery_i18n	0
+2	1	refinery_core	1
+3	1	refinery_dialogs	2
+4	1	refinery_dashboard	0
+9	1	projects	1
+10	1	tiers	2
+11	1	orders	3
+8	1	refinery_pages	4
+5	1	refinery_users	5
+7	1	refinery_files	8
+12	1	user_histories	6
+6	1	refinery_images	7
+13	3	refinery_dashboard	0
+18	3	projects	1
+19	3	tiers	2
+16	3	orders	3
+17	3	refinery_pages	4
+21	3	refinery_users	5
+20	3	user_histories	6
+14	3	refinery_files	7
+15	3	refinery_images	8
+\.
+
+
+--
+-- Name: refinery_user_plugins_id_seq; Type: SEQUENCE SET; Schema: public; Owner: sedrick
+--
+
+SELECT pg_catalog.setval('refinery_user_plugins_id_seq', 21, true);
+
+
+--
+-- Data for Name: refinery_users; Type: TABLE DATA; Schema: public; Owner: sedrick
+--
+
+COPY refinery_users (id, username, email, encrypted_password, current_sign_in_at, last_sign_in_at, current_sign_in_ip, last_sign_in_ip, sign_in_count, remember_created_at, reset_password_token, reset_password_sent_at, created_at, updated_at, slug, name, street, city, country, activated, activation_token) FROM stdin;
+2	kratoj	kratoj@gmail.com	$2a$10$50Uo4fWbspPohxbUarVdFukBjdKCiAooeUtSsbH3J9kDvst7lquS6	2014-03-03 23:34:39.491407	2014-03-03 02:24:39.326985	94.230.152.10	94.230.152.10	2	\N	\N	\N	2014-03-03 02:24:39.291526	2014-03-03 23:34:39.499427	kratoj	Jiří Kratochvíl	Ovenecká 330/44	Praha 7	Czech Republic	f	\N
+1	sedrickcz	admin@sedrick.cz	$2a$10$r8Jn1CCLH.Ys3gyvTwHw/.CZR0xMpOuasjRP/WQb/SF4DApW7oDHS	2014-03-04 22:00:12.697197	2014-03-03 23:41:50.221551	94.230.152.10	94.230.152.10	6	\N	\N	\N	2014-03-03 02:00:50.156552	2014-03-04 22:00:12.702439	sedrickcz	Jirka	Na pískách	Praha	CZ	f	\N
+6	user1	u1@sedrick.cz	$2a$10$.IlnYi3PY4cem5z/qKvWjO7KFadNbauLM9PtrEOEynRF7W4jC44e2	2014-03-31 20:32:33.954392	2014-03-05 15:54:07.602017	94.230.152.10	195.122.196.7	4	\N	\N	\N	2014-03-04 22:08:03.360427	2014-03-31 20:32:33.957138	user1	Jiří Kratochvíl	Nerudova 709	Jirkov	Česká Republika	t	
+7	j.r.	jiri.rydl@warhorsestudios.cz	$2a$10$tEdBgGqUYBh9mdDEClTjT.fpOD4PnGxd3i3WmNh4DqrqDJWHRJlB2	2014-04-03 10:38:15.266657	2014-04-03 10:34:34.365897	82.113.62.170	82.113.62.170	2	\N	\N	\N	2014-04-03 10:30:08.163695	2014-04-03 10:38:15.274726	j-r	J.R.	Pernerova 55	Prague 8	Czech Republic	t	
+3	warhorse	warhorse@sedrick.cz	$2a$10$KeSu.bxvsR9/scw/IPuV6OU9aO8lNEQjrIyd2r0lAxN9rxqzOM.2W	2014-04-03 19:21:13.860294	2014-04-03 11:00:56.588074	94.230.146.246	82.113.62.170	25	2014-04-03 10:52:36.927886	\N	\N	2014-03-03 11:34:13.240126	2014-04-03 19:21:13.864078	warhorse	warhorse	Praha	Praha	CZ	f	\N
+\.
+
+
+--
+-- Name: refinery_users_id_seq; Type: SEQUENCE SET; Schema: public; Owner: sedrick
+--
+
+SELECT pg_catalog.setval('refinery_users_id_seq', 7, true);
+
+
+--
+-- Data for Name: schema_migrations; Type: TABLE DATA; Schema: public; Owner: sedrick
+--
+
+COPY schema_migrations (version) FROM stdin;
+20140221101821
+20140221101822
+20140221101829
+20140221101836
+20140221101841
+20140221101842
+20140221101848
+20140221101849
+20140221104626
+20140221105312
+20140221110120
+20140221110925
+20140221111135
+20140225180429
+20140303021019
+20140303195853
+20140303201534
+20140303225754
+20140303225945
+20140304191958
+20140307175952
+\.
+
+
+--
+-- Data for Name: seo_meta; Type: TABLE DATA; Schema: public; Owner: sedrick
+--
+
+COPY seo_meta (id, seo_meta_id, seo_meta_type, browser_title, meta_description, created_at, updated_at) FROM stdin;
+1	1	Refinery::Page::Translation	\N	\N	2014-03-03 01:52:30.817529	2014-03-03 01:52:30.817529
+2	2	Refinery::Page::Translation	\N	\N	2014-03-03 01:52:30.994533	2014-03-03 01:52:30.994533
+3	3	Refinery::Page::Translation	\N	\N	2014-03-03 01:52:31.073099	2014-03-03 01:52:31.073099
+4	4	Refinery::Page::Translation	\N	\N	2014-03-03 01:52:31.325082	2014-03-03 01:52:31.325082
+5	5	Refinery::Page::Translation	\N	\N	2014-03-03 01:52:31.399906	2014-03-03 01:52:31.399906
+6	6	Refinery::Page::Translation	\N	\N	2014-03-03 01:52:31.472263	2014-03-03 01:52:31.472263
+7	7	Refinery::Page::Translation	\N	\N	2014-03-03 01:52:31.543636	2014-03-03 01:52:31.543636
+8	8	Refinery::Page::Translation			2014-03-03 02:21:39.386948	2014-03-03 02:21:39.386948
+9	9	Refinery::Page::Translation			2014-03-03 02:22:12.986548	2014-03-03 02:22:12.986548
+10	10	Refinery::Page::Translation			2014-03-03 02:22:38.791677	2014-03-03 02:22:38.791677
+11	11	Refinery::Page::Translation			2014-03-03 02:23:08.014251	2014-03-03 02:23:08.014251
+12	12	Refinery::Page::Translation			2014-03-03 02:23:36.687189	2014-03-03 02:23:36.687189
+13	13	Refinery::Page::Translation			2014-03-08 00:36:42.950332	2014-03-08 00:36:42.950332
+14	14	Refinery::Page::Translation			2014-03-08 00:38:40.290671	2014-03-08 00:38:40.290671
+\.
+
+
+--
+-- Name: seo_meta_id_seq; Type: SEQUENCE SET; Schema: public; Owner: sedrick
+--
+
+SELECT pg_catalog.setval('seo_meta_id_seq', 14, true);
+
+
+--
+-- Data for Name: user_pledges; Type: TABLE DATA; Schema: public; Owner: sedrick
+--
+
+COPY user_pledges (id, user_id, tier_id, created_at, updated_at) FROM stdin;
+1	1	6	2014-03-03 22:51:46.031041	2014-03-03 22:51:46.031041
+2	2	6	2014-03-03 23:43:01.6935	2014-03-03 23:43:01.6935
+3	6	1	2014-03-04 22:10:45.873505	2014-03-04 22:10:45.873505
+4	6	6	2014-03-04 22:13:17.152802	2014-03-04 22:13:17.152802
+5	6	6	2014-03-04 22:18:52.729458	2014-03-04 22:18:52.729458
+6	6	8	2014-03-31 20:35:33.032266	2014-03-31 20:35:33.032266
+\.
+
+
+--
+-- Name: user_pledges_id_seq; Type: SEQUENCE SET; Schema: public; Owner: sedrick
+--
+
+SELECT pg_catalog.setval('user_pledges_id_seq', 6, true);
+
+
+--
+-- Name: refinery_images_pkey; Type: CONSTRAINT; Schema: public; Owner: sedrick; Tablespace: 
+--
+
+ALTER TABLE ONLY refinery_images
+    ADD CONSTRAINT refinery_images_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: refinery_orders_pkey; Type: CONSTRAINT; Schema: public; Owner: sedrick; Tablespace: 
+--
+
+ALTER TABLE ONLY refinery_orders
+    ADD CONSTRAINT refinery_orders_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: refinery_page_part_translations_pkey; Type: CONSTRAINT; Schema: public; Owner: sedrick; Tablespace: 
+--
+
+ALTER TABLE ONLY refinery_page_part_translations
+    ADD CONSTRAINT refinery_page_part_translations_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: refinery_page_parts_pkey; Type: CONSTRAINT; Schema: public; Owner: sedrick; Tablespace: 
+--
+
+ALTER TABLE ONLY refinery_page_parts
+    ADD CONSTRAINT refinery_page_parts_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: refinery_page_translations_pkey; Type: CONSTRAINT; Schema: public; Owner: sedrick; Tablespace: 
+--
+
+ALTER TABLE ONLY refinery_page_translations
+    ADD CONSTRAINT refinery_page_translations_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: refinery_pages_pkey; Type: CONSTRAINT; Schema: public; Owner: sedrick; Tablespace: 
+--
+
+ALTER TABLE ONLY refinery_pages
+    ADD CONSTRAINT refinery_pages_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: refinery_projects_pkey; Type: CONSTRAINT; Schema: public; Owner: sedrick; Tablespace: 
+--
+
+ALTER TABLE ONLY refinery_projects
+    ADD CONSTRAINT refinery_projects_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: refinery_resources_pkey; Type: CONSTRAINT; Schema: public; Owner: sedrick; Tablespace: 
+--
+
+ALTER TABLE ONLY refinery_resources
+    ADD CONSTRAINT refinery_resources_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: refinery_roles_pkey; Type: CONSTRAINT; Schema: public; Owner: sedrick; Tablespace: 
+--
+
+ALTER TABLE ONLY refinery_roles
+    ADD CONSTRAINT refinery_roles_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: refinery_tiers_pkey; Type: CONSTRAINT; Schema: public; Owner: sedrick; Tablespace: 
+--
+
+ALTER TABLE ONLY refinery_tiers
+    ADD CONSTRAINT refinery_tiers_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: refinery_user_histories_pkey; Type: CONSTRAINT; Schema: public; Owner: sedrick; Tablespace: 
+--
+
+ALTER TABLE ONLY refinery_user_histories
+    ADD CONSTRAINT refinery_user_histories_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: refinery_user_plugins_pkey; Type: CONSTRAINT; Schema: public; Owner: sedrick; Tablespace: 
+--
+
+ALTER TABLE ONLY refinery_user_plugins
+    ADD CONSTRAINT refinery_user_plugins_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: refinery_users_pkey; Type: CONSTRAINT; Schema: public; Owner: sedrick; Tablespace: 
+--
+
+ALTER TABLE ONLY refinery_users
+    ADD CONSTRAINT refinery_users_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: seo_meta_pkey; Type: CONSTRAINT; Schema: public; Owner: sedrick; Tablespace: 
+--
+
+ALTER TABLE ONLY seo_meta
+    ADD CONSTRAINT seo_meta_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: user_pledges_pkey; Type: CONSTRAINT; Schema: public; Owner: sedrick; Tablespace: 
+--
+
+ALTER TABLE ONLY user_pledges
+    ADD CONSTRAINT user_pledges_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: id_type_index_on_seo_meta; Type: INDEX; Schema: public; Owner: sedrick; Tablespace: 
+--
+
+CREATE INDEX id_type_index_on_seo_meta ON seo_meta USING btree (seo_meta_id, seo_meta_type);
+
+
+--
+-- Name: index_refinery_page_part_translations_on_locale; Type: INDEX; Schema: public; Owner: sedrick; Tablespace: 
+--
+
+CREATE INDEX index_refinery_page_part_translations_on_locale ON refinery_page_part_translations USING btree (locale);
+
+
+--
+-- Name: index_refinery_page_part_translations_on_refinery_page_part_id; Type: INDEX; Schema: public; Owner: sedrick; Tablespace: 
+--
+
+CREATE INDEX index_refinery_page_part_translations_on_refinery_page_part_id ON refinery_page_part_translations USING btree (refinery_page_part_id);
+
+
+--
+-- Name: index_refinery_page_parts_on_id; Type: INDEX; Schema: public; Owner: sedrick; Tablespace: 
+--
+
+CREATE INDEX index_refinery_page_parts_on_id ON refinery_page_parts USING btree (id);
+
+
+--
+-- Name: index_refinery_page_parts_on_refinery_page_id; Type: INDEX; Schema: public; Owner: sedrick; Tablespace: 
+--
+
+CREATE INDEX index_refinery_page_parts_on_refinery_page_id ON refinery_page_parts USING btree (refinery_page_id);
+
+
+--
+-- Name: index_refinery_page_translations_on_locale; Type: INDEX; Schema: public; Owner: sedrick; Tablespace: 
+--
+
+CREATE INDEX index_refinery_page_translations_on_locale ON refinery_page_translations USING btree (locale);
+
+
+--
+-- Name: index_refinery_page_translations_on_refinery_page_id; Type: INDEX; Schema: public; Owner: sedrick; Tablespace: 
+--
+
+CREATE INDEX index_refinery_page_translations_on_refinery_page_id ON refinery_page_translations USING btree (refinery_page_id);
+
+
+--
+-- Name: index_refinery_pages_on_depth; Type: INDEX; Schema: public; Owner: sedrick; Tablespace: 
+--
+
+CREATE INDEX index_refinery_pages_on_depth ON refinery_pages USING btree (depth);
+
+
+--
+-- Name: index_refinery_pages_on_id; Type: INDEX; Schema: public; Owner: sedrick; Tablespace: 
+--
+
+CREATE INDEX index_refinery_pages_on_id ON refinery_pages USING btree (id);
+
+
+--
+-- Name: index_refinery_pages_on_lft; Type: INDEX; Schema: public; Owner: sedrick; Tablespace: 
+--
+
+CREATE INDEX index_refinery_pages_on_lft ON refinery_pages USING btree (lft);
+
+
+--
+-- Name: index_refinery_pages_on_parent_id; Type: INDEX; Schema: public; Owner: sedrick; Tablespace: 
+--
+
+CREATE INDEX index_refinery_pages_on_parent_id ON refinery_pages USING btree (parent_id);
+
+
+--
+-- Name: index_refinery_pages_on_rgt; Type: INDEX; Schema: public; Owner: sedrick; Tablespace: 
+--
+
+CREATE INDEX index_refinery_pages_on_rgt ON refinery_pages USING btree (rgt);
+
+
+--
+-- Name: index_refinery_roles_users_on_role_id_and_user_id; Type: INDEX; Schema: public; Owner: sedrick; Tablespace: 
+--
+
+CREATE INDEX index_refinery_roles_users_on_role_id_and_user_id ON refinery_roles_users USING btree (role_id, user_id);
+
+
+--
+-- Name: index_refinery_roles_users_on_user_id_and_role_id; Type: INDEX; Schema: public; Owner: sedrick; Tablespace: 
+--
+
+CREATE INDEX index_refinery_roles_users_on_user_id_and_role_id ON refinery_roles_users USING btree (user_id, role_id);
+
+
+--
+-- Name: index_refinery_user_plugins_on_name; Type: INDEX; Schema: public; Owner: sedrick; Tablespace: 
+--
+
+CREATE INDEX index_refinery_user_plugins_on_name ON refinery_user_plugins USING btree (name);
+
+
+--
+-- Name: index_refinery_user_plugins_on_user_id_and_name; Type: INDEX; Schema: public; Owner: sedrick; Tablespace: 
+--
+
+CREATE UNIQUE INDEX index_refinery_user_plugins_on_user_id_and_name ON refinery_user_plugins USING btree (user_id, name);
+
+
+--
+-- Name: index_refinery_users_on_id; Type: INDEX; Schema: public; Owner: sedrick; Tablespace: 
+--
+
+CREATE INDEX index_refinery_users_on_id ON refinery_users USING btree (id);
+
+
+--
+-- Name: index_refinery_users_on_slug; Type: INDEX; Schema: public; Owner: sedrick; Tablespace: 
+--
+
+CREATE INDEX index_refinery_users_on_slug ON refinery_users USING btree (slug);
+
+
+--
+-- Name: index_seo_meta_on_id; Type: INDEX; Schema: public; Owner: sedrick; Tablespace: 
+--
+
+CREATE INDEX index_seo_meta_on_id ON seo_meta USING btree (id);
+
+
+--
+-- Name: unique_schema_migrations; Type: INDEX; Schema: public; Owner: sedrick; Tablespace: 
+--
+
+CREATE UNIQUE INDEX unique_schema_migrations ON schema_migrations USING btree (version);
+
+
+--
+-- Name: public; Type: ACL; Schema: -; Owner: postgres
+--
+
+REVOKE ALL ON SCHEMA public FROM PUBLIC;
+REVOKE ALL ON SCHEMA public FROM postgres;
+GRANT ALL ON SCHEMA public TO postgres;
+GRANT ALL ON SCHEMA public TO PUBLIC;
+
+
+--
+-- PostgreSQL database dump complete
+--
+

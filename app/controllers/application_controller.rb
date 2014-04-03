@@ -11,6 +11,6 @@ class ApplicationController < ActionController::Base
 
   # Init project pages which are shown on main page
   def init_pages
-    @project_pages = Refinery::Page.where(parent_id: 8)
+    @project_pages = Refinery::Page.where(parent_id: 8).order(:lft)
   end
 end

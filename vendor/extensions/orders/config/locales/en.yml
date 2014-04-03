@@ -37,3 +37,5 @@ en:
         street: Street
         city: City
         country: Country
+        agree: 'Agree with '
+        sword_legal: 'I am older than 18 and I read '

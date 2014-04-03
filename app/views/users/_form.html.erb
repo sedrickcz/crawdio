@@ -28,6 +28,11 @@
   </div>
 
   <div>
+    <%= f.label :age %>
+    <%= f.select :age, 18..99 %>
+  </div>
+
+  <div>
     <%= f.label :street %>
     <%= f.text_field :street %>
   </div>
@@ -37,9 +42,15 @@
     <%= f.text_field :city %>
   </div>
 
-  <div>
+  <div class="field">
     <%= f.label :country %>
-    <%= f.text_field :country %>
+    <%#= f.text_field :country || "" %>
+    <%= f.country_select :country, priority: %w(US), prompt: 'Please select a country'%>
+  </div>
+
+  <div class="field" id="states_us">
+    <%= f.label :state_code %><br />
+    <%= f.subregion_select :state_code, 'US', prompt: 'Please select a state' %>
   </div>
 
   <div>
