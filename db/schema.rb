@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20140403212832) do
+ActiveRecord::Schema.define(:version => 20140406225245) do
 
   create_table "refinery_images", :force => true do |t|
     t.string   "image_mime_type"
@@ -179,6 +179,7 @@ ActiveRecord::Schema.define(:version => 20140403212832) do
     t.boolean  "ingame_name",       :default => false
     t.boolean  "sword_legal",       :default => false
     t.text     "side_text"
+    t.text     "price_text"
   end
 
   create_table "refinery_user_histories", :force => true do |t|
