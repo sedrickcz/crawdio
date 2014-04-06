@@ -1787,13 +1787,16 @@ border-radius: 1px!important;}
 #side_text h2 {color: #9b3024;font-size: 1.3em;}
 .order_form_tier .action {clear:left;} 
 .flash_mess {
-	z-index: 580px ;
+	z-index: 580;
 	position: fixed;
-	top: 50px;
+	top: 60px;
 	left: 50%;
-	width: 800px;
-	margin-left: -400px;
+	width: 600px;
+	// margin-left: -400px;
 	text-align: center;
+	background-color: goldenrod;
+	font-size: xx-large;
+	border-radius: 5px;
 }
 
 .order_form_tier  .action input[type=submit]{	
@@ -5048,6 +5051,9 @@ background:rgba(3,3,3,0.5)  url('http://kingdomcomerpg.com/wp-content/uploads/20
 	height: 75% !important;
 }
 
+#states_us {
+  display: none;
+}
 
 /*---------------------------------------------------------------------------------------------*/
 /*---------------------------------------------------------------------------------------------*/

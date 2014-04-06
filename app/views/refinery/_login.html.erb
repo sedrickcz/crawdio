@@ -4,7 +4,7 @@
                     <div class="registera">
                   <% if current_refinery_user%>
                     E-mail: <%= current_refinery_user.email %>
-                    <%= link_to t('user.profile'), [main_app, current_refinery_user] %>
+                    
                     <%= link_to t('user.sign_out'), refinery.logout_path %>
                     <% if tier = current_refinery_user.highest_tier %>
                       <%= image_tag(tier.image_1.url,size: "64x64") if tier.image_1 %>

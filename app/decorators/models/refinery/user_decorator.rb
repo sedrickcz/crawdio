@@ -1,6 +1,6 @@
 Refinery::User.class_eval do
   # Whitelist the :background_image_id parameter for form submission
-  attr_accessible :name, :street, :city, :country,  :activated, :activation_token
+  attr_accessible :name, :street, :city, :country,  :activated, :activation_token, :age, :state_code
 
   has_many :user_pledges, dependent: :destroy
   has_many :tiers, through: :user_pledges, class_name: '::Refinery::Tiers::Tier'
@@ -8,9 +8,10 @@ Refinery::User.class_eval do
   has_many :user_histories
 
   validates :name, :street, :city, :country, presence: true
+  validates :age, :numericality => {:greater_than_or_equal_to => 18}
 
   def log_history user_old
-    fields = ["username", "email", "name", "street", "city", "country", "encrypted_password"]
+    fields = ["username", "email", "name", "street", "city", "country","state_code", "age", "encrypted_password"]
     # Comapre which fields changed
     fields.each do |f|
       if user_old.send(f) != self.send(f)

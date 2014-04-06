@@ -6,6 +6,9 @@
 
       <li><%= link_to page.title, refinery.page_path(page), :class => "index_#{index}" %></li>
     <% end -%>
+    <% if current_refinery_user%>
+      <li><%= link_to t('user.profile'), [main_app, current_refinery_user], :class => "index_1"%></li>
+    <% end %>
   </ul>
   <br />
   <div id="side_text"><%= raw @tier.side_text %></div><div style="clear:right"></div>
@@ -31,6 +34,9 @@
 <div class="order_form_tier">
 <% if current_refinery_user %>
   <%= form_for [refinery, :orders, @order] do |f| %>
+  <%= render '/refinery/admin/error_messages',
+                :object => @order,
+                :include_object_name => true %>
   <h2>Purchase tier </h2>
     <div class="field">
       <%= f.label :email %>
@@ -70,28 +76,35 @@
 
       <div class="field">
         <%= f.label :country %>
-        <%= f.text_field :country, value: current_refinery_user.country || "" %>
+        <%#= f.text_field :country || "" %>
+        <%= f.country_select :country, priority: %w(US), prompt: 'Please select a country', value: current_refinery_user.country %>
+      </div>
+
+      <div class="field" id="states_us">
+        <%= f.label :state_code %><br />
+        <%= f.subregion_select :state_code, 'US', prompt: 'Please select a state' %>
+
       </div>
     <% end -%>
 
     <% if @tier.platform_1 %>
       <div class="field">
         <%= f.label :platform_1 %>
-        <%= f.select :platform_1, options_for_select(['PC','XBOX','PS4'], @order.platform_1)-%>
+        <%= f.select :platform_1, options_for_select(['PC','MAC','LINUX','XONE','PS4'], @order.platform_1)-%>
       </div>
     <% end -%>
 
     <% if @tier.platform_2 %>
       <div class="field">
         <%= f.label :platform_2 %>
-        <%= f.select :platform_2, options_for_select(['PC','XBOX','PS4'], @order.platform_2)-%>
+        <%= f.select :platform_2, options_for_select(['PC','MAC','LINUX','XONE','PS4'], @order.platform_2)-%>
       </div>
     <% end -%>
 
     <% if @tier.tshirt %>
       <div class="field">
         <%= f.label :tshirt %>
-        <%= f.select :tshirt, options_for_select(['XS','S','M','L','XL','XXL','XXXL'], @order.tshirt)-%>
+        <%= f.select :tshirt, options_for_select(['S (woman)','M (woman)','L (woman)','M (man)','L (man)','XL (man)'], @order.tshirt)-%>
       </div>
     <% end -%>
 
@@ -104,17 +117,19 @@
 
     <% if @tier.sword_legal %>
       <div class='field'>
-        <%= f.label :sword_legal -%>
-        <%= f.check_box :sword_legal -%>
+        <label>
+        <%= f.check_box :sword_legal -%> &nbsp;<%= " #{t('sword_legal', scope: 'activerecord.attributes.refinery/orders/order')}"-%><a href='/pages/rewards-description--2' target='_blank'>Rewards descriptions</a>
+        </label>
       </div>
     <% end -%>
 
     <div class='field'>
-        <%= f.label :agree -%>
-        <%= f.check_box :agree -%>
+        <label>
+        <%= f.check_box :agree -%> &nbsp;<%= " #{t('agree', scope: 'activerecord.attributes.refinery/orders/order')}"-%><a href='/pages/terms-conditions' target='_blank'>terms & conditions</a>
+        </label>
       </div>
     <div class="action">
-      <%= f.submit %>
+      <%= f.submit "Proceed to PayPal" %>
     </div>
   </div>
     <div class="cleaner"></div>

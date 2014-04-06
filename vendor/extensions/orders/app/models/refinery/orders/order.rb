@@ -4,7 +4,7 @@ module Refinery
       self.table_name = 'refinery_orders'
       include ActionView::Helpers::NumberHelper
 
-      attr_accessible :user_id, :tier_id, :price, :paid, :paid_at, :pay_type, :payment_id, :email, :tier_name, :name, :street, :city, :country, :position, :upgrade, :payment_status, :cart_id, :transaction_id, :platform_1, :platform_2, :tshirt, :ingame_name, :sword_legal, :agree
+      attr_accessible :user_id, :state_code, :tier_id, :price, :paid, :paid_at, :pay_type, :payment_id, :email, :tier_name, :name, :street, :city, :country, :position, :upgrade, :payment_status, :cart_id, :transaction_id, :platform_1, :platform_2, :tshirt, :ingame_name, :sword_legal, :agree
 
       attr_accessor :upgrade
 
@@ -59,12 +59,20 @@ module Refinery
         self.tier_name = tier.title
       end
 
+      def self.default_pledgers
+         35384
+      end
+
+      def self.default_pledged
+        1839452
+      end
+
       def self.pledgers
-        self.where(paid: true).size
+        default_pledgers + self.where(paid: true).size
       end
 
       def self.pledged
-        self.where(paid: true).sum('price')
+        default_pledged + self.where(paid: true).sum('price')
       end
     end
   end
