@@ -1760,21 +1760,33 @@ position: absolute;
 	clear:none;
 }
 
-.order_form_tier label,.order_form_tier input, .order_form_tier select{ 
+.order_form_tier label,
+.order_form_tier input, 
+.order_form_tier select{ 
 	float:left;
 	margin-top: 10px;
 	padding: 8px 4px ;
 }
 
+.order_form_tier  #sword,.order_form_tier  #agree {clear:left;width: 450px;}
+.order_form_tier  #sword label,.order_form_tier  #agree  label{width: 445px;}
+
 .order_form_tier input {
 	-webkit-border-radius: 1px!important;
 -moz-border-radius: 1px!important;
 border-radius: 1px!important;}
+
+.order_form_tier .field {float:left}
+
 .order_form_tier label{ clear:left;width: 150px;}
+
 .order_form_tier.becker label{ clear:left;width: 230px;}
+
 .tier_detail b, .tier_detail strong{color: #9b3024;}
 
+.left_main.tier_detail .tier_left_image {float: left;margin: 8px;}
 
+.left_main.tier_detail h3{color: #000;font-size: 1.4em;}
 #side_text {
 	clear:right;
 	float:right;
@@ -2447,6 +2459,8 @@ body#faq-page {font-family: 'IM Fell DW Pica', serif;}
 .site-main .mu_register input[type="submit"] {
 	width: auto;
 }
+
+
 
 
 /**

@@ -15,10 +15,10 @@
 </aside>
 
 <div class="left_main tier_detail"  >
-<h2><%= @tier.title %> - <%= number_to_currency @tier.price %> </h2>  
-    <div class="tier_left_image">
+<div class="tier_left_image">
       <%= image_tag @tier.image_1.url if @tier.image_1 %>
-    </div>
+    </div><h2><%= @tier.title %></h2>  
+    <h3><%= number_to_currency @tier.price %></h3> 
 
     <div>
       <%= raw @tier.long_description %> 
@@ -102,7 +102,7 @@
     <% end -%>
 
     <% if @tier.tshirt %>
-      <div class="field">
+      <div class="field" id="tshirt">
         <%= f.label :tshirt %>
         <%= f.select :tshirt, options_for_select(['S (woman)','M (woman)','L (woman)','M (man)','L (man)','XL (man)'], @order.tshirt)-%>
       </div>
@@ -116,14 +116,14 @@
     <% end -%>
 
     <% if @tier.sword_legal %>
-      <div class='field'>
+      <div class='field' id="sword">
         <label>
         <%= f.check_box :sword_legal -%> &nbsp;<%= " #{t('sword_legal', scope: 'activerecord.attributes.refinery/orders/order')}"-%><a href='/pages/rewards-description--2' target='_blank'>Rewards descriptions</a>
         </label>
       </div>
     <% end -%>
 
-    <div class='field'>
+    <div class='field' id="agree">
         <label>
         <%= f.check_box :agree -%> &nbsp;<%= " #{t('agree', scope: 'activerecord.attributes.refinery/orders/order')}"-%><a href='/pages/terms-conditions' target='_blank'>terms & conditions</a>
         </label>
