@@ -1812,17 +1812,25 @@ border-radius: 1px!important;}
 #side_text h2 {color: #9b3024;font-size: 1.3em;}
 .order_form_tier .action {clear:left;} 
 .flash_mess {
-	z-index: 580;
-	position: fixed;
-	top: 60px;
-	left: 50%;
-	width: 600px;
-	// margin-left: -400px;
-	text-align: center;
-	background-color: goldenrod;
-	font-size: xx-large;
-	border-radius: 5px;
+	z-index: 5000;
+position: fixed;
+top: 60px;
+margin-left: -400px;
+left: 50%;
+text-align: center;
+width: 800px;
+background:#cf7f7f url('/assets/flash.png') 0 0 repeat;
+/*border: 1px solid #E9CB83;*/
+font-size: xx-large;
+-moz-border-radius: 0;
+-webkit-border-radius: 0;
+border-radius: 0;
+/*-moz-box-shadow:    0px 5px 10px 3px #000;
+	-webkit-box-shadow: 0px 5px 10px 3px #000;
+	box-shadow:         0px 5px 10px 3px #000;*/
 }
+.flash_mess  div {
+border: 1px solid #E9CB83;}
 
 .order_form_tier  .action input[type=submit]{	
 	background: url('/assets/buttonek_big.png')  0 0 no-repeat;
@@ -3260,12 +3268,12 @@ a.index_5,
 a.index_1,
 a.index_2,
 a.index_0 {width: 352px; 
-	background: url('/assets/buttonky.png')  0 0 no-repeat;
+	background: url('/assets/buttonky2.png')  0 0 no-repeat;
 }
 
 a.index_3 {background-position:  0 -212px;}
 a.index_4 {background-position:  0 -285px;}
-a.index_5 {background-position: -1px -356px;}
+a.index_5 {background-position: -1px -356px!important;}
 a.index_0{background-position: 0 0;} 
 a.index_1{background-position:  0 -70px;} 
 a.index_2{background-position:  0 -140px;}
