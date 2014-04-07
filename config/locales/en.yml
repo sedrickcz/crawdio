@@ -9,6 +9,7 @@ en:
     sign_out: "Sign Out"
     profile: "Profile"
     edit: "Edit profile"
+
   order:
     upgrade: "Upgrade to higher tier. You pay difference between new one and your higher one. Your new price is %{price}"
     full_price: "Buy this tier for the full price."

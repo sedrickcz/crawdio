@@ -64,10 +64,12 @@ body {
 	font-family: 'IM Fell DW Pica SC', serif;
 	background:#000 ;
 }
-
+#page_container {max-width: 2560px;min-width: 1200px;margin:0 auto;overflow:hidden;}
 #page.site {
 		max-width: 2560px;
+
 		margin:0 auto;
+		min-width: 1200px;
 		position: relative;
 		background:  url('http://kingdomcomerpg.com/wp-content/themes/twentythirteendeliverance/images/de_skrabance_bg_fin.png') repeat 50% 0 ;border-width:0;
 }
@@ -3110,7 +3112,7 @@ margin: 10px 0 ;
 .c_2 a {
 	background: url('/assets/buttonek_big.png')  0 0 no-repeat;
 	text-align: center;
-	width: 472px; margin: 20px auto;
+	width: 472px; margin: 15px auto 0 auto;
 	height: 106px;
 	padding-top: 25px;font-family: 'IM Fell DW Pica', serif;
 	display: block;
@@ -3128,7 +3130,7 @@ margin: 10px 0 ;
 }
 
 .paypal_and_others {
-	margin: 0 auto;display: none;
+	margin: 0 auto;
 }
 
 .percent_wrapper  span {position: absolute;
@@ -3144,7 +3146,7 @@ margin: 10px 0 ;
 	height: 33px;
 	position: relative;
 	border:1px solid   rgba(220,159,23,0.8);
-	background:  rgba(255,255,255,0.2);margin: 20px auto;
+	background:  rgba(255,255,255,0.2);margin: 0px auto;
 	-webkit-box-shadow: 0 0  15px #000;  /* Safari 3-4, iOS 4.0.2 - 4.2, Android 2.3+ */
   	-moz-box-shadow:    0 0  15px #000;  /* Firefox 3.5 - 3.6 */
   	box-shadow:         0 0  15px #000;  /* Opera 10.5, IE 9, Firefox 4+, Chrome 6+, iOS 5 */
@@ -5007,7 +5009,7 @@ background:rgba(3,3,3,0.5)  url('http://kingdomcomerpg.com/wp-content/uploads/20
 		}
 
 		#page.site {
-		width: 1200px; 
+		width: 1200px; 		overflow:hidden;
 		}
 
 		.video-wrapper {

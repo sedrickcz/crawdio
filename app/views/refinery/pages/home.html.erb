@@ -1,5 +1,6 @@
 <aside class="right_menu" >
   <ul>
+   
     <% @project_pages.each_with_index do |page,index| %>
       <li><%= link_to page.title, page, :class => "index_#{index}" %></li>
     <% end -%>
