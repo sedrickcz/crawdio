@@ -1194,6 +1194,8 @@ footer.entry-meta {
 	border-radius: 0;
 }
 
+.user_edit_form .field {margin: 8px;}
+.user_edit_form .field label{width: 250px;}
 
 /**
  * 5.4 Galleries
@@ -1689,10 +1691,10 @@ top: 0;
 left: 0;
 position: absolute;
 width: 100%;
-padding: 8px 0 10px 0;
+padding: 5px 0 5px 0;
 z-index: 1997;
 font-size: 20px;
-background: rgba(177, 16, 16, 0.6);
+background: rgba(0, 0, 0, 0.77);
 color: #fff;
 font-family: 'IM Fell DW Pica', serif;
 }
@@ -1722,7 +1724,7 @@ position: absolute;
  .informacni_pruh_in input[type="text"], .informacni_pruh_in input[type="password"]{
 	-webkit-border-radius: 2px;
 	-moz-border-radius: 2px;
-	border-radius: 2px;
+	border-radius: 2px;width: 150px;
 }
 .informacni_pruh_in input[type=submit] {
 	float:left;
@@ -1790,13 +1792,17 @@ border-radius: 1px!important;}
 .left_main.tier_detail h3.fle {padding: 0 8px 0 0;margin: 0;}
 
 .left_main .pricediv  p {display: inline-block;color: #9b3024;font-size: 1.6em;clear:none;font-weight: normal;}
-#side_text {
+#side_text, #side_body {
 	clear:right;
 	float:right;
 	margin-top: 30px;
 	width: 330px;
 	line-height:90%
 }
+#side_body {
+	font-family: 'IM Fell DW Pica', serif;line-height:130%;
+}
+
 .fle {float: left;}
 .fri {float: right;}
 
@@ -3068,7 +3074,7 @@ z-index: 997;
 	
 }
 .c_3 {
-	width: 25%;
+	width: 28%;
 	
 
 
@@ -3083,9 +3089,9 @@ line-height: 40px;
 margin: 10px 0 ;
 }
 
-.c_1 h1 {font-size: 40px;line-height: 80%}
-.c_3 h2 {color:#fff;line-height: 80%}
-.c_3 h2 span{color: #d4aa45;}
+.c_1 h1 {font-size: 40px;line-height: 90%}
+.c_3 h2 {color:#fff;line-height: 90%}
+.c_3 h2 span{color: #d4aa45;float: right;position: relative;}
 .c_1 p, .c_3 div {
 	font-size: 18px;font-family: 'IM Fell DW Pica', serif;	color: #fff;
 	text-transform:none;
@@ -3155,12 +3161,19 @@ margin: 10px 0 ;
 	color: #9b3124;
 	font-weight: normal;margin: 10px 0;
 } 
-.left_main {width: 700px;float: left;font-family: 'IM Fell DW Pica', serif;}
 
+ .desc .tier_title  {font-size: 30px;font-weight: normal;}
+ .left_main h1, .left_main h2, .inside_paper h2 {font-size: 36px;font-weight: normal;color: #9b3124;}
+
+#user_content h2, #user_content h3{font-weight: normal!important;color: #9b3124;font-size: 25px;}
+#user_content h3 {color: #000;}
+#user_content  tr th {font-size: 23px;color: #9b3124;font-weight: normal!important;text-transform: lowercase;text-transform: capitalize;}
+.left_main {width: 700px;float: left;font-family: 'IM Fell DW Pica', serif;}
+.tier_title a{text-transform: lowercase;text-transform: capitalize;}
 
 
 .tier_left_image, .desc, .tier_right_image, .tier_button { float:left;}
-
+.tier_right_image {text-align: right;}
 .tier { clear:both;margin-bottom: 40px;}
 
 .tier_left_image { 
@@ -4517,9 +4530,9 @@ height: auto;
 
 #user_header { margin-top: 20px; font-size: 22px;}
 #user_content table{  font-size: 20px;}
-	/*body.no-logged-in */.hfeed.site{padding-top: 55px;}
+	/*body.no-logged-in */.hfeed.site{padding-top: 50px;}
 
-	.left_main p, .inside_paper p {font-size: 19px;}
+	.left_main p, .inside_paper p,.inside_paper li  {font-size: 19px;}
 /**
  * 8.0 Media Queries
  * ----------------------------------------------------------------------------
