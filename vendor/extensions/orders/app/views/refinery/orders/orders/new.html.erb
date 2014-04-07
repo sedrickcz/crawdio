@@ -15,19 +15,22 @@
 </aside>
 
 <div class="left_main tier_detail"  >
-<div class="tier_left_image">
+<div class="tier_left_image" style="/*width: 150px;height: 150px;background: #000;*/" >
       <%= image_tag @tier.image_1.url if @tier.image_1 %>
-    </div><h2><%= @tier.title %></h2>  
-    <h3><%= number_to_currency @tier.price %></h3> 
-
+</div>
+    <h2><%= @tier.title %></h2>  
+    <div class="pricediv"><h3 class="fle"><%= number_to_currency @tier.price %></h3><%= raw @tier.price_text %></div> 
+    <div class="cleaner"></div>
     <div>
       <%= raw @tier.long_description %> 
     </div>
-
-    <div class="tier_right_image">
+<div class="tier_image" style="/*width: 150px;height: 150px;background: #000;*/" >
       <%= image_tag @tier.image_2.url if @tier.image_2 %>
-    </div>
-
+</div>
+  <div class="tier_image" style="/*width: 150px;height: 150px;background: #000;*/" >
+      <%= image_tag @tier.image_3.url if @tier.image_3 %>
+</div>  
+<div class="cleaner"></div>
    
 </div>
 <div style="clear:left"></div>

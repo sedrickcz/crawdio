@@ -1785,8 +1785,11 @@ border-radius: 1px!important;}
 .tier_detail b, .tier_detail strong{color: #9b3024;}
 
 .left_main.tier_detail .tier_left_image {float: left;margin: 8px;}
+.left_main.tier_detail h2{clear:none;font-size: 35px;margin-bottom:5px}
+.left_main.tier_detail h3{color: #9b3024;font-size: 1.8em;clear:none;font-weight: normal;}
+.left_main.tier_detail h3.fle {padding: 0 8px 0 0;margin: 0;}
 
-.left_main.tier_detail h3{color: #000;font-size: 1.4em;}
+.left_main .pricediv  p {display: inline-block;color: #9b3024;font-size: 1.6em;clear:none;font-weight: normal;}
 #side_text {
 	clear:right;
 	float:right;
@@ -1794,7 +1797,11 @@ border-radius: 1px!important;}
 	width: 330px;
 	line-height:90%
 }
+.fle {float: left;}
+.fri {float: right;}
 
+.tier_image  {max-width: 95%;}
+.tier_image img {max-width: 100%;}
 #side_text p {margin: 0 0 10px;}
 #side_text h2 {color: #9b3024;font-size: 1.3em;}
 .order_form_tier .action {clear:left;} 
@@ -3076,8 +3083,8 @@ line-height: 40px;
 margin: 10px 0 ;
 }
 
-.c_1 h1 {font-size: 40px;}
-.c_3 h2 {color:#fff;}
+.c_1 h1 {font-size: 40px;line-height: 80%}
+.c_3 h2 {color:#fff;line-height: 80%}
 .c_3 h2 span{color: #d4aa45;}
 .c_1 p, .c_3 div {
 	font-size: 18px;font-family: 'IM Fell DW Pica', serif;	color: #fff;
@@ -3087,7 +3094,7 @@ margin: 10px 0 ;
 .c_2 a {
 	background: url('/assets/buttonek_big.png')  0 0 no-repeat;
 	text-align: center;
-	width: 472px; margin: 0 auto;
+	width: 472px; margin: 20px auto;
 	height: 106px;
 	padding-top: 25px;font-family: 'IM Fell DW Pica', serif;
 	display: block;
@@ -3105,7 +3112,7 @@ margin: 10px 0 ;
 }
 
 .paypal_and_others {
-	margin: 0 auto;display: block;
+	margin: 0 auto;display: none;
 }
 
 .percent_wrapper  span {position: absolute;
@@ -3121,7 +3128,7 @@ margin: 10px 0 ;
 	height: 33px;
 	position: relative;
 	border:1px solid   rgba(220,159,23,0.8);
-	background:  rgba(255,255,255,0.2);margin: 10px auto;
+	background:  rgba(255,255,255,0.2);margin: 20px auto;
 	-webkit-box-shadow: 0 0  15px #000;  /* Safari 3-4, iOS 4.0.2 - 4.2, Android 2.3+ */
   	-moz-box-shadow:    0 0  15px #000;  /* Firefox 3.5 - 3.6 */
   	box-shadow:         0 0  15px #000;  /* Opera 10.5, IE 9, Firefox 4+, Chrome 6+, iOS 5 */
