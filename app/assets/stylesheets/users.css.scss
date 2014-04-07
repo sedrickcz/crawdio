@@ -1195,7 +1195,9 @@ footer.entry-meta {
 }
 
 .user_edit_form .field {margin: 8px;}
-.user_edit_form .field label{width: 250px;}
+.user_edit_form .field label{width: 250px;
+display: block;
+float: left;}
 
 /**
  * 5.4 Galleries
