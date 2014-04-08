@@ -1,4 +1,5 @@
 class UsersController < ApplicationController
+  before_filter :check_if_authenticated!, only: [:show, :edit, :update, :destroy_order]
   def new
     @user = Refinery::User.new
   end
@@ -6,7 +7,7 @@ class UsersController < ApplicationController
   def create
     @user = Refinery::User.new(params[:user])
 
-    if @user.save 
+    if @user.save
       @user.add_role(:backer)
       @user.send_activation
       redirect_to refinery.root_path, notice: "Activation e-mail sent to #{@user.email}."
@@ -80,5 +81,25 @@ class UsersController < ApplicationController
       flash[:notice] = "Activation e-mail sent to #{@user.email}."
     end
     redirect_to refinery.root_path
+  end
+
+  def destroy_order
+    order = Refinery::Orders::Order.where(id: params[:order_id]).first
+    order.destroy if order
+
+    redirect_to :back, notice: "Order was successfully deleted"
+  end
+
+
+  def check_if_authenticated!
+
+    user = Refinery::User.find(params[:id])
+
+    if current_refinery_user
+      redirect_to main_app.edit_user_url(current_refinery_user.id) if user.id != current_refinery_user.id
+    else
+      redirect_to refinery.root_path
+    end
+
   end
 end

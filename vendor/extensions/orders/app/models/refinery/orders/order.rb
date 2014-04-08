@@ -23,25 +23,25 @@ module Refinery
         (number_to_currency(price, {:unit => "", :separator => ".", :delimiter => "", :format => "%n", :precision => 2}).to_f * 100).round
       end
 
-      def paypal_url(return_url, notify_url) 
-        values = { 
-        :business => 'paypal-facilitator@sedrick.cz',
-        :cmd => '_cart',
-        :upload => 1,
-        :notify_url => notify_url,
-        :return => return_url,
-        :invoice => id
+      def paypal_url(return_url, notify_url)
+        values = {
+          :business => 'paypal-facilitator@sedrick.cz',
+          :cmd => '_cart',
+          :upload => 1,
+          :notify_url => notify_url,
+          :return => return_url,
+          :invoice => id
         }
 
-        values.merge!({ 
-        "amount_1" => price,
-        "item_name_1" => tier_name,
-        "item_number_1" => tier_id,
-        "quantity_1" => '1'
+        values.merge!({
+                        "amount_1" => price,
+                        "item_name_1" => tier_name,
+                        "item_number_1" => tier_id,
+                        "quantity_1" => '1'
         })
 
         "https://www.sandbox.paypal.com/cgi-bin/webscr?" + values.to_query
-        end
+      end
 
 
       def prepare user
@@ -60,7 +60,7 @@ module Refinery
       end
 
       def self.default_pledgers
-         35384
+        35384
       end
 
       def self.default_pledged
@@ -73,6 +73,11 @@ module Refinery
 
       def self.pledged
         default_pledged + self.where(paid: true).sum('price')
+      end
+
+      def self.progress
+        project = Refinery::Projects::Project.find(1)
+        pledged/(project.goal/100).to_i
       end
     end
   end

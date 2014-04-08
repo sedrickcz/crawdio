@@ -4,6 +4,7 @@ Craudio::Application.routes.draw do
     post 'log_in', on: :collection
     get 'activate/:token', to: "users#activate", on: :collection, as: :activation_link
     get 'resend', to: "users#resend_activation", on: :member, as: :resend_activation
+    get 'order/:order_id/destroy', to: 'users#destroy_order', on: :member, as: :destroy_order
   end
 
   # api routes

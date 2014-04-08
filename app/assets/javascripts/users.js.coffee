@@ -9,7 +9,15 @@ $ ->
     else
       $('#states_us').val("")
       $('#states_us').hide()
-
+      
   $("body").animate
     scrollTop: 1000
   , "fast"
+
+  if $('#user_country').val() is 'US'
+    $('#states_us').show()
+  else
+    $('#states_us').val("")
+    $('#states_us').hide()
+
+ 

@@ -29,7 +29,7 @@ module Refinery
         @order.prepare(current_refinery_user)
 
         if @order.save
-          flash[:notice] = "Thank you for your support. We sent you confirmation e-mail."
+          # flash[:notice] = "Thank you for your support. We sent you confirmation e-mail."
           redirect_to @order.paypal_url(refinery.root_url, refinery.process_order_orders_orders_url)
         else
           @tier = @order.tier
@@ -59,11 +59,15 @@ module Refinery
               @order.user.user_pledges.create tier_id: @order.tier_id
             end
             @order.save
+            flash[:notice] = "Thank you for your support. We sent you confirmation e-mail."
+          else
+            flash[:notice] = "Your order wasn't processed! "
           end
         end
         render json: {success: true}
       end
 
+      
 
       protected
 

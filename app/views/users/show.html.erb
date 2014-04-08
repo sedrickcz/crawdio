@@ -38,8 +38,9 @@
       <th>Name</th>
       <th>Address</th>
       <th>Date</th>
+      <td></td>
     </tr>
-    <% @user.orders.where(paid: false).order("created_at DESC").each do |order| %>
+    <% @user.orders.where("paid = ? or paid IS NULL", false).order("created_at DESC").each do |order| %>
     <tr>
       <td><%= image_tag(order.tier.image_1.url,size: "64x64") if order.tier.image_1 %></td>
       <td><%= order.tier.title %></td>
@@ -48,6 +49,7 @@
       <td><%= order.name %></td>
       <td><%= "#{order.street}, #{order.city}, #{order.country}" if order.street %></td>
       <td><%= l order.created_at, format: :long %></td>
+      <td><%= link_to "X Delete", main_app.destroy_order_user_path(@user.id, order.id), method: :get, data: { confirm: 'Are you sure?' } %></td>
     </tr>
     <% end -%>
   </table>
