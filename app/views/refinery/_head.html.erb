@@ -2,11 +2,11 @@
 <!--[if IE]><meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" /><![endif]-->
 <title><%= browser_title(yield(:title)) %></title>
 <%= raw %(<meta name="description" content="#{@meta.meta_description}" />) if @meta.meta_description.present? -%>
-<%= raw %(<link rel="canonical" content="#{@canonical}" />) if @canonical.present? -%>
+<%= raw %(<link rel="canonical" href="#{@canonical}" >) if @canonical.present? -%>
 <%= csrf_meta_tags if Refinery::Core.authenticity_token_on_frontend -%>
 <%= yield :meta %>
-<link href='http://fonts.googleapis.com/css?family=IM+Fell+DW+Pica|IM+Fell+DW+Pica+SC' rel='stylesheet' type='text/css'>
+<link href='http://fonts.googleapis.com/css?family=IM+Fell+DW+Pica%7CIM+Fell+DW+Pica+SC' rel='stylesheet' type='text/css'>
 <%= stylesheet_link_tag "application" %>
-<%= yield :stylesheets %>
+
 <%= render '/refinery/google_analytics' %>
 <%= javascript_include_tag 'modernizr-min' %>

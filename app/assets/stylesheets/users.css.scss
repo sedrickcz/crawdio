@@ -3596,7 +3596,7 @@ height: 8000px;
 width: 100%;
 position: absolute;}
 #post-shop {display: block;
-/*overflow: hidden;*/
+
 position: relative;}
 
  html .mceContentBody {min-width: 100%;}
@@ -4312,7 +4312,7 @@ margin-left: -673px;
 z-index: 998;
 }
 
-#reply-control {box-shadow: 0 -5px 5px rgba(70,70,70,0.8);box-shadow:inner 0 -5px 5px rgba(70,70,70,0.8);}
+#reply-control {box-shadow: 0 -5px 5px rgba(70,70,70,0.8);box-shadow:inset 0 -5px 5px rgba(70,70,70,0.8);}
 
 header {margin: 0;}
 
@@ -4533,7 +4533,7 @@ height: auto;
 #share-link {position:fixed;left: 50%!important;top:50%!important;}
 
 
-.modal-inner-container {background: #fff url('http://kingdomcomerpg.com/wp-content/themes/twentythirteendeliverance/images/de_paper_2_posts.jpg') repeat-x  -30px -30px;box-shadow: 0 0px 10px inner rgba(0,0,0,0.5);}
+.modal-inner-container {background: #fff url('http://kingdomcomerpg.com/wp-content/themes/twentythirteendeliverance/images/de_paper_2_posts.jpg') repeat-x  -30px -30px;box-shadow: 0 0px 10px inset rgba(0,0,0,0.5);}
 .modal-inner-container h3 {text-align: center;font-size: 200%;}
 .modal-inner-container  .login-form input , body input[type="text"], body input[type="password"]{padding: 5px;height: auto;	-webkit-border-radius: 5px;
 	-moz-border-radius: 5px;
@@ -4548,17 +4548,7 @@ height: auto;
 	.left_main p, .inside_paper p,.inside_paper li  {font-size: 19px;}
 /**
  * 8.0 Media Queries
- * ----------------------------------------------------------------------------
-  * ----------------------------------------------------------------------------
-   * ----------------------------------------------------------------------------
-    * ----------------------------------------------------------------------------
-     * ----------------------------------------------------------------------------
-      * ----------------------------------------------------------------------------
-       * ----------------------------------------------------------------------------
-        * ----------------------------------------------------------------------------
-         * ----------------------------------------------------------------------------
-          * ----------------------------------------------------------------------------
-           * ----------------------------------------------------------------------------
+----------------------------------------------------------------------------
  */
 
 @media all and (max-width: 1599px) {
@@ -4847,7 +4837,7 @@ z-index: 50;
 overflow:hidden;
 position: relative;
 display: inline-block;
-box-sizing-: border-box;
+box-sizing: border-box;
 -ms-filter: "alpha(Opacity=0)";
 opacity:0;
 top: 0;
