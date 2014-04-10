@@ -140,5 +140,7 @@
       <div class="cleaner"></div> 
   <% end -%>
    <% else -%>
-   <h1>To purchase tier you must <a href="/user/new ">register od sign in.</h1>
+   <div class="action">
+      <%= link_to "Back this project", main_app.new_user_path %>
+    </div>
 <% end -%></div>

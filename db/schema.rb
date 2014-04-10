@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20140406225245) do
+ActiveRecord::Schema.define(:version => 20140410202317) do
 
   create_table "refinery_images", :force => true do |t|
     t.string   "image_mime_type"
@@ -134,6 +134,7 @@ ActiveRecord::Schema.define(:version => 20140406225245) do
     t.integer  "position"
     t.datetime "created_at",        :null => false
     t.datetime "updated_at",        :null => false
+    t.text     "goal_text"
   end
 
   create_table "refinery_resources", :force => true do |t|

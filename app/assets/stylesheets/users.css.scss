@@ -1731,6 +1731,27 @@ border: 1px solid #E9CB83;}
 	color: #000;
 }
 
+.action a{	
+	background: url('/assets/buttonek_big.png')  0 0 no-repeat;
+	text-align: center;border-width:0;
+	width: 472px; margin: 20px auto;
+	height: 106px;
+	padding-top: 10px;font-family: 'IM Fell DW Pica', serif;
+	display: block;
+	-webkit-box-sizing: border-box; /* Safari/Chrome, other WebKit */
+	-moz-box-sizing: border-box;    /* Firefox, other Gecko */
+	box-sizing: border-box;         /* Opera/IE 8+ */
+	font-size: 35px;
+	line-height: 80px;
+	text-decoration: none;
+	color: #000;
+}
+
+.action a:hover {
+	color: #973023;
+	text-decoration: none;
+}
+
 	body#terms-conditions-page {font-family: 'IM Fell DW Pica', serif;}
 body#faq-page {font-family: 'IM Fell DW Pica', serif;}
 	.order_form_tier.becker  div input[type=submit]{	
