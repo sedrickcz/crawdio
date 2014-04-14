@@ -8,7 +8,7 @@
 
     <h2>Here is your activity overview:</h2>
 
-    <table style="width:100%;">
+    <table style="width:100%;border: 1px;">
       <tr>
         <th></th>
         <th>Tier</th>
@@ -31,22 +31,22 @@
           <th>Sword legal?</th>
         <% end %>
       </tr>
-      <tr>
-        <td><%= image_tag(@order.tier.image_1.url,size: "64x64") if @order.tier.image_1 %></td>
-        <td><%= @order.tier.title %></td>
-        <td><%= number_to_currency(@order.price) %></td>
-        <td><%= @order.email %></td>
-        <td><%= @order.name %></td>
+      <tr style="text-align: center;">
+        <td style="text-align: center;"><%= image_tag(@order.tier.image_1.url,size: "64x64") if @order.tier.image_1 %></td>
+        <td style="text-align: center;"><%= @order.tier.title %></td>
+        <td style="text-align: center;"><%= number_to_currency(@order.price) %></td>
+        <td style="text-align: center;"><%= @order.email %></td>
+        <td style="text-align: center;"><%= @order.name %></td>
         <% if @order.tier.physical %>
-          <td><%= "#{@order.street}, #{@order.city}, #{@order.country}" if @order.street %></td>
+          <td style="text-align: center;"><%= "#{@order.street}, #{@order.city}, #{@order.country}" if @order.street %></td>
         <% end %>
-        <td><%= @order.platform_1 if @order.platform_1 %></td>
-        <td><%= @order.tshirt if @order.tshirt %></td>
-        <td><%= @order.ingame_name if @order.ingame_name %></td>
-        <td><%= @order.sword_legal if @order.sword_legal %></td>
+        <td style="text-align: center;"><%= @order.platform_1 if @order.platform_1 %></td>
+        <td style="text-align: center;"><%= @order.tshirt if @order.tshirt %></td>
+        <td style="text-align: center;"><%= @order.ingame_name if @order.ingame_name %></td>
+        <td style="text-align: center;"><%= @order.sword_legal if @order.sword_legal %></td>
       </tr>
     </table>
 
-    <h2>To verifiy or change your pledge in the future, please login to your account at <a href="http://kingodmcomerpg.com">www.KingdomComeRPG.com</a>></h2>
+    <h2>To verifiy or change your pledge in the future, please login to your account at <a href="http://kingodmcomerpg.com">www.KingdomComeRPG.com</a></h2>
   </body>
 </html>
