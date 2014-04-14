@@ -25,7 +25,8 @@ module Refinery
 
       def paypal_url(return_url, notify_url)
         values = {
-          :business => 'martin.klima@warhorsestudios.cz',
+          # :business => 'martin.klima@warhorsestudios.cz',
+          :business => 'paypal-facilitator@sedrick.cz',
           :cmd => '_cart',
           :upload => 1,
           :notify_url => notify_url,
@@ -40,7 +41,8 @@ module Refinery
                         "quantity_1" => '1'
         })
 
-        "https://www.paypal.com/cgi-bin/webscr?" + values.to_query
+        # "https://www.paypal.com/cgi-bin/webscr?" + values.to_query
+        "https://www.sandbox.paypal.com/cgi-bin/webscr?" + values.to_query
       end
 
 

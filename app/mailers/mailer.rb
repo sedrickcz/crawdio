@@ -1,5 +1,5 @@
 class Mailer < ActionMailer::Base
-  default from: "warhorse@sedrick.cz"
+  default from: "shop@kingdomcomerpg.com"
 
 
   def activation_email user

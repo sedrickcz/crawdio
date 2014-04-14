@@ -93,14 +93,14 @@
     <% if @tier.platform_1 %>
       <div class="field">
         <%= f.label :platform_1 %>
-        <%= f.select :platform_1, options_for_select(['PC','MAC','LINUX','XONE','PS4'], @order.platform_1)-%>
+        <%= f.select :platform_1, options_for_select(['PC','Mac','Linux','XOne','PS4'], @order.platform_1)-%>
       </div>
     <% end -%>
 
     <% if @tier.platform_2 %>
       <div class="field">
         <%= f.label :platform_2 %>
-        <%= f.select :platform_2, options_for_select(['PC','MAC','LINUX','XONE','PS4'], @order.platform_2)-%>
+        <%= f.select :platform_2, options_for_select(['PC','Max','Linux','XOne','PS4'], @order.platform_2)-%>
       </div>
     <% end -%>
 

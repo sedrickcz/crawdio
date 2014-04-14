@@ -1,12 +1,12 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Thank you for your support</title>
+    <title>Support confirmation</title>
   </head>
   <body>
     <h1>Thank you for your support</h1>
 
-    <h2>Here is your order overview:</h2>
+    <h2>Here is your activity overview:</h2>
 
     <table style="width:100%;">
       <tr>
@@ -15,12 +15,11 @@
         <th>Price</th>
         <th>E-mail</th>
         <th>Name</th>
-        <th>Address</th>
-        <% if @order.platform_1 %>
-          <th>Platform first</th>
+        <% if @order.tier.physical %>
+          <th>Address</th>
         <% end %>
         <% if @order.platform_1 %>
-          <th>Platform second</th>
+          <th>Platform first</th>
         <% end %>
         <% if @order.tshirt %>
           <th>T-shirt</th>
@@ -31,7 +30,6 @@
         <% if @order.sword_legal %>
           <th>Sword legal?</th>
         <% end %>
-        <th>Date</th>
       </tr>
       <tr>
         <td><%= image_tag(@order.tier.image_1.url,size: "64x64") if @order.tier.image_1 %></td>
@@ -39,14 +37,16 @@
         <td><%= number_to_currency(@order.price) %></td>
         <td><%= @order.email %></td>
         <td><%= @order.name %></td>
-        <td><%= "#{@order.street}, #{@order.city}, #{@order.country}" if @order.street %></td>
+        <% if @order.tier.physical %>
+          <td><%= "#{@order.street}, #{@order.city}, #{@order.country}" if @order.street %></td>
+        <% end %>
         <td><%= @order.platform_1 if @order.platform_1 %></td>
-        <td><%= @order.platform_2 if @order.platform_2 %></td>
         <td><%= @order.tshirt if @order.tshirt %></td>
         <td><%= @order.ingame_name if @order.ingame_name %></td>
         <td><%= @order.sword_legal if @order.sword_legal %></td>
-        <td><%= l @order.created_at, format: :long %></td>
       </tr>
     </table>
+
+    <h2>To verifiy or change your pledge in the future, please login to your account at <a href="http://kingodmcomerpg.com">www.KingdomComeRPG.com</a>></h2>
   </body>
 </html>
