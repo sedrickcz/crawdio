@@ -3,12 +3,13 @@
           <div class="border_shadow_left"></div>
                     <div class="registera">
                   <% if current_refinery_user%>
-                    E-mail: <%= current_refinery_user.email %>
+                    <span class="pl15">E-mail: <%= current_refinery_user.email %></span>
                     
-                    <%= link_to t('user.sign_out'), refinery.logout_path %>
+                    
+                    <span class="pl15"><%= link_to t('user.sign_out'), refinery.logout_path %></span>
                     <% if tier = current_refinery_user.highest_tier %>
-                      <%= image_tag(tier.image_1.url,size: "64x64") if tier.image_1 %>
-                      <%= tier.title %>
+                     <span class="pl15"><%= image_tag(tier.image_1.url,size: "64x64") if tier.image_1 %></span>
+                     <span class="pl15"><%= tier.title %></span>
                     <% end -%>
                   <% else %>
                     <div id='login_form'>
