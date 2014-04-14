@@ -2962,6 +2962,24 @@ width:100%;height:auto;
 
 }*/
 
+#site_bar, #site_bar * {
+color: white;
+font-family: Arial;
+font-size: 14px;
+font-weight: normal;
+}
+#site_bar_content {width: 1200px;margin: 0 auto;}
+#site_bar_refinery_cms_logo {display: none;}
+#site_bar_content a {float: left;padding: 0 15px 0 0 ;line-height: 47px;}
+#site_bar_branding, #site_bar_branding span, #site_bar_branding span a{line-height: 47px;float: left;display: inline-block;padding: 0 15px 0 0 ;}
+#site_bar_branding span a,
+#site_bar_content a  {font-weight: bold;text-decoration: underline;}
+#site_bar {
+height: 47px;
+background: #22a7f2;
+padding: 0px;
+}
+
 
 /*------------------------------------- Special -----------------------------------------------*/ 
 /*---------------------------------------------------------------------------------------------*/
@@ -2989,11 +3007,13 @@ z-index: 997;
 }
 .c_3 {
 	width: 28%;
-	
-
-
 
 }
+
+
+
+
+
 
 .c_1 h1,.c_3 h2 {
 font-size: 33px;	
