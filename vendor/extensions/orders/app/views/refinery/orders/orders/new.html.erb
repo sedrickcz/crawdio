@@ -174,9 +174,11 @@
       <%= link_to "Back this project", main_app.new_user_path(tier: params[:tier]) %>
     </div>
 <% end -%></div>
+<% if current_refinery_user %>
 <script src="http://code.jquery.com/jquery-1.10.1.min.js"></script>
 <script type="text/javascript">
 $(document).ready(function(){
+  
     $('#order_upgrade').bind('change', function() {
       console.log('value', $(this).is(':checked'));
       if($(this).is(':checked')){
@@ -186,6 +188,7 @@ $(document).ready(function(){
       }
       
     });
+
 
 });
 
@@ -200,3 +203,4 @@ $(document).ready(function(){
     
   });
 </script>
+<% end %>
