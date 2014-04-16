@@ -89,14 +89,14 @@
 				<div class="percent_wrapper">
 
 					<div class="percents" style="width:<%=  Refinery::Orders::Order.progress %>%"></div>
-					<div class="inner_p" style="width:<%=  Refinery::Orders::Order.progress %>%"></div><span>Pledged:<%= number_to_currency Refinery::Orders::Order.pledged %></span> 
+					<div class="inner_p" style="width:<%=  Refinery::Orders::Order.progress %>%"></div><span>Pledged:<%= number_to_currency Refinery::Orders::Order.pledged, precision: 0 %></span> 
 				</div>
 		</div>	
 		
 		<div class="c_3">
 			<h2>Backers: <span><%= Refinery::Orders::Order.pledgers %></span></h2>
-			<h2>Pledged: <span><%= number_to_currency Refinery::Orders::Order.pledged %></span></h2> 
-			<h2>Goal: <span><%= number_to_currency @main_project.goal %></span></h2> 
+			<h2>Pledged: <span><%= number_to_currency Refinery::Orders::Order.pledged, precision: 0  %></span></h2> 
+			<h2>Goal: <span><%= number_to_currency @main_project.goal, precision: 0  %></span></h2> 
 			
 
 			<div class="sean"><%= raw @main_project.goal_text %></div>

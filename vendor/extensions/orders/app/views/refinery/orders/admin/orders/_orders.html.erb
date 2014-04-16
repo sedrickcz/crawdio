@@ -1,2 +1,4 @@
 <%= will_paginate @orders if Refinery::Orders::Admin::OrdersController.pageable? %>
+<%= link_to 'Excel Export', "/refinery/orders.xls" %> | 
+<%= link_to 'Create new Order', refinery.new_orders_admin_order_path%>
 <%= render 'sortable_list' %>

@@ -49,3 +49,5 @@ gem 'refinerycms-orders', :path => 'vendor/extensions'
 gem 'refinerycms-user_histories', :path => 'vendor/extensions'
 
 gem 'carmen-rails', '~> 1.0.0'
+
+gem 'to_xls-rails'
