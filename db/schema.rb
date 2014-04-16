@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20140410202317) do
+ActiveRecord::Schema.define(:version => 20140416091841) do
 
   create_table "refinery_images", :force => true do |t|
     t.string   "image_mime_type"
@@ -51,6 +51,7 @@ ActiveRecord::Schema.define(:version => 20140410202317) do
     t.boolean  "sword_legal",    :default => false
     t.boolean  "agree",          :default => false
     t.string   "state_code"
+    t.string   "zip"
   end
 
   create_table "refinery_page_part_translations", :force => true do |t|
@@ -225,6 +226,7 @@ ActiveRecord::Schema.define(:version => 20140410202317) do
     t.string   "activation_token"
     t.integer  "age",                    :default => 0
     t.string   "state_code"
+    t.string   "zip"
   end
 
   add_index "refinery_users", ["id"], :name => "index_refinery_users_on_id"

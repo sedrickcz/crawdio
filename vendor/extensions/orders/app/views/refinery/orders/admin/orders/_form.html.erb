@@ -64,6 +64,11 @@
   </div>
 
   <div class='field'>
+    <%= f.label :zip -%>
+    <%= f.text_field :zip -%>
+  </div>
+
+  <div class='field'>
     <%= f.label :country -%>
     <%= f.text_field :country -%>
   </div>
@@ -80,12 +85,12 @@
 
   <div class='field'>
     <%= f.label :platform_1 -%>
-    <%= f.select :platform_1, options_for_select(['PC','XBOX','PS4'], @order.platform_1)-%>
+    <%= f.select :platform_1, options_for_select(['PC','Mac','Linux'], @order.platform_1)-%>
   </div>
 
   <div class='field'>
     <%= f.label :platform_2 -%>
-    <%= f.select :platform_2, options_for_select(['PC','XBOX','PS4'], @order.platform_2)-%>
+    <%= f.select :platform_2, options_for_select(['PC','Mac','Linux'], @order.platform_2)-%>
   </div>
 
   <div class='field'>

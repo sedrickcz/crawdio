@@ -16,7 +16,11 @@ en:
     already_have: "You already have this tier or have higher tier. You can buy this tier for full price."
   mailer:
     activation_email:
-      subject: 'Activation e-mail to Kingdom Deliverance Shop'
+      subject: 'Activation e-mail to Kingdom Deliverance Pledge'
     confirmation_email:
       subject: 'Support confirmation'
   forgot_password: 'Forgot password?'
+  activerecord:
+    attributes:
+      'refinery/user':
+        name: Full Name

@@ -33,7 +33,7 @@ en:
         payment_id: Payment
         email: Email
         tier_name: Tier Name
-        name: Name
+        name: Full Name
         street: Street
         city: City
         country: Country

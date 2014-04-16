@@ -4,7 +4,7 @@ module Refinery
       self.table_name = 'refinery_orders'
       include ActionView::Helpers::NumberHelper
 
-      attr_accessible :user_id, :state_code, :tier_id, :price, :paid, :paid_at, :pay_type, :payment_id, :email, :tier_name, :name, :street, :city, :country, :position, :upgrade, :payment_status, :cart_id, :transaction_id, :platform_1, :platform_2, :tshirt, :ingame_name, :sword_legal, :agree
+      attr_accessible :user_id, :state_code, :tier_id, :price, :paid, :paid_at, :pay_type, :payment_id, :email, :tier_name, :name, :street, :city, :zip, :country, :position, :upgrade, :payment_status, :cart_id, :transaction_id, :platform_1, :platform_2, :tshirt, :ingame_name, :sword_legal, :agree
 
       attr_accessor :upgrade
 
@@ -12,7 +12,7 @@ module Refinery
       belongs_to :tier, class_name: '::Refinery::Tiers::Tier'
 
       validates :email, :agree, presence: true
-      validates :name, :street, :city, :country, presence: true, :if => :is_physical?
+      validates :name, :street, :city, :country, :zip, presence: true, :if => :is_physical?
 
 
       def is_physical?

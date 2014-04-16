@@ -23,13 +23,13 @@
     </div>
   
     <div class="field">
-      <%= f.label :name %>
-      <%= f.text_field :name %>
-    </div>
-  
-    <div class="field">
       <%= f.label :age %>
       <%= f.select :age, 18..99 %>
+    </div>
+
+    <div class="field">
+      <%= f.label :name %>
+      <%= f.text_field :name %>
     </div>
   
     <div class="field">
@@ -41,6 +41,13 @@
       <%= f.label :city %>
       <%= f.text_field :city %>
     </div>
+
+    <div class="field">
+      <%= f.label :zip %>
+      <%= f.text_field :zip %>
+    </div>
+
+    <%= hidden_field_tag :tier, params[:tier] %>
   
     <div class="field">
       <%= f.label :country %>
@@ -54,6 +61,10 @@
     </div>
   
     <div class="field">
-      <%= f.submit "Register" %>
+      <% unless @user.id.present? %>
+        <%= f.submit "Register" %>
+      <% else %>
+        <%= f.submit "Update" %>
+      <% end %>
     </div>
   <% end -%></div>

@@ -10,8 +10,8 @@ jQuery ->
       $('#states_us').hide()
 
 
-  if $('#order_country').val() is 'US'
-    $('#states_us').show()
-  else
-    $('#states_us').val("")
-    $('#states_us').hide()
+  # if $('#order_country').val() is 'US'
+  #   $('#states_us').show()
+  # else
+  #   $('#states_us').val("")
+  #   $('#states_us').hide()

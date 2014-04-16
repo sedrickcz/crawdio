@@ -36,6 +36,8 @@ public/themes/*
 public/javascripts/cache
 public/stylesheets/cache
 public/refinery/*
+public/assets/*
+public/system/*
 
 # Vendor Cache
 vendor/cache
@@ -94,4 +96,6 @@ capybara-*html
 vendor/extensions/**/spec/dummy
 
 *.sublime-workspace
+
+
 

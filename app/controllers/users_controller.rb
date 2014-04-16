@@ -10,6 +10,8 @@ class UsersController < ApplicationController
     if @user.save
       @user.add_role(:backer)
       @user.send_activation
+      session[:return_after_activation] = params[:tier]
+
       redirect_to refinery.root_path, notice: "Activation e-mail sent to #{@user.email}."
     else
       render :new
@@ -71,7 +73,12 @@ class UsersController < ApplicationController
     else
       flash[:error] = "Invalid token or user not exists!"
     end
-    redirect_to refinery.root_path
+
+    if session[:return_after_activation].present?
+      redirect_to refinery.new_orders_order_path(tier: session[:return_after_activation])
+    else
+      redirect_to refinery.root_path
+    end
   end
 
   def resend_activation

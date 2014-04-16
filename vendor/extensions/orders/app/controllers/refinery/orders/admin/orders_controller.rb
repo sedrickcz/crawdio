@@ -5,7 +5,8 @@ module Refinery
 
         crudify :'refinery/orders/order',
                 :title_attribute => 'pay_type',
-                :xhr_paging => true
+                :xhr_paging => true,
+                :order => "created_at DESC"
 
         def show
           @order = Order.find(params[:id])
