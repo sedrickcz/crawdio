@@ -57,7 +57,15 @@ select,
 textarea {
 	font-family: 'IM Fell DW Pica ', serif;
 }
+.inside_paper select {
+-webkit-border-radius: 4px;
+	-moz-border-radius: 4px;
+	border-radius: 4px;
+	background: #fff;
 
+}
+
+#order_email {margin: 0 10px 0 0;}
 
 body {
 	color: #141412;
@@ -538,19 +546,22 @@ hr {
 /* Form fields, general styles first. */
 button,
 input,
-textarea {
+textarea,
+select {
 	border: 2px solid #d4d0ba;
 	font-family: 'IM Fell DW Pica SC', serif;
 	padding: 5px;
 }
 
 input,
-textarea {
+textarea,
+select {
 	color: #141412;
 }
 
 input:focus,
-textarea:focus {
+textarea:focus,
+select:focus {
 	border: 2px solid #c3c0ab;
 	outline: 0;
 }
@@ -559,7 +570,8 @@ textarea:focus {
 button,
 input[type="submit"],
 input[type="button"],
-input[type="reset"] {
+input[type="reset"],
+ {
 	background: #e05d22; /* Old browsers */
 	background: -webkit-linear-gradient(top, #e05d22 0%, #d94412 100%); /* Chrome 10+, Safari 5.1+ */
 	background:   linear-gradient(to bottom, #e05d22 0%, #d94412 100%); /* W3C */
@@ -1661,7 +1673,7 @@ position: absolute;
 .order_form_tier  #sword,.order_form_tier  #agree {clear:left;width: 450px;}
 .order_form_tier  #sword label,.order_form_tier  #agree  label{width: 445px;}
 
-.order_form_tier input {
+.order_form_tier input, select{
 	-webkit-border-radius: 1px!important;
 -moz-border-radius: 1px!important;
 border-radius: 1px!important;}
@@ -4461,7 +4473,7 @@ height: auto;
 
 .modal-inner-container {background: #fff url('http://kingdomcomerpg.com/wp-content/themes/twentythirteendeliverance/images/de_paper_2_posts.jpg') repeat-x  -30px -30px;box-shadow: 0 0px 10px inset rgba(0,0,0,0.5);}
 .modal-inner-container h3 {text-align: center;font-size: 200%;}
-.modal-inner-container  .login-form input , body input[type="text"], body input[type="password"]{padding: 5px;height: auto;	-webkit-border-radius: 5px;
+.modal-inner-container  .login-form input ,select , body input[type="text"], body input[type="password"]{padding: 5px;height: auto;	-webkit-border-radius: 5px;
 	-moz-border-radius: 5px;
 	border-radius: 5px;}
 
