@@ -96,7 +96,7 @@
 		<div class="c_3">
 			<h2>Backers: <span><%= Refinery::Orders::Order.pledgers %></span></h2>
 			<h2>Pledged: <span><%= number_to_currency Refinery::Orders::Order.pledged, precision: 0  %></span></h2> 
-			<h2>Goal: <span><%= number_to_currency @main_project.goal, precision: 0  %></span></h2> 
+			<h2>Next Goal: <span><%= number_to_currency @main_project.goal, precision: 0  %></span></h2> 
 			
 
 			<div class="sean"><%= raw @main_project.goal_text %></div>

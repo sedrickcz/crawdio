@@ -9,7 +9,7 @@
                     <span class="pl15"><%= link_to t('user.sign_out'), refinery.logout_path %></span>
                     <% if tier = current_refinery_user.highest_tier %>
                      <span class="pl15"><%= image_tag(tier.image_1.url,size: "64x64") if tier.image_1 %></span>
-                     <span class="pl15"><%= tier.title %>
+                     <span class="pl15"><%= tier.title %></span>
                     <% end -%>
                   <% else %>
                     <div id='login_form'>
