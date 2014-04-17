@@ -23,15 +23,16 @@
                         <%= label_tag :password %>
                         <%= password_field_tag :password, nil,:autocomplete => 'off', :class => 'larger widest' %>
                       </div>
-                      <div class='clearfix'>
+                     
+                      <%= submit_tag t('user.login')%>
+                    <% end -%>
+                    </div>
+                    <div class="register" style="float:right">
+                       <div class='clearfix'>
                         <div class='field forgot_password'>
                           <%= link_to t('forgot_password'), refinery.new_refinery_user_password_path %>
                         </div>
                       </div>
-                      <%= submit_tag t('user.login')%>
-                    <% end -%>
-                    </div>
-                    <div class="register">
                       <%=  link_to t('user.registration'), main_app.new_user_path %>
                     </div>
                 <% end -%>
