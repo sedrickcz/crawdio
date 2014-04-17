@@ -49,11 +49,12 @@
     <% if current_refinery_user.highest_tier and current_refinery_user.highest_tier.position < @tier.position %>
       <div>
         <%= f.label :upgrade %><br/> 
-        <%= f.check_box :upgrade, value: 1, checked: true%> <%= t('order.upgrade', price: number_to_currency(@tier.price - current_refinery_user.highest_tier.price) ) %><br/> 
+        <%= f.check_box :upgrade, value: 1, checked: true%> 
+        <div class="upgrade_text"><%= t('order.upgrade', price: number_to_currency(@tier.price - current_refinery_user.highest_tier.price) ) %></div>
         
       </div>
     <% elsif current_refinery_user.highest_tier and current_refinery_user.highest_tier.position >= @tier.position %>
-      <%= t('order.already_have') %>
+     <div class="upgrade_text"><%= t('order.already_have') %></div>
     <% end -%>
 
     <div class="field">
