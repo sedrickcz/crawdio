@@ -48,15 +48,20 @@
     <!-- Update pledge to higher one -->
     <% if current_refinery_user.highest_tier and current_refinery_user.highest_tier.position < @tier.position %>
       <div>
-        <%= f.label :upgrade %><br/> 
-        <%= f.check_box :upgrade, value: 1, checked: true%> 
-        <div class="upgrade_text"><%= t('order.upgrade', price: number_to_currency(@tier.price - current_refinery_user.highest_tier.price) ) %></div>
+         <div class="upgrade_text">
+          <%= t('order.upgrade', price: number_to_currency(@tier.price - current_refinery_user.highest_tier.price) ) %>
+        </div>
         
+          <%= f.label :upgrade %> 
+          <%= f.check_box :upgrade, value: 1, checked: true%> 
       </div>
     <% elsif current_refinery_user.highest_tier and current_refinery_user.highest_tier.position >= @tier.position %>
-     <div class="upgrade_text"><%= t('order.already_have') %></div>
+    <div>
+        <div class="upgrade_text">
+          <%= t('order.already_have') %>
+        </div>
+    </div>
     <% end -%>
-
     <div class="field">
       <%= f.label :tier_id %>
       <%= f.select :tier_id, options_for_select(::Refinery::Tiers::Tier.order(:position).collect{|t| ["#{t.title} (#{number_to_currency(t.price)})", t.id]}, @tier.id) %>
