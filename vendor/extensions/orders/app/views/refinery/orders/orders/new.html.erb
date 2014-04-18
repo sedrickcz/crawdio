@@ -61,7 +61,7 @@
           <%= t('order.already_have') %>
         </div>
     </div>
-    <% end -%>
+    <% end -%> <div class="cleaner"></div>
     <div class="field">
       <%= f.label :tier_id %>
       <%= f.select :tier_id, options_for_select(::Refinery::Tiers::Tier.order(:position).collect{|t| ["#{t.title} (#{number_to_currency(t.price)})", t.id]}, @tier.id) %>
