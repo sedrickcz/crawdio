@@ -61,7 +61,7 @@
           <%= t('order.already_have') %>
         </div>
     </div>
-    <% end -%> <div class="cleaner"></div>
+    <% end -%>
     <div class="field">
       <%= f.label :tier_id %>
       <%= f.select :tier_id, options_for_select(::Refinery::Tiers::Tier.order(:position).collect{|t| ["#{t.title} (#{number_to_currency(t.price)})", t.id]}, @tier.id) %>
@@ -179,9 +179,8 @@
 $(document).ready(function(){
   
     $('#order_upgrade').bind('change', function() {
-      console.log('value', $(this).is(':checked'));
       if($(this).is(':checked')){
-        $('#total_price').html("Total Price: <%= number_to_currency(@tier.price - current_refinery_user.highest_tier.price) %>");
+        $('#total_price').html("Total Price: <%= number_to_currency(@tier.price - (current_refinery_user.highest_tier.price rescue 0 )) %>");
       }else{
         $('#total_price').html("Total Price: <%= number_to_currency(@tier.price ) %>");
       }
