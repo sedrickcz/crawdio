@@ -24,6 +24,11 @@
   </div>
 
   <div class='field'>
+    <%= f.label :kickstarter -%>
+    <%= f.check_box :kickstarter, :checked => @tier[:kickstarter] -%>
+  </div>
+
+  <div class='field'>
     <%= render '/refinery/admin/wysiwyg',
                 :f => f,
                 :fields => [:short_description, :long_description, :side_text, :price_text],

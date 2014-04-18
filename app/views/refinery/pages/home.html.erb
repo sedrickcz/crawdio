@@ -23,7 +23,7 @@
 
 <h2 id="tier">TIERS &amp; REWARDS</h2>
 <section id="tiers">
-  <% @main_project.tiers.order(:position).each do |tier| %>
+  <% @main_project.tiers.where(kickstarter: false).order(:position).each do |tier| %>
     <div class="tier">
       <div class="tier_left_image">
           <%= image_tag tier.image_1.url if tier.image_1 %>
