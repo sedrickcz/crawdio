@@ -11,7 +11,7 @@ class Api::V1::ProjectsController < Api::V1::ApplicationController
     if project
       render json: project, serializer: ProjectSerializer, status: 200
     else
-      render json: {error: "Project not exists!"}, status: 401
+      render json: {error: "Project does ßnot exist!"}, status: 401
     end
   end
 end

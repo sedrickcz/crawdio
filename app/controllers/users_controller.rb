@@ -59,7 +59,7 @@ class UsersController < ApplicationController
         flash[:error] = "#{@user.username} is not activated yet! <a href='#{resend_activation_user_url(@user.id)}'>Send it again!</a>"
       end
     else
-      flash[:error] = "User with login #{params[:login]} not exists!"
+      flash[:error] = "User with login #{params[:login]} does not exists!"
     end
     redirect_to refinery.root_path
   end
@@ -71,7 +71,7 @@ class UsersController < ApplicationController
       sign_in(@user)
       flash[:notice] = "#{@user.username} (#{@user.id}) was successfully activated."
     else
-      flash[:error] = "Invalid token or user not exists!"
+      flash[:error] = "Invalid token or user does not exist!"
     end
 
     if session[:return_after_activation].present?
