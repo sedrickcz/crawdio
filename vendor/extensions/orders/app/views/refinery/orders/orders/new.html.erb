@@ -106,10 +106,8 @@
         <%= f.check_box :sword_legal -%> &nbsp;<%= " #{t('sword_legal', scope: 'activerecord.attributes.refinery/orders/order')}"-%><a href='/pages/rewards-description--2' target='_blank'>Rewards descriptions</a>
         </label>
       </div>
-      <br>
     <% end -%>
-    <br>
-    <br><br><br>
+    <div style="clear:left"></div>
     <% if @tier.physical %>
     <h2>Shipping Address</h2>
       <div class="field">
@@ -159,8 +157,7 @@
         total_price = @tier.price 
       end
       %>
-      <br>
-    <br>
+
       <h2 id="total_price" style="clear:both;padding:15px 0 0 0 ">Total Price: <%= number_to_currency(total_price) %></h2>
 
     <div class="action">

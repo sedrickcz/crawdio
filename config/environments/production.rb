@@ -20,6 +20,19 @@ Craudio::Application.configure do
   # Generate digests for assets URLs
   config.assets.digest = true
 
+  #EMAILER SETTINGS
+  config.action_mailer.delivery_method = :smtp
+
+  config.action_mailer.smtp_settings = {
+    :enable_starttls_auto => false,
+  }
+  config.action_mailer.raise_delivery_errors = true
+
+  config.action_mailer.perform_deliveries = true
+
+  config.action_mailer.default_url_options = {host: "pledge.kingdomcomerpg.com"}
+  config.action_mailer.asset_host = "http://pledge.kingdomcomerpg.com"
+
   # Defaults to nil and saved in location specified by config.assets.prefix
   # config.assets.manifest = YOUR_PATH
 
