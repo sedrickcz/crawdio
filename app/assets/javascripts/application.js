@@ -13,3 +13,12 @@
 //= require jquery
 //= require jquery_ujs
 //= require_tree .
+
+$(document).ready(function(){
+
+setTimeout(function() {
+ $('.flash_mess').fadeOut();
+ 
+}, 8000 );
+
+});
