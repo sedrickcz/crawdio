@@ -51,3 +51,6 @@ gem 'refinerycms-user_histories', :path => 'vendor/extensions'
 gem 'carmen-rails', '~> 1.0.0'
 
 gem 'to_xls-rails'
+
+gem 'fast_xor'
+# gem 'pbkdf2', '~> 0.1.0'

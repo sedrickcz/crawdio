@@ -50,7 +50,7 @@ class UsersController < ApplicationController
 
     if @user
       if @user.activated
-        if @user.valid_password?(params[:password])
+        if @user.password_valid?(params[:password])
           sign_in(@user)
         else
           flash[:error] = "#{@user.username}'s password is not valid!"
@@ -59,9 +59,13 @@ class UsersController < ApplicationController
         flash[:error] = "#{@user.username} is not activated yet! <a href='#{resend_activation_user_url(@user.id)}'>Send it again!</a>"
       end
     else
-      flash[:error] = "User with login #{params[:login]} does not exists!"
+      flash[:error] = "User with login #{params[:login]} does not exist!"
     end
-    redirect_to refinery.root_path
+    if @user.has_role?(:superuser)
+      redirect_to refinery.admin_root_path
+    else
+      redirect_to refinery.root_path
+    end
   end
 
   def activate

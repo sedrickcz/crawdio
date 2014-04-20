@@ -11,6 +11,9 @@ Craudio::Application.routes.draw do
   namespace :api, defaults: {format: 'json'} do
     api_version(:module => "V1", :path => {:value => "v1"}, :default => true) do
       resources :projects, only: [:index, :show]
+      resources :users, only: [:import] do
+        post :import, on: :collection
+      end
     end
   end
 

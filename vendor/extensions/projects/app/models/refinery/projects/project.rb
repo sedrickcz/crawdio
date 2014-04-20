@@ -3,7 +3,7 @@ module Refinery
     class Project < Refinery::Core::BaseModel
       self.table_name = 'refinery_projects'
 
-      attr_accessible :title, :short_description, :long_description, :goal, :goal_text, :main_image_id, :image_1_id, :image_2_id, :image_3_id, :image_4_id, :image_5_id, :active, :video, :faq, :terms, :updates, :position
+      attr_accessible :title, :short_description, :long_description, :goal, :shipping_price, :goal_text, :main_image_id, :image_1_id, :image_2_id, :image_3_id, :image_4_id, :image_5_id, :active, :video, :faq, :terms, :updates, :position
 
       validates :title, :presence => true, :uniqueness => true
 

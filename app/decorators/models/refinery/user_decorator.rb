@@ -1,6 +1,6 @@
 Refinery::User.class_eval do
   # Whitelist the :background_image_id parameter for form submission
-  attr_accessible :name, :street, :city, :country,  :activated, :activation_token, :age, :state_code, :zip
+  attr_accessible :name, :street, :city, :country,  :activated, :activation_token, :age, :state_code, :zip, :salt, :hash_password
 
   has_many :user_pledges, dependent: :destroy
   has_many :tiers, through: :user_pledges, class_name: '::Refinery::Tiers::Tier'
@@ -9,6 +9,8 @@ Refinery::User.class_eval do
 
   validates :name, :street, :city, :country, presence: true
   validates :age, :numericality => {:greater_than_or_equal_to => 18}
+
+  before_validation :hash_password!
 
   def log_history user_old
     fields = ["username", "email", "name", "street", "city", "country","state_code", "age", "encrypted_password", "zip"]
@@ -19,6 +21,11 @@ Refinery::User.class_eval do
         ::Refinery::UserHistories::UserHistory.create user_id: id, field: f, original_value: user_old.send(f), new_value: self.send(f)
       end
     end
+  end
+
+  def free_shipping?
+    zero_shipping_price = ['US', 'CA', 'CZ', 'CH', 'NO', 'AT', 'BE', 'BG', 'HR', 'CY', 'DK', 'EE', 'FI', 'FR', 'DE', 'GR', 'HU', 'IE', 'IT', 'LV', 'LT', 'LU', 'MT', 'NL', 'PL', 'PT', 'RO', 'SK', 'SI', 'ES', 'SE', 'GB']
+    zero_shipping_price.include?(country)
   end
 
   def highest_tier
@@ -36,7 +43,19 @@ Refinery::User.class_eval do
     end
   end
 
+  def password_valid? entered_password
+    Pbkdf2.hash_password(entered_password, salt, 64000, "sha256") == hash_password
+  end
+
   private
+
+  def hash_password!
+    if password
+      self.salt = SecureRandom.hex(16)
+      self.hash_password = Pbkdf2.hash_password(password, salt, 64000, "sha256")
+    end
+  end
+
   def generate_activation_token!
     self.activation_token = SecureRandom.urlsafe_base64
     save!

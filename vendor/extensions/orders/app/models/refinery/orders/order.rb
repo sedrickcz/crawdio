@@ -4,7 +4,7 @@ module Refinery
       self.table_name = 'refinery_orders'
       include ActionView::Helpers::NumberHelper
 
-      attr_accessible :user_id, :state_code, :tier_id, :price, :paid, :paid_at, :pay_type, :payment_id, :email, :tier_name, :name, :street, :city, :zip, :country, :position, :upgrade, :payment_status, :cart_id, :transaction_id, :platform_1, :platform_2, :tshirt, :ingame_name, :sword_legal, :agree
+      attr_accessible :user_id, :state_code, :tier_id, :price, :shipping_price, :paid, :paid_at, :pay_type, :payment_id, :email, :tier_name, :name, :street, :city, :zip, :country, :position, :upgrade, :payment_status, :cart_id, :transaction_id, :platform_1, :platform_2, :tshirt, :ingame_name, :sword_legal, :agree
 
       attr_accessor :upgrade
 
@@ -19,8 +19,17 @@ module Refinery
         tier.physical
       end
 
+      def price_with_shipping
+        total_price = price
+        zero_shipping_price = ['US', 'CA', 'CZ', 'CH', 'NO', 'AT', 'BE', 'BG', 'HR', 'CY', 'DK', 'EE', 'FI', 'FR', 'DE', 'GR', 'HU', 'IE', 'IT', 'LV', 'LT', 'LU', 'MT', 'NL', 'PL', 'PT', 'RO', 'SK', 'SI', 'ES', 'SE', 'GB']
+        unless zero_shipping_price.include?(country)
+          total_price = price + tier.project.shipping_price
+        end
+        total_price
+      end
+
       def price_in_cent
-        (number_to_currency(price, {:unit => "", :separator => ".", :delimiter => "", :format => "%n", :precision => 2}).to_f * 100).round
+        (number_to_currency(price_with_shipping, {:unit => "", :separator => ".", :delimiter => "", :format => "%n", :precision => 2}).to_f * 100).round
       end
 
       def paypal_url(return_url, notify_url)
@@ -35,7 +44,7 @@ module Refinery
         }
 
         values.merge!({
-                        "amount_1" => price,
+                        "amount_1" => price_with_shipping,
                         "item_name_1" => tier_name,
                         "item_number_1" => tier_id,
                         "quantity_1" => '1'

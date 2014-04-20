@@ -45,6 +45,7 @@
       <%= f.label :email %>
       <%= f.text_field :email, value: current_refinery_user.email || "" %>
     </div>
+    <%= f.hidden_field :shipping_price, value: 0 %>
     <!-- Update pledge to higher one -->
     <% if current_refinery_user.highest_tier and current_refinery_user.highest_tier.position < @tier.position %>
       <div>
@@ -64,7 +65,7 @@
     <% end -%>
     <div class="field">
       <%= f.label :tier_id %>
-      <%= f.select :tier_id, options_for_select(::Refinery::Tiers::Tier.order(:position).collect{|t| ["#{t.title} (#{number_to_currency(t.price)})", t.id]}, @tier.id) %>
+      <%= f.select :tier_id, options_for_select(::Refinery::Tiers::Tier.where(kickstarter: false).order(:position).collect{|t| ["#{t.title} (#{number_to_currency(t.price)})", t.id]}, @tier.id) %>
     </div>
     <br>
 
@@ -153,12 +154,14 @@
       <% 
       if current_refinery_user.highest_tier and current_refinery_user.highest_tier.position < @tier.position
         total_price = @tier.price - current_refinery_user.highest_tier.price
+        total_price += @tier.project.shipping_price if @tier.physical and !current_refinery_user.free_shipping?
       else
         total_price = @tier.price 
+        total_price += @tier.project.shipping_price if @tier.physical and !current_refinery_user.free_shipping?
       end
       %>
 
-      <h2 id="total_price" style="clear:left;padding:15px 0 0 0 ">Total Price: <%= number_to_currency(total_price) %></h2>
+      <h2 id="total_price" style="clear:left;padding:15px 0 0 0 ">Total Price: <%= number_to_currency(total_price) %><p style="font-size: small;">(including shipping costs)</p></h2>
 
     <div class="action">
       <%= f.submit "Proceed to PayPal" %>
@@ -177,12 +180,73 @@
 <script src="http://code.jquery.com/jquery-1.10.1.min.js"></script>
 <script type="text/javascript">
 $(document).ready(function(){
-  
-    $('#order_upgrade').bind('change', function() {
-      if($(this).is(':checked')){
-        $('#total_price').html("Total Price: <%= number_to_currency(@tier.price - (current_refinery_user.highest_tier.price rescue 0 )) %>");
+    var zero_shipping_price = ['US', 'CA', 'CZ', 'CH', 'NO', 'AT', 'BE', 'BG', 'HR', 'CY', 'DK', 'EE', 'FI', 'FR', 'DE', 'GR', 'HU', 'IE', 'IT', 'LV', 'LT', 'LU', 'MT', 'NL', 'PL', 'PT', 'RO', 'SK', 'SI', 'ES', 'SE', 'GB']
+
+    <% 
+      if current_refinery_user.highest_tier and current_refinery_user.highest_tier.position < @tier.position
+        total_price = @tier.price - current_refinery_user.highest_tier.price
+        total_price += @tier.project.shipping_price if @tier.physical and !current_refinery_user.free_shipping?
+      else
+        total_price = @tier.price 
+        total_price += @tier.project.shipping_price if @tier.physical and !current_refinery_user.free_shipping?
+      end
+      %>
+
+    $('#order_country').bind('change', function(){
+      console.log('Country changed to ', $(this).val());
+      if($(this).val() == 'US'){
+        $('#states_us').show();
       }else{
-        $('#total_price').html("Total Price: <%= number_to_currency(@tier.price ) %>");
+        $('#states_us').val("");
+        $('#states_us').hide();
+      }
+
+      var shipping_price = 0;
+      if($.inArray($(this).val(), zero_shipping_price) == -1){
+        $('#order_shipping_price').val(10);
+        shipping_price = 10;
+      }
+      else{
+        $('#order_shipping_price').val(0);
+      } 
+
+      <% 
+      if current_refinery_user.highest_tier and current_refinery_user.highest_tier.position < @tier.position
+        total_price = @tier.price - current_refinery_user.highest_tier.price
+      else
+        total_price = @tier.price 
+      end
+      %>
+      var total_price = parseInt(<%= total_price %>) + shipping_price;
+      console.log('Total price', total_price);
+      console.log('shipping_price', shipping_price);
+      $('#total_price').html("Total Price: $" + total_price + ".00 <p style='font-size: small;'>(including shipping costs)</p>" );
+
+
+    });
+
+
+    $('#order_upgrade').bind('change', function() {
+      
+      if($(this).is(':checked')){
+        <% 
+          if current_refinery_user.highest_tier and current_refinery_user.highest_tier.position < @tier.position 
+            total_price = @tier.price - current_refinery_user.highest_tier.price
+            total_price += @tier.project.shipping_price if @tier.physical and !current_refinery_user.free_shipping?
+          else
+            total_price = @tier.price 
+            total_price += @tier.project.shipping_price if @tier.physical and !current_refinery_user.free_shipping?
+          end
+        %>
+
+        $('#total_price').html("Total Price: <%= number_to_currency(total_price) %>" +  "<p style='font-size: small;'>(including shipping costs)</p>");
+      }else{
+        <% 
+          total_price = @tier.price 
+          total_price += @tier.project.shipping_price if @tier.physical and !current_refinery_user.free_shipping?
+        %>
+        
+        $('#total_price').html("Total Price: <%= number_to_currency(total_price) %>" + " <p style='font-size: small;'>(including shipping costs)</p>");
       }
       
     });

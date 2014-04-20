@@ -19,6 +19,11 @@
   </div>
 
   <div class='field'>
+    <%= f.label :shipping_price -%>
+    <%= f.text_field :shipping_price -%>
+  </div>
+
+  <div class='field'>
     <%= f.label :paid -%>
     <%= f.check_box :paid, :checked => @order[:paid] -%>
   </div>

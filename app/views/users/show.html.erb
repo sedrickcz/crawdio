@@ -9,7 +9,7 @@
     <tr>
       <th></th>
       <th>Tier</th>
-      <th>Price</th>
+      <th>Price <p style="font-size: small;">(including shipping price)</p></th>
       <th>E-mail</th>
       <th>Shipping Address</th>
       <th>Payment status</th>
@@ -19,7 +19,7 @@
     <tr>
       <td><%= image_tag(order.tier.image_1.url,size: "64x64") if order.tier.image_1 %></td>
       <td><%= order.tier.title %></td>
-      <td><%= number_to_currency(order.price) %></td>
+      <td><%= number_to_currency(order.price + order.shipping_price) %></td>
       <td><%= order.email %></td>
       <td style="font-size: small;"><%= raw "#{order.name}<br/>#{order.street}<br/>#{order.zip}, #{order.city}  <br /> #{order.state_code}, #{order.country}" if order.street %></td>
       <td><%= order.payment_status %></td>
