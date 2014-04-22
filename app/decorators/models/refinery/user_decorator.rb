@@ -44,7 +44,7 @@ Refinery::User.class_eval do
   end
 
   def password_valid? entered_password
-    Pbkdf2.hash_password(entered_password, salt, 64000, "sha256") == hash_password
+    Pbkdf2.hash_password(entered_password, salt, 64000, "sha256") == hash_password rescue false
   end
 
   private
