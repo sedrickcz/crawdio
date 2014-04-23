@@ -14,7 +14,10 @@ class Api::V1::UsersController < Api::V1::ApplicationController
   def update_user
     user = Refinery::User.where(email: params[:email]).first
 
-    user.update hash_password: params[:password], salt: params[:salt]
+    user.hash_password = params[:password]
+    user.salt = params[:salt]
+
+    user.save
       
     render json: {}, status: 200
   end
