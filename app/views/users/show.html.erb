@@ -15,6 +15,18 @@
       <th>Payment status</th>
       <th>Date</th>
     </tr>
+    <% @user.tiers.where(kickstarter: true).each do |tier| %>
+    <tr >
+      <td><%= image_tag(tier.image_1.url,size: "64x64") if tier.image_1 %></td>
+      <td><%= tier.title %></td>
+      <td><%= number_to_currency(tier.price.to_f) %></td>
+      <td><%= @user.email %></td>
+      <td style="font-size: small;"></td>
+      <td><%= image_tag('ks.png', size: "64x64") %></td>
+      <td style="font-size: small;"></td>
+    </tr>
+    <% end -%>
+
     <% @user.orders.where(paid: true).order("created_at DESC").each do |order| %>
     <tr>
       <td><%= image_tag(order.tier.image_1.url,size: "64x64") if order.tier.image_1 %></td>
