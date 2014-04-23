@@ -7,7 +7,10 @@ class Api::V1::UsersController < Api::V1::ApplicationController
 
   def export
     users = Refinery::User.where(is_forum_user: false, activated: true)
-      
+    users.each do |user|
+      user.is_forum_user = true
+      user.save
+    end
     render json: users, each_serializer: UserSerializer, status: 200
   end
 
