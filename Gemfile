@@ -25,6 +25,7 @@ group :development do
   gem "capistrano", '~>2.15.0', :require => nil
   gem "capistrano-ext", :require => nil
   gem "capistrano-db-tasks", require: false
+  gem 'pry-rails'
 end
 
 gem 'jquery-rails'
