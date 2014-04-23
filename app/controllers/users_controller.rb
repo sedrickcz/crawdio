@@ -10,6 +10,15 @@ class UsersController < ApplicationController
     if @user.save
       @user.add_role(:backer)
       @user.send_activation
+      badge = UserBadge.where(email: @user.email, added: false).first
+      if badge
+        # Assign user badge
+        @user.user_pledges.create tier_id: badge.tier_id
+
+        # Mark badge as added
+        badge.added = true
+        badge.save!
+      end
       session[:return_after_activation] = params[:tier]
 
       redirect_to refinery.root_path, notice: "Activation e-mail sent to #{@user.email}."
