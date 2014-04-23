@@ -10,7 +10,7 @@ Refinery::User.class_eval do
   validates :name, :street, :city, :country, presence: true
   validates :age, :numericality => {:greater_than_or_equal_to => 18}
 
-  #before_validation :hash_password!
+  before_validation :hash_password!
 
   def log_history user_old
     fields = ["username", "email", "name", "street", "city", "country","state_code", "age", "encrypted_password", "zip"]
