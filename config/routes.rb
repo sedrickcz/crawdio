@@ -13,6 +13,7 @@ Craudio::Application.routes.draw do
       resources :projects, only: [:index, :show]
       resources :users, only: [:import] do
         post :import, on: :collection
+        post :update_user, on: :collection
         get :export, on: :collection
       end
     end
