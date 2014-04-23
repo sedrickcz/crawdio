@@ -11,6 +11,11 @@ Refinery::User.class_eval do
   validates :age, :numericality => {:greater_than_or_equal_to => 18}
 
   before_validation :hash_password!
+  before_validation :clean_username
+
+  def clean_username
+    self.username = username.gsub(/[^a-zA-Z0-9_]/,"")
+  end
 
   def log_history user_old
     fields = ["username", "email", "name", "street", "city", "country","state_code", "age", "encrypted_password", "zip"]
