@@ -1,6 +1,6 @@
 Refinery::User.class_eval do
   # Whitelist the :background_image_id parameter for form submission
-  attr_accessible :name, :street, :city, :country,  :activated, :activation_token, :age, :state_code, :zip, :salt, :hash_password
+  attr_accessible :name, :street, :city, :country,  :activated, :activation_token, :age, :state_code, :zip, :salt, :hash_password, :is_forum_user
 
   has_many :user_pledges, dependent: :destroy
   has_many :tiers, through: :user_pledges, class_name: '::Refinery::Tiers::Tier'
