@@ -1,5 +1,5 @@
 class ProjectSerializer < ActiveModel::Serializer
-  attributes :id, :title, :short_description, :long_description, :goal, :backers, :pledged, :progress
+  attributes :id, :title, :short_description, :long_description, :goal, :backers, :pledged, :progress, :goal_text
   
   def backers
     Refinery::Orders::Order.pledgers
