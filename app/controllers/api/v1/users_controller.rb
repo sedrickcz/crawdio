@@ -14,6 +14,12 @@ class Api::V1::UsersController < Api::V1::ApplicationController
     render json: users, each_serializer: UserSerializer, status: 200
   end
 
+  def refresh
+    users = Refinery::User.where(activated: true)
+
+    render json: users, each_serializer: UserSerializer, status: 200
+  end
+
   def update_user
     user = Refinery::User.where(email: params[:email]).first
 

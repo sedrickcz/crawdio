@@ -15,6 +15,7 @@ Craudio::Application.routes.draw do
         post :import, on: :collection
         post :update_user, on: :collection
         get :export, on: :collection
+        get :refresh, on: :collection
       end
     end
   end
