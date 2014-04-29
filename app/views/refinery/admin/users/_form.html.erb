@@ -28,9 +28,29 @@
     <%= f.text_field :city %>
   </div>
 
+   <div class='field'>
+    <%= f.label :zip %>
+    <%= f.text_field :zip %>
+  </div>
+
   <div class='field'>
     <%= f.label :country %>
     <%= f.text_field :country %>
+  </div>
+
+  <div class='field'>
+    <%= f.label :state_code %>
+    <%= f.text_field :state_code %>
+  </div>
+
+  <div class='field'>
+    <%= f.label :age %>
+    <%= f.text_field :age %>
+  </div>
+
+  <div class='field'>
+    <%= f.label :activated %>
+    <%= f.check_box :activated %>
   </div>
 
   <div class='field'>
@@ -98,6 +118,71 @@
              :delete_title => t('delete', :scope => 'refinery.admin.users'),
              :delete_confirmation => t('message', :scope => 'refinery.admin.delete', :title => @user.username) %>
 <% end %>
+
+<div id="user_content">
+  <h2>User orders history</h2>
+  <h3>Paid orders</h3>
+  <table style="width:100%;">
+    <tr>
+      <th></th>
+      <th>Tier</th>
+      <th>Price <p style="font-size: small;">(including shipping price)</p></th>
+      <th>E-mail</th>
+      <th>Shipping Address</th>
+      <th>Payment status</th>
+      <th>Date</th>
+    </tr>
+    <% @user.tiers.where(kickstarter: true).each do |tier| %>
+    <tr >
+      <td><%= image_tag(tier.image_1.url,size: "64x64") if tier.image_1 %></td>
+      <td><%= tier.title %></td>
+      <td><%= number_to_currency(tier.price.to_f) %></td>
+      <td><%= @user.email %></td>
+      <td style="font-size: small;"></td>
+      <td><%= image_tag('ks.png', size: "64x64") %></td>
+      <td style="font-size: small;"></td>
+    </tr>
+    <% end -%>
+
+    <% @user.orders.where(paid: true).order("created_at DESC").each do |order| %>
+    <tr>
+      <td><%= image_tag(order.tier.image_1.url,size: "64x64") if order.tier.image_1 %></td>
+      <td><%= order.tier.title %></td>
+      <td><%= number_to_currency((order.price).to_f + (order.shipping_price).to_f) %></td>
+      <td><%= order.email %></td>
+      <td style="font-size: small;"><%= raw "#{order.name}<br/>#{order.street}<br/>#{order.zip}, #{order.city}  <br /> #{order.state_code}, #{order.country}" if order.street %></td>
+      <td><%= order.payment_status %></td>
+      <td style="font-size: small;"><%= l order.created_at, format: :long %></td>
+    </tr>
+    <% end -%>
+  </table>
+
+  <h3>Not Paid orders</h3>
+  <table style="width:100%;">
+    <tr>
+      <th></th>
+      <th>Tier</th>
+      <th>Price</th>
+      <th>E-mail</th>
+      <th>Name</th>
+      <th>Address</th>
+      <th>Date</th>
+    </tr>
+    <% @user.orders.where("paid = ? or paid IS NULL", false).order("created_at DESC").each do |order| %>
+    <tr>
+      <td><%= image_tag(order.tier.image_1.url,size: "64x64") if order.tier.image_1 %></td>
+      <td><%= order.tier.title %></td>
+      <td><%= number_to_currency(order.price) %></td>
+      <td><%= order.email %></td>
+      <td><%= order.name %></td>
+      <td><%= "#{order.street}, #{order.city}, #{order.country}" if order.street %></td>
+      <td><%= l order.created_at, format: :long %></td>
+    </tr>
+    <% end -%>
+  </table>
+</div>
+
+
 
 <% content_for :javascripts do %>
   <script>
