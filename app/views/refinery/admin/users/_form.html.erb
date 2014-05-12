@@ -53,6 +53,8 @@
     <%= f.check_box :activated %>
   </div>
 
+  <%= link_to "Reset user password", main_app.reset_users_password_users_path(@user.id) %>
+
   <div class='field'>
     <%= f.label :password %>
     <%= f.password_field :password, :autocomplete => 'off' %>
@@ -118,6 +120,10 @@
              :delete_title => t('delete', :scope => 'refinery.admin.users'),
              :delete_confirmation => t('message', :scope => 'refinery.admin.delete', :title => @user.username) %>
 <% end %>
+
+<%# form_tag "" do %>
+<%#= select_tag :tiers, options_for_select(Refinery::Tiers::Tier.order(:position).collect{|t| [t.title, t.id]}) %>
+<%# end %>
 
 <div id="user_content">
   <h2>User orders history</h2>

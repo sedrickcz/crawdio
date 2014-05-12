@@ -16,7 +16,7 @@ en:
     already_have: "You already have this tier or have higher tier. You can buy this tier for full price."
   mailer:
     activation_email:
-      subject: 'Activation e-mail to Kingdom Deliverance Pledge'
+      subject: 'Activation e-mail to Kingdom Come: Deliverance Pledge'
     confirmation_email:
       subject: 'Support confirmation'
   forgot_password: 'Forgot password?'

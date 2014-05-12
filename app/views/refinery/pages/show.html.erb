@@ -3,7 +3,7 @@
     
     <% @project_pages.each_with_index do |page,index| %>
       <li><%= link_to page.title, page, :class => "index_#{index}" %></li>
-    <% end -%>
+    <% end if @project_pages-%>
     <% if current_refinery_user%>
       <li><%= link_to t('user.profile'), [main_app, current_refinery_user], :class => "index_5"%></li>
     <% end %>

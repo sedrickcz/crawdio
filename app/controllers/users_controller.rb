@@ -113,6 +113,22 @@ class UsersController < ApplicationController
     redirect_to :back, notice: "Order was successfully deleted"
   end
 
+  def reset_users_password
+    user = Refinery::User.where(id: params[:id]).first
+    if user
+      salt = SecureRandom.hex(16)
+      new_password = SecureRandom.urlsafe_base64 
+
+      user.update_attribute :salt, salt
+      user.update_attribute :hash_password, Pbkdf2.hash_password(new_password, salt, 64000, "sha256")
+      
+      redirect_to :back, notice: "New password set to: #{new_password}"
+    else
+      redirect_to :back, notice: "Password does not change! User does not exist!"
+    end
+  end
+
+
 
   def check_if_authenticated!
 

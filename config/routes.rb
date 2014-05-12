@@ -5,6 +5,7 @@ Craudio::Application.routes.draw do
     get 'activate/:token', to: "users#activate", on: :collection, as: :activation_link
     get 'resend', to: "users#resend_activation", on: :member, as: :resend_activation
     get 'order/:order_id/destroy', to: 'users#destroy_order', on: :member, as: :destroy_order
+    get 'reset/user/password/:id', to: 'users#reset_users_password', on: :collection, as: :reset_users_password
   end
 
   # api routes
