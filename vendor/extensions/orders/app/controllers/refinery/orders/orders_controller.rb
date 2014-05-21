@@ -52,7 +52,7 @@ module Refinery
                 Mailer.confirmation_email(@order).deliver
               rescue => e
                 Rails.logger.error '==========START ERROR============'
-                Rails.logger.error "Confirmation e-mail to #{email}(#{id}) not sent => #{e.inspect}"
+                Rails.logger.error "Confirmation e-mail to #{@order.email} not sent => #{e.inspect}"
                 Rails.logger.error '===========END ERROR============='
               end
               # Assign pledge to user
