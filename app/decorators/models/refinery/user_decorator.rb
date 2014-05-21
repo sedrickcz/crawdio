@@ -15,7 +15,7 @@ Refinery::User.class_eval do
   before_validation :clean_email
 
   def clean_username
-    self.username = username.gsub(/[^a-zA-Z0-9_]/,"")
+    self.username = username.downcase.gsub(/[^a-zA-Z0-9_]/,"")
   end
 
   def clean_email
