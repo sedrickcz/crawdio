@@ -65,7 +65,7 @@
     <% end -%>
     <div class="field">
       <%= f.label :tier_id %>
-      <%= f.select :tier_id, options_for_select(::Refinery::Tiers::Tier.where(kickstarter: false).order(:position).collect{|t| ["#{t.title} (#{number_to_currency(t.price)})", t.id]}, @tier.id) %>
+      <%= f.select :tier_id, options_for_select(::Refinery::Tiers::Tier.where(kickstarter: false, active: true).order(:position).collect{|t| ["#{t.title} (#{number_to_currency(t.price)})", t.id]}, @tier.id) %>
     </div>
     <br>
 
