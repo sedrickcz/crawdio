@@ -3,6 +3,8 @@ module Refinery
     class Tier < Refinery::Core::BaseModel
       self.table_name = 'refinery_tiers'
 
+      self.per_page = 50
+
       attr_accessible :title, :price, :limit, :physical, :badge_title, :kickstarter, :short_description, :long_description, :price_text, :active, :image_1_id, :image_2_id, :image_3_id, :project_id, :position, :platform_1, :platform_2, :tshirt, :ingame_name, :sword_legal, :side_text
 
       validates :title, :presence => true, :uniqueness => true
