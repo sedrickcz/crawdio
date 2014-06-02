@@ -19,6 +19,7 @@
       <%= image_tag @tier.image_1.url if @tier.image_1 %>
 </div>
     <h2><%= @tier.title %></h2>  
+    <span><i><%= "Limited (#{@tier.limit - Refinery::Orders::Order.where(tier_id: @tier.id).size} left of #{@tier.limit})" if @tier.limit and @tier.limit > 0 %></i></span>
     <div class="pricediv"><h3 class="fle"><%= number_to_currency @tier.price %></h3><%= raw @tier.price_text %></div> 
     <div class="cleaner"></div>
     <div class="ld_mt10">
@@ -36,142 +37,147 @@
 <div style="clear:left"></div>
 <div class="order_form_tier">
 <% if current_refinery_user %>
-  <%= form_for [refinery, :orders, @order] do |f| %>
-  <%= render '/refinery/admin/error_messages',
-                :object => @order,
-                :include_object_name => true %>
-  <h2>Purchase tier </h2>
-    <div class="field">
-      <%= f.label :email %>
-      <%= f.text_field :email, value: current_refinery_user.email || "" %>
-    </div>
-    <%= f.hidden_field :shipping_price, value: 0 %>
-    <!-- Update pledge to higher one -->
-    <% if current_refinery_user.highest_tier and current_refinery_user.highest_tier.position < @tier.position %>
-      <div>
-         <div class="upgrade_text">
-          <%= t('order.upgrade', price: number_to_currency(@tier.price - current_refinery_user.highest_tier.price) ) %>
+  <% if (@tier.limit - Refinery::Orders::Order.where(tier_id: @tier.id).size) <= 0 %>
+    <p>Tier order limit reached</p>
+  <% else %>
+      <%= form_for [refinery, :orders, @order] do |f| %>
+      <%= render '/refinery/admin/error_messages',
+                    :object => @order,
+                    :include_object_name => true %>
+      <h2>Purchase tier </h2>
+        <div class="field">
+          <%= f.label :email %>
+          <%= f.text_field :email, value: current_refinery_user.email || "" %>
         </div>
+        <%= f.hidden_field :shipping_price, value: 0 %>
+        <!-- Update pledge to higher one -->
+        <% if current_refinery_user.highest_tier and current_refinery_user.highest_tier.position < @tier.position %>
+          <div>
+             <div class="upgrade_text">
+              <%= t('order.upgrade', price: number_to_currency(@tier.price - current_refinery_user.highest_tier.price) ) %>
+            </div>
+            
+              <%= f.label :upgrade %> 
+              <%= f.check_box :upgrade, value: 1, checked: true%> 
+          </div>
+        <% elsif current_refinery_user.highest_tier and current_refinery_user.highest_tier.position >= @tier.position %>
+        <div>
+            <div class="upgrade_text">
+              <%= t('order.already_have') %>
+            </div>
+        </div>
+        <% end -%>
+        <div class="field">
+          <%= f.label :tier_id %>
+          <%= f.select :tier_id, options_for_select(::Refinery::Tiers::Tier.where(kickstarter: false, active: true).order(:position).collect{|t| ["#{t.title} (#{number_to_currency(t.price)})", t.id]}, @tier.id) %>
+        </div>
+        <br>
+
+        <% if @tier.platform_1 %>
+          <div class="field">
+            <%= f.label :platform_1 %>
+            <%= f.select :platform_1, options_for_select(['PC','Mac','Linux'], @order.platform_1)-%>
+          </div>
+          <br>
+        <% end -%>
+
+        <% if @tier.platform_2 %>
+          <div class="field">
+            <%= f.label :platform_2 %>
+            <%= f.select :platform_2, options_for_select(['PC','Max','Linux'], @order.platform_2)-%>
+          </div>
+          <br>
+        <% end -%>
+
+        <% if @tier.tshirt %>
+          <div class="field" id="tshirt">
+            <%= f.label :tshirt %>
+            <%= f.select :tshirt, options_for_select(['S (woman)','M (woman)','L (woman)','M (man)','L (man)','XL (man)'], @order.tshirt)-%>
+          </div>
+          <br>
+        <% end -%>
+
+        <% if @tier.ingame_name %>
+          <div class="field">
+            <%= f.label :ingame_name %>
+            <%= f.text_field :ingame_name-%>
+          </div>
+          <br>
+        <% end -%>
+
+        <% if @tier.sword_legal %>
+          <div class='field' id="sword">
+            <label>
+            <%= f.check_box :sword_legal -%> &nbsp;<%= " #{t('sword_legal', scope: 'activerecord.attributes.refinery/orders/order')}"-%><a href='/pages/rewards-description--2' target='_blank'>Rewards descriptions</a>
+            </label>
+          </div>
+        <% end -%>
+        <div style="clear:left"></div>
+        <% if @tier.physical %>
+        <h2>Shipping Address</h2>
+          <div class="field">
+            <%= f.label :name %>
+            <%= f.text_field :name, value: current_refinery_user.name || "" %>
+          </div>
+
+          <div class="field">
+            <%= f.label :street %>
+            <%= f.text_field :street, value: current_refinery_user.street || "" %>
+          </div>
+
+          <div class="field">
+            <%= f.label :city %>
+            <%= f.text_field :city, value: current_refinery_user.city || "" %>
+          </div>
+
+          <div class="field">
+            <%= f.label :zip %>
+            <%= f.text_field :zip, value: current_refinery_user.zip || "" %>
+          </div>
+
+          <div class="field">
+            <%= f.label :country %>
+            <%#= f.text_field :country || "" %>
+            <%= f.country_select :country, priority: %w(US), prompt: 'Please select a country'%>
+          </div>
+
+          <div class="field" id="states_us">
+            <%= f.label :state_code %>
+            <%= f.subregion_select :state_code, 'US', prompt: 'Please select a state'%>
+
+          </div>
+        <% end -%>
+
         
-          <%= f.label :upgrade %> 
-          <%= f.check_box :upgrade, value: 1, checked: true%> 
-      </div>
-    <% elsif current_refinery_user.highest_tier and current_refinery_user.highest_tier.position >= @tier.position %>
-    <div>
-        <div class="upgrade_text">
-          <%= t('order.already_have') %>
+
+        <div class='field' id="agree">
+            <label>
+            <%= f.check_box :agree -%> &nbsp;<%= " #{t('agree', scope: 'activerecord.attributes.refinery/orders/order')}"-%><a href='/pages/terms-conditions' target='_blank'>terms &amp; conditions</a>
+            </label>
+          </div>
+          <% 
+          if current_refinery_user.highest_tier and current_refinery_user.highest_tier.position < @tier.position
+            total_price = @tier.price - current_refinery_user.highest_tier.price
+            total_price += @tier.project.shipping_price if @tier.physical and !current_refinery_user.free_shipping?
+          else
+            total_price = @tier.price 
+            total_price += @tier.project.shipping_price if @tier.physical and !current_refinery_user.free_shipping?
+          end
+          %>
+
+          <h2 id="total_price" style="clear:left;padding:15px 0 0 0 ">Total Price: <%= number_to_currency(total_price) %><p style="font-size: small;">(including shipping costs)</p></h2>
+        
+        <div class="action">
+            <%= f.submit "Proceed to PayPal" %>
         </div>
-    </div>
-    <% end -%>
-    <div class="field">
-      <%= f.label :tier_id %>
-      <%= f.select :tier_id, options_for_select(::Refinery::Tiers::Tier.where(kickstarter: false, active: true).order(:position).collect{|t| ["#{t.title} (#{number_to_currency(t.price)})", t.id]}, @tier.id) %>
-    </div>
-    <br>
-
-    <% if @tier.platform_1 %>
-      <div class="field">
-        <%= f.label :platform_1 %>
-        <%= f.select :platform_1, options_for_select(['PC','Mac','Linux'], @order.platform_1)-%>
-      </div>
-      <br>
-    <% end -%>
-
-    <% if @tier.platform_2 %>
-      <div class="field">
-        <%= f.label :platform_2 %>
-        <%= f.select :platform_2, options_for_select(['PC','Max','Linux'], @order.platform_2)-%>
-      </div>
-      <br>
-    <% end -%>
-
-    <% if @tier.tshirt %>
-      <div class="field" id="tshirt">
-        <%= f.label :tshirt %>
-        <%= f.select :tshirt, options_for_select(['S (woman)','M (woman)','L (woman)','M (man)','L (man)','XL (man)'], @order.tshirt)-%>
-      </div>
-      <br>
-    <% end -%>
-
-    <% if @tier.ingame_name %>
-      <div class="field">
-        <%= f.label :ingame_name %>
-        <%= f.text_field :ingame_name-%>
-      </div>
-      <br>
-    <% end -%>
-
-    <% if @tier.sword_legal %>
-      <div class='field' id="sword">
-        <label>
-        <%= f.check_box :sword_legal -%> &nbsp;<%= " #{t('sword_legal', scope: 'activerecord.attributes.refinery/orders/order')}"-%><a href='/pages/rewards-description--2' target='_blank'>Rewards descriptions</a>
-        </label>
-      </div>
-    <% end -%>
-    <div style="clear:left"></div>
-    <% if @tier.physical %>
-    <h2>Shipping Address</h2>
-      <div class="field">
-        <%= f.label :name %>
-        <%= f.text_field :name, value: current_refinery_user.name || "" %>
-      </div>
-
-      <div class="field">
-        <%= f.label :street %>
-        <%= f.text_field :street, value: current_refinery_user.street || "" %>
-      </div>
-
-      <div class="field">
-        <%= f.label :city %>
-        <%= f.text_field :city, value: current_refinery_user.city || "" %>
-      </div>
-
-      <div class="field">
-        <%= f.label :zip %>
-        <%= f.text_field :zip, value: current_refinery_user.zip || "" %>
-      </div>
-
-      <div class="field">
-        <%= f.label :country %>
-        <%#= f.text_field :country || "" %>
-        <%= f.country_select :country, priority: %w(US), prompt: 'Please select a country'%>
-      </div>
-
-      <div class="field" id="states_us">
-        <%= f.label :state_code %>
-        <%= f.subregion_select :state_code, 'US', prompt: 'Please select a state'%>
 
       </div>
-    <% end -%>
-
-    
-
-    <div class='field' id="agree">
-        <label>
-        <%= f.check_box :agree -%> &nbsp;<%= " #{t('agree', scope: 'activerecord.attributes.refinery/orders/order')}"-%><a href='/pages/terms-conditions' target='_blank'>terms &amp; conditions</a>
-        </label>
-      </div>
-      <% 
-      if current_refinery_user.highest_tier and current_refinery_user.highest_tier.position < @tier.position
-        total_price = @tier.price - current_refinery_user.highest_tier.price
-        total_price += @tier.project.shipping_price if @tier.physical and !current_refinery_user.free_shipping?
-      else
-        total_price = @tier.price 
-        total_price += @tier.project.shipping_price if @tier.physical and !current_refinery_user.free_shipping?
-      end
-      %>
-
-      <h2 id="total_price" style="clear:left;padding:15px 0 0 0 ">Total Price: <%= number_to_currency(total_price) %><p style="font-size: small;">(including shipping costs)</p></h2>
-
-    <div class="action">
-      <%= f.submit "Proceed to PayPal" %>
-    </div>
-  </div>
-    <div class="cleaner"></div>
-      </div>   
-      <div class="cleaner"></div> 
-  <% end -%>
-   <% else -%>
+        <div class="cleaner"></div>
+          </div>   
+          <div class="cleaner"></div> 
+      <% end -%>
+    <% end %>
+<% else -%>
    <div class="action">
       <%= link_to "Back this project", main_app.new_user_path(tier: params[:tier]) %>
     </div>
