@@ -37,7 +37,7 @@
 <div style="clear:left"></div>
 <div class="order_form_tier">
 <% if current_refinery_user %>
-  <% if (@tier.limit - Refinery::Orders::Order.where(tier_id: @tier.id).size) <= 0 %>
+  <% if @tier.limit and (@tier.limit - Refinery::Orders::Order.where(tier_id: @tier.id).size) <= 0 %>
     <p>Tier order limit reached</p>
   <% else %>
       <%= form_for [refinery, :orders, @order] do |f| %>
