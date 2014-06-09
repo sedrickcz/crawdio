@@ -49,7 +49,21 @@
           <%= f.label :email %>
           <%= f.text_field :email, value: current_refinery_user.email || "" %>
         </div>
-        <%= f.hidden_field :shipping_price, value: 0 %>
+
+        <% if @tier.physical %>
+          <% if current_refinery_user.free_shipping? %>
+            <% ship_price = 0 %>
+          <% else %>
+            <% unless current_refinery_user.highest_tier.physical %>
+              <% ship_price = @tier.project.shipping_price %>
+            <% else %>
+              <% ship_price = 0  %>
+            <% end %>
+          <% end %>
+        <% else %>
+          <% ship_price = 0 %>
+        <% end %>
+        <%= f.hidden_field :shipping_price, value: ship_price %>
         <!-- Update pledge to higher one -->
         <% if current_refinery_user.highest_tier and current_refinery_user.highest_tier.position < @tier.position %>
           <div>
@@ -158,7 +172,9 @@
           <% 
           if current_refinery_user.highest_tier and current_refinery_user.highest_tier.position < @tier.position
             total_price = @tier.price - current_refinery_user.highest_tier.price
-            total_price += @tier.project.shipping_price if @tier.physical and !current_refinery_user.free_shipping?
+            unless current_refinery_user.highest_tier.physical
+              total_price += @tier.project.shipping_price if @tier.physical and !current_refinery_user.free_shipping?
+            end
           else
             total_price = @tier.price 
             total_price += @tier.project.shipping_price if @tier.physical and !current_refinery_user.free_shipping?
@@ -191,7 +207,9 @@ $(document).ready(function(){
     <% 
       if current_refinery_user.highest_tier and current_refinery_user.highest_tier.position < @tier.position
         total_price = @tier.price - current_refinery_user.highest_tier.price
-        total_price += @tier.project.shipping_price if @tier.physical and !current_refinery_user.free_shipping?
+        unless current_refinery_user.highest_tier.physical
+          total_price += @tier.project.shipping_price if @tier.physical and !current_refinery_user.free_shipping?
+        end
       else
         total_price = @tier.price 
         total_price += @tier.project.shipping_price if @tier.physical and !current_refinery_user.free_shipping?
@@ -238,12 +256,21 @@ $(document).ready(function(){
         <% 
           if current_refinery_user.highest_tier and current_refinery_user.highest_tier.position < @tier.position 
             total_price = @tier.price - current_refinery_user.highest_tier.price
-            total_price += @tier.project.shipping_price if @tier.physical and !current_refinery_user.free_shipping?
+            unless current_refinery_user.highest_tier.physical
+              total_price += @tier.project.shipping_price if @tier.physical and !current_refinery_user.free_shipping?
+            end
           else
             total_price = @tier.price 
             total_price += @tier.project.shipping_price if @tier.physical and !current_refinery_user.free_shipping?
           end
         %>
+        var no_ship = '<%= current_refinery_user.highest_tier.physical %>'
+        if(no_ship == 'true'){
+          $('#order_shipping_price').val(0);
+        }
+        else{
+          $('#order_shipping_price').val(10);
+        } 
 
         $('#total_price').html("Total Price: <%= number_to_currency(total_price) %>" +  "<p style='font-size: small;'>(including shipping costs)</p>");
       }else{
@@ -251,6 +278,15 @@ $(document).ready(function(){
           total_price = @tier.price 
           total_price += @tier.project.shipping_price if @tier.physical and !current_refinery_user.free_shipping?
         %>
+
+        var shipping_price = 0;
+        if($.inArray($(this).val(), zero_shipping_price) == -1){
+          $('#order_shipping_price').val(10);
+          shipping_price = 10;
+        }
+        else{
+          $('#order_shipping_price').val(0);
+        } 
         
         $('#total_price').html("Total Price: <%= number_to_currency(total_price) %>" + " <p style='font-size: small;'>(including shipping costs)</p>");
       }
