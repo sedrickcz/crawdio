@@ -2,8 +2,8 @@
   <ul>
     
     <% @project_pages.each_with_index do |page,index| %>
-      <li><%= link_to page.title, page, :class => "index_#{index}" %></li>
-    <% end if @project_pages-%>
+      <li><%= link_to(page.title, refinery.url_for(page.url), :class => "index_#{index}") if page and page.class.to_s == "Refinery::Page" %></li>
+    <% end if @project_pages.any? -%>
     <% if current_refinery_user%>
       <li><%= link_to t('user.profile'), [main_app, current_refinery_user], :class => "index_5"%></li>
     <% end %>

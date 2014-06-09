@@ -53,7 +53,7 @@
     <%= f.check_box :activated %>
   </div>
 
-  <%= link_to "Reset user password", main_app.reset_users_password_users_path(@user.id) %>
+  <%= link_to "Reset user password", main_app.reset_users_password_users_path(@user.id)  unless @user.new_record? %>
 
   <div class='field'>
     <%= f.label :password %>
