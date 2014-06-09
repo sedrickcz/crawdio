@@ -54,10 +54,12 @@
           <% if current_refinery_user.free_shipping? %>
             <% ship_price = 0 %>
           <% else %>
-            <% unless current_refinery_user.highest_tier.physical %>
-              <% ship_price = @tier.project.shipping_price %>
-            <% else %>
-              <% ship_price = 0  %>
+            <% if current_refinery_user.highest_tier %>
+              <% unless current_refinery_user.highest_tier.physical %>
+                <% ship_price = @tier.project.shipping_price %>
+              <% else %>
+                <% ship_price = 0  %>
+              <% end %>
             <% end %>
           <% end %>
         <% else %>
@@ -172,8 +174,10 @@
           <% 
           if current_refinery_user.highest_tier and current_refinery_user.highest_tier.position < @tier.position
             total_price = @tier.price - current_refinery_user.highest_tier.price
-            unless current_refinery_user.highest_tier.physical
-              total_price += @tier.project.shipping_price if @tier.physical and !current_refinery_user.free_shipping?
+            if current_refinery_user.highest_tier
+              unless current_refinery_user.highest_tier.physical
+                total_price += @tier.project.shipping_price if @tier.physical and !current_refinery_user.free_shipping?
+              end
             end
           else
             total_price = @tier.price 
@@ -207,8 +211,10 @@ $(document).ready(function(){
     <% 
       if current_refinery_user.highest_tier and current_refinery_user.highest_tier.position < @tier.position
         total_price = @tier.price - current_refinery_user.highest_tier.price
-        unless current_refinery_user.highest_tier.physical
-          total_price += @tier.project.shipping_price if @tier.physical and !current_refinery_user.free_shipping?
+        if current_refinery_user.highest_tier
+          unless current_refinery_user.highest_tier.physical
+            total_price += @tier.project.shipping_price if @tier.physical and !current_refinery_user.free_shipping?
+          end
         end
       else
         total_price = @tier.price 
@@ -256,15 +262,17 @@ $(document).ready(function(){
         <% 
           if current_refinery_user.highest_tier and current_refinery_user.highest_tier.position < @tier.position 
             total_price = @tier.price - current_refinery_user.highest_tier.price
-            unless current_refinery_user.highest_tier.physical
-              total_price += @tier.project.shipping_price if @tier.physical and !current_refinery_user.free_shipping?
+            if current_refinery_user.highest_tier
+              unless current_refinery_user.highest_tier.physical
+                total_price += @tier.project.shipping_price if @tier.physical and !current_refinery_user.free_shipping?
+              end
             end
           else
             total_price = @tier.price 
             total_price += @tier.project.shipping_price if @tier.physical and !current_refinery_user.free_shipping?
           end
         %>
-        var no_ship = '<%= current_refinery_user.highest_tier.physical %>'
+        var no_ship = '<%= current_refinery_user.highest_tier ? current_refinery_user.highest_tier.physical : false %>'
         if(no_ship == 'true'){
           $('#order_shipping_price').val(0);
         }
