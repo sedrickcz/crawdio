@@ -24,7 +24,7 @@ module Refinery
         if is_physical?
           zero_shipping_price = ['US', 'CA', 'CZ', 'CH', 'NO', 'AT', 'BE', 'BG', 'HR', 'CY', 'DK', 'EE', 'FI', 'FR', 'DE', 'GR', 'HU', 'IE', 'IT', 'LV', 'LT', 'LU', 'MT', 'NL', 'PL', 'PT', 'RO', 'SK', 'SI', 'ES', 'SE', 'GB']
           unless zero_shipping_price.include?(country)
-            if user.highest_tier.physical
+            if user.highest_tier and user.highest_tier.physical
               total_price = price
             else
               total_price = price + tier.project.shipping_price

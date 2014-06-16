@@ -54,4 +54,5 @@ gem 'carmen-rails', '~> 1.0.0'
 gem 'to_xls-rails'
 
 gem 'fast_xor'
+gem 'newrelic_rpm'
 # gem 'pbkdf2', '~> 0.1.0'
