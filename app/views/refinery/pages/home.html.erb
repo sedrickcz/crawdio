@@ -33,7 +33,7 @@
           <div class="tier_title">
             <%= link_to tier.title, refinery.new_orders_order_path(tier: tier.id) %>
           </div>
-          <span><i><%= "Limited (#{tier.limit - Refinery::Orders::Order.where(tier_id: tier.id).size} left of #{tier.limit})" if tier.limit and tier.limit > 0 %></i></span>
+          <span><i><%= "Limited (#{tier.limit - Refinery::Orders::Order.where(tier_id: tier.id, paid: true).size} left of #{tier.limit})" if tier.limit and tier.limit > 0 %></i></span>
           <div class="tier_short_desc">
             <%= raw tier.short_description %>
           </div>
