@@ -19,7 +19,7 @@
       <%= image_tag @tier.image_1.url if @tier.image_1 %>
 </div>
     <h2><%= @tier.title %></h2>  
-    <span><i><%= "Limited (#{@tier.limit - Refinery::Orders::Order.where(tier_id: @tier.id).size} left of #{@tier.limit})" if @tier.limit and @tier.limit > 0 %></i></span>
+    <span><i><%= "Limited (#{@tier.limit - Refinery::Orders::Order.where(tier_id: @tier.id, paid: true).size} left of #{@tier.limit})" if @tier.limit and @tier.limit > 0 %></i></span>
     <div class="pricediv"><h3 class="fle"><%= number_to_currency @tier.price %></h3><%= raw @tier.price_text %></div> 
     <div class="cleaner"></div>
     <div class="ld_mt10">
@@ -37,7 +37,7 @@
 <div style="clear:left"></div>
 <div class="order_form_tier">
 <% if current_refinery_user %>
-  <% if @tier.limit and (@tier.limit - Refinery::Orders::Order.where(tier_id: @tier.id).size) <= 0 %>
+  <% if @tier.limit and (@tier.limit - Refinery::Orders::Order.where(tier_id: @tier.id, paid: true).size) <= 0 %>
     <p>Tier order limit reached</p>
   <% else %>
       <%= form_for [refinery, :orders, @order] do |f| %>
