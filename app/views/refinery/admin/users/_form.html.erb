@@ -114,6 +114,11 @@
     </div>
   <% end %>
 
+  <div class='field'>
+    <%= f.label :note, "Admin notes" %>
+    <%= f.text_area :note %>
+  </div>
+
   <%= render '/refinery/admin/form_actions', :f => f,
              :continue_editing => false,
              :hide_delete => !current_refinery_user.can_delete?(@user),

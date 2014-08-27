@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20140416091841) do
+ActiveRecord::Schema.define(:version => 20140827164828) do
 
   create_table "refinery_images", :force => true do |t|
     t.string   "image_mime_type"
@@ -52,6 +52,7 @@ ActiveRecord::Schema.define(:version => 20140416091841) do
     t.boolean  "agree",          :default => false
     t.string   "state_code"
     t.string   "zip"
+    t.float    "shipping_price", :default => 0.0
   end
 
   create_table "refinery_page_part_translations", :force => true do |t|
@@ -133,9 +134,10 @@ ActiveRecord::Schema.define(:version => 20140416091841) do
     t.text     "terms"
     t.text     "updates"
     t.integer  "position"
-    t.datetime "created_at",        :null => false
-    t.datetime "updated_at",        :null => false
+    t.datetime "created_at",                         :null => false
+    t.datetime "updated_at",                         :null => false
     t.text     "goal_text"
+    t.float    "shipping_price",    :default => 0.0
   end
 
   create_table "refinery_resources", :force => true do |t|
@@ -171,10 +173,10 @@ ActiveRecord::Schema.define(:version => 20140416091841) do
     t.integer  "image_1_id"
     t.integer  "image_2_id"
     t.integer  "image_3_id"
+    t.integer  "project_id"
     t.integer  "position"
     t.datetime "created_at",                           :null => false
     t.datetime "updated_at",                           :null => false
-    t.integer  "project_id"
     t.boolean  "platform_1",        :default => false
     t.boolean  "platform_2",        :default => false
     t.boolean  "tshirt",            :default => false
@@ -182,6 +184,8 @@ ActiveRecord::Schema.define(:version => 20140416091841) do
     t.boolean  "sword_legal",       :default => false
     t.text     "side_text"
     t.text     "price_text"
+    t.boolean  "kickstarter",       :default => false
+    t.string   "badge_title"
   end
 
   create_table "refinery_user_histories", :force => true do |t|
@@ -227,6 +231,10 @@ ActiveRecord::Schema.define(:version => 20140416091841) do
     t.integer  "age",                    :default => 0
     t.string   "state_code"
     t.string   "zip"
+    t.string   "salt"
+    t.string   "hash_password"
+    t.boolean  "is_forum_user",          :default => false
+    t.text     "note"
   end
 
   add_index "refinery_users", ["id"], :name => "index_refinery_users_on_id"
@@ -243,6 +251,15 @@ ActiveRecord::Schema.define(:version => 20140416091841) do
 
   add_index "seo_meta", ["id"], :name => "index_seo_meta_on_id"
   add_index "seo_meta", ["seo_meta_id", "seo_meta_type"], :name => "id_type_index_on_seo_meta"
+
+  create_table "user_badges", :force => true do |t|
+    t.string   "email"
+    t.string   "badge_title"
+    t.integer  "tier_id"
+    t.boolean  "added",       :default => false
+    t.datetime "created_at",                     :null => false
+    t.datetime "updated_at",                     :null => false
+  end
 
   create_table "user_pledges", :force => true do |t|
     t.integer  "user_id"
